@@ -1,0 +1,3 @@
+[submodule "plugins/marketplaces/caveman"]
+	path = plugins/marketplaces/caveman
+	url = https://github.com/JuliusBrussee/caveman.git

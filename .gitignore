@@ -1,0 +1,30 @@
+# Session/runtime state
+history.jsonl
+.caveman-active
+.last-cleanup
+.agents
+
+# Cache
+cache/
+paste-cache/
+mcp-needs-auth-cache.json
+
+# Backups
+backups/
+
+# Runtime directories
+sessions/
+session-env/
+shell-snapshots/
+tasks/
+telemetry/
+ide/
+file-history/
+
+# Project-specific data (machine-local paths)
+projects/
+
+# Plugin runtime (auto-regenerated on install)
+plugins/cache/
+plugins/data/
+plugins/installed_plugins.json

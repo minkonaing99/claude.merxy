@@ -9,6 +9,11 @@ cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // empty')
 model=$(echo "$input" | jq -r '.model.display_name // empty')
 used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
 five_pct=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
+five_reset=$(echo "$input" | jq -r '
+  .rate_limits.five_hour.resets_at //
+  .rate_limits.five_hour.reset_at //
+  .rate_limits.five_hour.resets //
+  empty')
 extra_pct=$(echo "$input" | jq -r '
   .rate_limits.extra.used_percentage //
   .rate_limits.extra_usage.used_percentage //
@@ -99,7 +104,24 @@ fi
 # 5-hour rate limit: percentage only (only when present)
 if [ -n "$five_pct" ]; then
   five_label=$(printf '%.0f' "$five_pct")
-  line="${line}${SEP}5h:$(color_pct "$five_pct" "${five_label}%")"
+  reset_str=""
+  if [ -n "$five_reset" ]; then
+    if [[ "$five_reset" =~ ^[0-9]+$ ]]; then
+      reset_str=$(date -r "$five_reset" "+%-I:%M%p" 2>/dev/null | tr '[:upper:]' '[:lower:]')
+    else
+      clean="${five_reset%%.*}"
+      clean="${clean%Z}"
+      clean="${clean%+*}"
+      reset_str=$(TZ=UTC date -j -f "%Y-%m-%dT%H:%M:%S" "$clean" "+%s" 2>/dev/null \
+                  | xargs -I{} date -r {} "+%-I:%M%p" 2>/dev/null | tr '[:upper:]' '[:lower:]')
+      [ -z "$reset_str" ] && reset_str=$(date -d "$five_reset" "+%-I:%M%p" 2>/dev/null | tr '[:upper:]' '[:lower:]')
+    fi
+  fi
+  if [ -n "$reset_str" ]; then
+    line="${line}${SEP}5h:$(color_pct "$five_pct" "${five_label}% (${reset_str})")"
+  else
+    line="${line}${SEP}5h:$(color_pct "$five_pct" "${five_label}%")"
+  fi
 fi
 
 # Extra usage: only when present and non-zero

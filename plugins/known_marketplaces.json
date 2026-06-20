@@ -6,5 +6,13 @@
     },
     "installLocation": "/Users/aurora/.claude/plugins/marketplaces/caveman",
     "lastUpdated": "2026-06-01T08:05:49.334Z"
+  },
+  "ponytail": {
+    "source": {
+      "source": "github",
+      "repo": "DietrichGebert/ponytail"
+    },
+    "installLocation": "/Users/aurora/.claude/plugins/marketplaces/ponytail",
+    "lastUpdated": "2026-06-19T00:00:00.000Z"
   }
 }

@@ -27,7 +27,7 @@
 
 RED -> GREEN -> REFACTOR. Failing test first. Always.
 
-## Language Rules (load on demand)
+## Language Rules (load only on demand)
 
 - TS/JS: `rules/typescript/{coding-style,patterns,testing,security}.md`
 - Python: `rules/python/{coding-style,patterns,testing,security}.md`
@@ -36,7 +36,7 @@ RED -> GREEN -> REFACTOR. Failing test first. Always.
 - PHP: `rules/php/{coding-style,patterns,testing,security}.md`
 
 @rules/common/standards.md
-@rules/common/workflow.md
+@rules/common/development-workflow.md
 
 ## Project Init
 

@@ -1,11 +1,13 @@
 # Session/runtime state
 history.jsonl
 .caveman-active
+.ponytail-active
 .last-cleanup
 .agents
 
 # Cache
 cache/
+image-cache/
 paste-cache/
 mcp-needs-auth-cache.json
 
@@ -28,3 +30,7 @@ projects/
 plugins/cache/
 plugins/data/
 plugins/installed_plugins.json
+plugins/.last_inuse_sweep
+
+# Plugin marketplaces (external clones, regenerated on install)
+plugins/marketplaces/

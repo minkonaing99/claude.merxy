@@ -7,7 +7,7 @@ paths:
 ---
 # TypeScript/JavaScript Patterns
 
-> This file extends [common/patterns.md](../common/patterns.md) with TypeScript/JavaScript specific content.
+> Extends [common/patterns.md](../common/patterns.md) with TypeScript/JavaScript content.
 
 ## API Response Format
 

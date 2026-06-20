@@ -2,9 +2,14 @@
 
 ## Hook Types
 
-- **PreToolUse**: Before tool execution (validation, parameter modification)
+- **PreToolUse**: Before tool execution (validation, parameter modification, allow/deny)
 - **PostToolUse**: After tool execution (auto-format, checks)
-- **Stop**: When session ends (final verification)
+- **UserPromptSubmit**: Before prompt processed (inject context, validate input)
+- **SessionStart**: Session start / resume (load context)
+- **Stop**: When agent finishes responding (final verification)
+- **SubagentStop**: When subagent finishes
+- **PreCompact**: Before context compaction
+- **SessionEnd**: When session ends
 
 ## Auto-Accept Permissions
 
@@ -12,7 +17,7 @@ Use with caution:
 - Enable for trusted, well-defined plans
 - Disable for exploratory work
 - Never use dangerously-skip-permissions flag
-- Configure `allowedTools` in `~/.claude.json` instead
+- Configure `permissions.allow` / `permissions.deny` in `~/.claude/settings.json` instead
 
 ## TodoWrite Best Practices
 

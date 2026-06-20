@@ -5,7 +5,7 @@ paths:
 ---
 # Swift Hooks
 
-> This file extends [common/hooks.md](../common/hooks.md) with Swift specific content.
+> Extends [common/hooks.md](../common/hooks.md) with Swift content.
 
 ## PostToolUse Hooks
 
@@ -17,4 +17,4 @@ Configure in `~/.claude/settings.json`:
 
 ## Warning
 
-Flag `print()` statements — use `os.Logger` or structured logging instead for production code.
+Flag `print()` statements - use `os.Logger` or structured logging instead for production code.

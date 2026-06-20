@@ -5,7 +5,7 @@ paths:
 ---
 # Python Testing
 
-> This file extends [common/testing.md](../common/testing.md) with Python specific content.
+> Extends [common/testing.md](../common/testing.md) with Python content.
 
 ## Framework
 

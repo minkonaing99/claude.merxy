@@ -2,39 +2,39 @@
 
 ## Immutability (CRITICAL)
 
-ALWAYS create new objects, NEVER mutate existing ones. Return new copies; never modify in-place. Immutable data prevents hidden side effects and enables safe concurrency.
+New objects, NEVER mutate. Return new copies, never modify in-place. Prevents hidden side effects, enables safe concurrency.
 
 ## File Organization
 
 MANY SMALL FILES > FEW LARGE FILES:
 - High cohesion, low coupling
 - 200-400 lines typical, 800 max
-- Extract utilities from large modules
-- Organize by feature/domain, not by type
+- Extract utilities from big modules
+- Organize by feature/domain, not type
 
 ## Error Handling
 
-ALWAYS handle errors comprehensively:
-- Handle errors explicitly at every level
-- Provide user-friendly error messages in UI-facing code
-- Log detailed error context on the server side
-- Never silently swallow errors
+Handle errors comprehensive:
+- Explicit at every level
+- User-friendly messages in UI code
+- Log detailed context server-side
+- Never silently swallow
 
 ## Input Validation
 
-ALWAYS validate at system boundaries:
+Validate at system boundaries:
 - Validate all user input before processing
-- Use schema-based validation where available
-- Fail fast with clear error messages
+- Schema-based validation where available
+- Fail fast, clear messages
 - Never trust external data (API responses, user input, file content)
 
 ## Code Quality Checklist
 
-Before marking work complete:
-- [ ] Code is readable and well-named
-- [ ] Functions are small (<50 lines)
-- [ ] Files are focused (<800 lines)
+Before marking complete:
+- [ ] Readable, well-named
+- [ ] Functions small (<50 lines)
+- [ ] Files focused (<800 lines)
 - [ ] No deep nesting (>4 levels)
 - [ ] Proper error handling
-- [ ] No hardcoded values (use constants or config)
-- [ ] No mutation (immutable patterns used)
+- [ ] No hardcoded values (use constants/config)
+- [ ] No mutation (immutable patterns)

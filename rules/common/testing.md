@@ -11,9 +11,9 @@ Test Types (ALL required):
 
 MANDATORY workflow:
 1. Write test first (RED)
-2. Run test - it should FAIL
+2. Run test - should FAIL
 3. Write minimal implementation (GREEN)
-4. Run test - it should PASS
+4. Run test - should PASS
 5. Refactor (IMPROVE)
 6. Verify coverage (80%+)
 
@@ -21,8 +21,8 @@ MANDATORY workflow:
 
 1. Use **tdd-guide** agent
 2. Check test isolation
-3. Verify mocks are correct
-4. Fix implementation, not tests (unless tests are wrong)
+3. Verify mocks correct
+4. Fix implementation, not tests (unless tests wrong)
 
 ## Agent Support
 

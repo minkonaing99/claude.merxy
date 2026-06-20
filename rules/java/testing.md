@@ -4,7 +4,7 @@ paths:
 ---
 # Java Testing
 
-> This file extends [common/testing.md](../common/testing.md) with Java-specific content.
+> Extends [common/testing.md](../common/testing.md) with Java content.
 
 ## Test Framework
 
@@ -123,7 +123,7 @@ Use descriptive names with `@DisplayName`:
 
 - Target 80%+ line coverage
 - Use JaCoCo for coverage reporting
-- Focus on service and domain logic — skip trivial getters/config classes
+- Focus on service and domain logic - skip trivial getters/config classes
 
 ## References
 

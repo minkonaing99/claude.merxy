@@ -1,14 +1,14 @@
 # Agent Orchestration
 
-Agent definitions live in `~/.claude/agents/`. Read agent files for full details — don't duplicate them here.
+Agent definitions in `~/.claude/agents/`. Read agent files for detail - no duplicate here.
 
 ## Parallel Task Execution
 
-ALWAYS use parallel Task execution for independent operations. Never run sequentially what can run concurrently.
+ALWAYS parallel Task for independent ops. Never run sequential what can run concurrent.
 
 ## Multi-Perspective Analysis
 
-For complex problems, use split role sub-agents:
+Complex problems: split-role sub-agents:
 - Factual reviewer
 - Senior engineer
 - Security expert

@@ -5,7 +5,7 @@ paths:
 ---
 # Swift Patterns
 
-> This file extends [common/patterns.md](../common/patterns.md) with Swift specific content.
+> Extends [common/patterns.md](../common/patterns.md) with Swift content.
 
 ## Protocol-Oriented Design
 
@@ -48,7 +48,7 @@ actor Cache<Key: Hashable & Sendable, Value: Sendable> {
 
 ## Dependency Injection
 
-Inject protocols with default parameters — production uses defaults, tests inject mocks:
+Inject protocols with default parameters - production uses defaults, tests inject mocks:
 
 ```swift
 struct UserService {

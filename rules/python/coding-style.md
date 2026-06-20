@@ -5,7 +5,7 @@ paths:
 ---
 # Python Coding Style
 
-> This file extends [common/coding-style.md](../common/coding-style.md) with Python specific content.
+> Extends [common/coding-style.md](../common/coding-style.md) with Python content.
 
 ## Standards
 
@@ -30,6 +30,25 @@ class Point(NamedTuple):
     x: float
     y: float
 ```
+
+## Dependencies & Virtual Environment
+
+- ALWAYS create a project-local `.venv` per project. Never install into system Python.
+- Create + activate before installing:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install <package>
+```
+
+- Pin installed deps to `requirements.txt`:
+
+```bash
+pip freeze > requirements.txt
+```
+
+- Add `.venv/` to `.gitignore`. Commit `requirements.txt`.
 
 ## Formatting
 

@@ -2,53 +2,59 @@
 
 ## Model Selection Strategy
 
-**Haiku 4.5** (90% of Sonnet capability, 3x cost savings):
-- Lightweight agents with frequent invocation
-- Pair programming and code generation
+Latest family: Opus 4.8, Sonnet 4.6, Haiku 4.5. Default to most capable Claude models when building AI apps.
+
+**Haiku 4.5** (`claude-haiku-4-5-20251001`) - fast, cheap, high capability-per-cost:
+- Lightweight agents, frequent invocation
+- Pair programming, code generation
 - Worker agents in multi-agent systems
 
-**Sonnet 4.6** (Best coding model):
-- Main development work
+**Sonnet 4.6** (`claude-sonnet-4-6`) - strong all-round coding:
+- Main dev work
 - Orchestrating multi-agent workflows
 - Complex coding tasks
 
-**Opus 4.5** (Deepest reasoning):
-- Complex architectural decisions
-- Maximum reasoning requirements
-- Research and analysis tasks
+**Opus 4.8** (`claude-opus-4-8`) - most capable, deepest reasoning:
+- Complex architecture decisions
+- Max reasoning
+- Research + analysis
+
+### Fast mode (Claude Code)
+
+Opus with faster output, no downgrade to smaller model. Toggle `/fast`. Available on Opus 4.8 / 4.7 / 4.6.
 
 ## Context Window Management
 
-Avoid last 20% of context window for:
+Avoid last 20% of context for:
 - Large-scale refactoring
-- Feature implementation spanning multiple files
+- Multi-file feature work
 - Debugging complex interactions
 
-Lower context sensitivity tasks:
+Low context-sensitivity tasks:
 - Single-file edits
 - Independent utility creation
-- Documentation updates
+- Docs updates
 - Simple bug fixes
 
 ## Extended Thinking + Plan Mode
 
-Extended thinking is enabled by default, reserving up to 31,999 tokens for internal reasoning.
+Extended thinking on by default, reserves up to 31,999 tokens for reasoning.
 
-Control extended thinking via:
+Control via:
 - **Toggle**: Option+T (macOS) / Alt+T (Windows/Linux)
-- **Config**: Set `alwaysThinkingEnabled` in `~/.claude/settings.json`
+- **Config**: `alwaysThinkingEnabled` in `~/.claude/settings.json`
 - **Budget cap**: `export MAX_THINKING_TOKENS=10000`
 - **Verbose mode**: Ctrl+O to see thinking output
 
-For complex tasks requiring deep reasoning:
-1. Ensure extended thinking is enabled (on by default)
-2. Enable **Plan Mode** for structured approach
-3. Use multiple critique rounds for thorough analysis
-4. Use split role sub-agents for diverse perspectives
+Complex tasks needing deep reasoning:
+1. Ensure extended thinking enabled (on by default)
+2. Enable **Plan Mode**
+3. Multiple critique rounds
+4. Split-role sub-agents for diverse perspectives
 
 ## Build Troubleshooting
 
-If build fails:
+Build fails:
 1. Use **build-error-resolver** agent
 2. Analyze error messages
 3. Fix incrementally

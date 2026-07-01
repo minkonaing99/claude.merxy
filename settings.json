@@ -26,7 +26,10 @@
       "Bash(find *)",
       "Bash(grep *)",
       "Bash(pnpm *)",
-      "Bash(tsc *)"
+      "Bash(tsc *)",
+      "mcp__claude-in-chrome__tabs_context_mcp",
+      "mcp__claude-in-chrome__get_page_text",
+      "mcp__claude-in-chrome__read_page"
     ],
     "deny": [
       "mcp__claude_ai_Gmail",
@@ -35,7 +38,7 @@
       "mcp__claude_ai_Notion"
     ]
   },
-  "model": "opus",
+  "model": "sonnet",
   "hooks": {
     "SessionStart": [
       {
@@ -68,7 +71,8 @@
   },
   "enabledPlugins": {
     "caveman@caveman": true,
-    "ponytail@ponytail": true
+    "ponytail@ponytail": true,
+    "apple-skills@apple-skills": false
   },
   "extraKnownMarketplaces": {
     "caveman": {
@@ -81,6 +85,12 @@
       "source": {
         "source": "github",
         "repo": "DietrichGebert/ponytail"
+      }
+    },
+    "apple-skills": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/aurora/.claude/plugins/marketplaces/apple-skills"
       }
     }
   },

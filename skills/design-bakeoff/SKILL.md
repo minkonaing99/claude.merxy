@@ -40,6 +40,7 @@ One brain (this file) drives the design engines. The engines stay pristine — s
 - `taste-profile.md` — concrete moves from YOUR past picks (fonts, palette, layout, motion, density). The primary learned artifact. Read it in Stage 0.
 - `references.md` — swipe file: real-pixel tokens extracted from sites you rate. Persists across jobs.
 - `scoreboard.md` — secondary metric: generator win tally. Used only to retire a dead engine.
+- `data/` — static lookup tables (`colors.csv` 160 palettes by product type, `typography.csv` 73 font pairs w/ ready imports, `charts.csv` 25 data-type→chart picks). Curated priors, not verdicts. See `data/README.md`. Grep to seed a variant when no real reference grounds the job; real pixels always override.
 
 ## Pipeline
 
@@ -50,6 +51,7 @@ One brain (this file) drives the design engines. The engines stay pristine — s
    - **Live sites → read computed styles, not just a screenshot.** Open the ref in claude-in-chrome and pull real values via `getComputedStyle` (font-family, font-size scale ratio, line-height, letter-spacing, color/bg hex, contrast, spacing rhythm, border-radius, transition/easing curves). Far more accurate than eyeballing. Screenshot only supplements (composition/mood).
    - **Static screenshots / images** → image Read for principles.
    - Extract *principles* not layouts; append concrete tokens to `references.md`. Variants anchor to these real tokens, not my priors.
+   - **No real reference given?** Grounding precedence: real pixels > `data/` lookup tables > raw LLM priors. Grep `data/colors.csv` for the matched product type and `data/typography.csv` for the read's mood to get a curated starting palette + font pair — beats inventing AI-purple/Inter. These SEED, they don't decide; divergence + judges still run. Dashboards: also grep `data/charts.csv` per data shape.
 4. Set dials `VARIANCE / MOTION / DENSITY`. Ask at most ONE clarifying question, only if the read genuinely diverges.
 
 ### Stage 1 — Effort tier (governor, Q6)
@@ -78,7 +80,7 @@ Each variant gets a **divergence contract** so they CAN'T converge — assign pe
 - one **banned crutch** it must avoid (no centered hero · no card grid · no gradient),
 - (motion-first briefs only) a distinct **motion signature** matched to its dial M.
 
-The Design Read gates lanes to plausible-for-this-audience only (public-sector never gets the maximal lane). Spawn eligible generators as **parallel subagents**, each carrying its contract + the `references.md` tokens.
+The Design Read gates lanes to plausible-for-this-audience only (public-sector never gets the maximal lane). Spawn eligible generators as **parallel subagents**, each carrying its contract + the `references.md` tokens (+ the `data/` palette/font seed when no real reference grounded Stage 0). The seed is a baseline, not a uniform: the restrained lane can take it near-verbatim, but high-VARIANCE and explore lanes must push off it (shifted hue, alt font pair) — a shared palette across all variants kills color divergence.
 
 Explore rate: ~1 job in 4, ignore `taste-profile.md` and push one variant deliberately off-axis — keeps taste from ossifying.
 
@@ -128,6 +130,7 @@ Only when the user asks to go live. Confirm before deploying (outward-facing, ha
 - A generated UI is unfinished until gates pass (a11y + responsive) AND both judges run.
 - Copy + imagery are held constant across variants; only design diverges (fair comparison).
 - Ground in real computed styles, not memory of a site; judge mobile + desktop, not desktop alone.
+- Grounding precedence: real pixels > `data/` lookup tables > raw LLM priors. Tables seed a variant, never decide it; gates and judges still rule.
 - Embedded video never autoplays under reduced-motion/data; always poster + lazy + muted; poster is the LCP, not the video.
 - The port is unfinished until it passes best-practices + SEO; `DESIGN.md` goes to project root so the loop closes.
 - Ship only on explicit approval — deploy is outward-facing and hard to reverse.

@@ -14,5 +14,13 @@
     },
     "installLocation": "/Users/aurora/.claude/plugins/marketplaces/ponytail",
     "lastUpdated": "2026-06-19T00:00:00.000Z"
+  },
+  "apple-skills": {
+    "source": {
+      "source": "directory",
+      "path": "/Users/aurora/.claude/plugins/marketplaces/apple-skills"
+    },
+    "installLocation": "/Users/aurora/.claude/plugins/marketplaces/apple-skills",
+    "lastUpdated": "2026-06-27T18:26:04.939Z"
   }
 }

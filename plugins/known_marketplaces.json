@@ -22,5 +22,13 @@
     },
     "installLocation": "/Users/aurora/.claude/plugins/marketplaces/apple-skills",
     "lastUpdated": "2026-06-27T18:26:04.939Z"
+  },
+  "last30days-skill": {
+    "source": {
+      "source": "github",
+      "repo": "mvanhorn/last30days-skill"
+    },
+    "installLocation": "/Users/aurora/.claude/plugins/marketplaces/last30days-skill",
+    "lastUpdated": "2026-07-03T15:18:14.469Z"
   }
 }

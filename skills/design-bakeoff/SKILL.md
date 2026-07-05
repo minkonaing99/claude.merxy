@@ -16,6 +16,8 @@ allowed-tools:
 
 One brain (this file) drives the design engines. The engines stay pristine — steer them by HOW you invoke them, never by editing them. Improve the SYSTEM, not the parts.
 
+**Using this skill?** Read `GUIDE.md` (same dir) for brief templates, effort tiers, steering, and worked examples. This file is the engine spec; `GUIDE.md` is the how-to.
+
 ## Engines (never edited — call-time steering only)
 
 | Role | Skill | Driven how |
@@ -24,6 +26,13 @@ One brain (this file) drives the design engines. The engines stay pristine — s
 | Generator A | `taste-skill` | landing/portfolio ONLY (refuses dashboards) |
 | Generator B | `impeccable craft` | any surface incl. dashboards/app UI |
 | Generator C | `stitch-skill` | DESIGN.md spec → build (only if user drives Google Stitch) |
+| Generator D | `high-end-visual-design` | Awwwards/agency briefs, VARIANCE ≥ 8 — expensive feel, blocks cheap defaults |
+| Lane guide: minimalist | `minimalist-ui` | inject into Generator when dial reads VARIANCE ≤ 4, editorial/clean brief |
+| Lane guide: brutalist | `industrial-brutalist-ui` | inject when brief explicitly calls for brutalist/tactical/raw aesthetic |
+| Visual mockup | `imagegen-frontend-web` | generate one image per section BEFORE coding — used as design reference for generators |
+| Visual mockup: mobile | `imagegen-frontend-mobile` | generate mobile screen concepts for mobile-first briefs or Stage 3 responsive check |
+| Brand identity | `brandkit` | generate logo/brand-kit when brief has no existing brand assets |
+| Redesign auditor | `redesign-existing-projects` | audit existing site, identify AI-slop patterns, plan targeted upgrades — used in redesign-preserve path |
 | Judge 1 | `emil-design-eng` | feel/motion critique, Before/After table |
 | Judge 2 | `impeccable audit`/`polish` | fix hierarchy, a11y, spacing, type, color |
 | Motion | `gsap-*` | gsap-core → timeline/scrolltrigger/react, only if MOTION dial > 4 |
@@ -34,6 +43,36 @@ One brain (this file) drives the design engines. The engines stay pristine — s
 | Ship | `hostinger-deploy`, `e2e` / `playwright-cli` | smoke test + deploy live |
 
 `design-an-interface` is NOT here — it designs code/API module shapes, not visual UI.
+
+## Skill firing matrix (efficiency governor — do NOT fire everything every run)
+
+The engines above are a *menu*, not a checklist. Firing all 20 on every job wastes tokens and time. Fire by tier + trigger. Cost must match the job.
+
+| Skill | Tweak | Page | Site | Conditional trigger (overrides tier) |
+|---|:--:|:--:|:--:|---|
+| `taste-skill` §0 (design read) | ✓ | ✓ | ✓ | always — it's the cheap read that gates the rest |
+| Generator B `impeccable` | ✓ | ✓ | ✓ | always eligible (any surface) |
+| Generator A `taste-skill` | — | ✓ | ✓ | landing/portfolio only; dropped on dashboard/app UI |
+| Generator C `stitch-skill` | — | — | ○ | only if user drives Google Stitch |
+| Generator D `high-end-visual-design` | — | ○ | ✓ | only when VARIANCE ≥ 8 or brief says agency/Awwwards/premium |
+| Lane guide `minimalist-ui` | ○ | ○ | ○ | inject only into the variant whose lane is minimalist/editorial |
+| Lane guide `industrial-brutalist-ui` | ○ | ○ | ○ | inject only when brief explicitly names brutalist/tactical/raw |
+| `imagegen-frontend-web` | — | ○ | ✓ | skip if imagegen unavailable or visual direction already clear |
+| `imagegen-frontend-mobile` | — | ○ | ○ | mobile-first briefs only |
+| `brandkit` | — | ○ | ○ | ONLY when brief has no brand + explicitly wants identity work |
+| awesome-design-md lookup | ○ | ✓ | ✓ | only when brief names/evokes a known brand (near-zero cost — just a file read) |
+| `emil-design-eng` (judge) | ○ | ✓ | ✓ | skip on pure tweak unless motion/feel is the point |
+| `impeccable audit` (judge) | ✓ | ✓ | ✓ | always — cheapest quality gate |
+| `gsap-*` | ○ | ○ | ○ | winner only, and only if MOTION > 4 (see Stage 4) |
+| `humanizer` / `edit-article` | — | ✓ | ✓ | only when the variant carries real marketing copy |
+| `next/react-best-practices` | — | ✓ | ✓ | port stage only, and only for React/Next targets |
+| `nextjs-seo` | — | ○ | ✓ | port stage, public-facing pages only |
+| `redesign-existing-projects` | ○ | ○ | ✓ | redesign briefs only (there's existing code to audit) |
+| video/`hyperframes` chain | — | ○ | ○ | only when brief wants real video beyond DOM/GSAP |
+| ship (`hostinger-deploy`/`e2e`) | — | ○ | ○ | only on explicit "go live" |
+
+✓ = default fires · ○ = fires only if the conditional trigger hits · — = skip.
+**Rule of thumb:** a Tweak touches ~3 skills, a Page ~6-8, a Site ~10-14. If you're about to fire more than the tier's budget, ask why.
 
 ## Owned artifacts (this dir)
 
@@ -51,7 +90,9 @@ One brain (this file) drives the design engines. The engines stay pristine — s
    - **Live sites → read computed styles, not just a screenshot.** Open the ref in claude-in-chrome and pull real values via `getComputedStyle` (font-family, font-size scale ratio, line-height, letter-spacing, color/bg hex, contrast, spacing rhythm, border-radius, transition/easing curves). Far more accurate than eyeballing. Screenshot only supplements (composition/mood).
    - **Static screenshots / images** → image Read for principles.
    - Extract *principles* not layouts; append concrete tokens to `references.md`. Variants anchor to these real tokens, not my priors.
-   - **No real reference given?** Grounding precedence: real pixels > `data/` lookup tables > raw LLM priors. Grep `data/colors.csv` for the matched product type and `data/typography.csv` for the read's mood to get a curated starting palette + font pair — beats inventing AI-purple/Inter. These SEED, they don't decide; divergence + judges still run. Dashboards: also grep `data/charts.csv` per data shape.
+   - **No real reference given?** Grounding precedence: real pixels > awesome-design-md brand tokens > `data/` lookup tables > raw LLM priors.
+     - **awesome-design-md brand match:** if the brief names or references a known brand aesthetic (stripe, linear, notion, apple, vercel, cursor, raycast, figma, spotify, etc.), check `~/.claude/reference/awesome-design-md/design-md/<brand>/DESIGN.md` — 74 brands available. If a match exists, copy its `DESIGN.md` to the project root and use it as the primary token reference. This gives real measured tokens (colors, type, spacing, radius, motion) from that brand's actual design system — far more accurate than memory.
+     - **data/ fallback:** if no brand match, grep `data/colors.csv` for the matched product type and `data/typography.csv` for the read's mood to get a curated starting palette + font pair — beats inventing AI-purple/Inter. These SEED, they don't decide; divergence + judges still run. Dashboards: also grep `data/charts.csv` per data shape.
 4. Set dials `VARIANCE / MOTION / DENSITY`. Ask at most ONE clarifying question, only if the read genuinely diverges.
 
 ### Stage 1 — Effort tier (governor, Q6)
@@ -63,7 +104,16 @@ Auto-detect job size from the Design Read; this gates everything downstream:
 **Scope default — build the WHOLE page, not just the hero.** "landing" / "page" / "site" means every standard section for that page kind, e.g. landing = hero + value-prop / how-it-works + features + social-proof + pricing/plans + CTA + footer. Only build a fragment when the user explicitly scopes one ("hero", "pricing section", "this button"). If the user said a fragment, build that fragment; otherwise default to the full page. State the section list in the Design Read so scope is confirmed before generating.
 
 ### Stage 2 — Generators with divergence contracts (Q4)
-**Scope guard:** non-landing surface → drop A (taste-skill refuses it). No Google Stitch → drop C.
+**Scope guard:** non-landing surface → drop A (taste-skill refuses it). No Google Stitch → drop C. If only B is eligible (e.g. dashboard), B generates both variants with distinct direction lanes — treat it as two invocations with separate divergence contracts, not one.
+
+**Visual mockup first (optional but high-value):** before writing HTML, run `imagegen-frontend-web` to generate one reference image per section. Feed these images to the generators as compositional anchors — they'll produce code that matches an art-directed layout rather than inventing one. Skip if imagegen tools unavailable or brief is a minor tweak. For mobile-first briefs, also run `imagegen-frontend-mobile` for app screen concepts.
+
+**Specialized lane guides:** when a variant's direction lane maps to a known aesthetic, inject the matching guide into that generator's context:
+- Minimalist / editorial / calm → `minimalist-ui`
+- Brutalist / tactical / raw / declassified → `industrial-brutalist-ui`
+- Awwwards / agency / expensive-feel / VARIANCE ≥ 8 → `high-end-visual-design` (Generator D)
+
+**Brand identity gap:** if the brief has no existing logo/brand, run `brandkit` first to generate a brand-kit board, then use its palette/type output to seed Stage 0 tokens before generators spawn.
 
 **Controlled content first (#3) — fair comparison demands it.** Before spawning variants, lock TWO shared inputs so you judge DESIGN, not content:
 - **One real copy deck** — write the actual headline, subhead, section copy, CTA labels ONCE (no lorem), then run it through `humanizer` so it doesn't read AI-generated (AI-sounding copy sinks a premium site). Long-form/blog content → `edit-article`. Every variant uses the same humanized words. Different copy across variants confounds the pick.
@@ -82,13 +132,15 @@ Each variant gets a **divergence contract** so they CAN'T converge — assign pe
 
 The Design Read gates lanes to plausible-for-this-audience only (public-sector never gets the maximal lane). Spawn eligible generators as **parallel subagents**, each carrying its contract + the `references.md` tokens (+ the `data/` palette/font seed when no real reference grounded Stage 0). The seed is a baseline, not a uniform: the restrained lane can take it near-verbatim, but high-VARIANCE and explore lanes must push off it (shifted hue, alt font pair) — a shared palette across all variants kills color divergence.
 
+**Generator timeout resilience:** if a subagent times out or errors mid-run, do not re-spawn — generate the missing variant inline instead. Document what completed vs. what was generated inline in `run-summary.md`. The eval still runs; a partial with fewer variants is better than blocking indefinitely.
+
 Explore rate: ~1 job in 4, ignore `taste-profile.md` and push one variant deliberately off-axis — keeps taste from ossifying.
 
 ### Stage 3 — Judging: gates → pixels → your eye (Q1)
 LLM judges NARROW, they never DECIDE. Taste is the user's.
 1. **Objective gates first, fail-fast** (Q6): render each static variant, run axe / contrast-ratio / Lighthouse a11y+perf. A variant that fails a gate is OUT — never reaches pixel/judge stage. Don't pay to judge broken work.
 2. **Responsive gate (#1) — judge mobile AND desktop.** Screenshot each survivor at BOTH **mobile (375px)** and **desktop (1440px)**. Mobile is most traffic; a desktop-only win that breaks on mobile (overflow, unreadable type, broken nav, tap targets <44px) **fails the gate** — same as a11y. This is correctness, not taste. Both viewports go to the judges and to you.
-3. **Real pixels** (Q1b): the mobile + desktop screenshots per survivor. For motion-first briefs (variants already animated), also capture motion — short GIF/clip (claude-in-chrome `gif_creator`) or live browser to scrub. `emil-design-eng` reads the IMAGES (feel/motion Before-After table), `impeccable audit` fixes the code. Score on: hierarchy, responsive integrity, motion feel, anti-slop (no AI-purple / Inter / centered-hero / glassmorphism), brief fit, reference fidelity.
+3. **Real pixels** (Q1b): the mobile + desktop screenshots per survivor. For motion-first briefs (variants already animated), also capture motion — short GIF/clip (claude-in-chrome `gif_creator`) or live browser to scrub. `emil-design-eng` reads the IMAGES (feel/motion Before-After table), `impeccable audit` fixes the code. Score on: hierarchy, responsive integrity, motion feel, anti-slop (no AI-purple gradient on hero/background/CTAs — purple in code syntax highlighting is domain-correct for dev tools and is NOT a tell; no Inter as primary display font; no centered-hero over dark mesh; no default glassmorphism), brief fit, reference fidelity.
 4. **Your eye decides** (Q1c): present 2-3 survivors side by side, each with mobile + desktop shots (+ clips for motion-first). The USER picks the winner. I only narrowed.
 
 ### Stage 4 — Motion (winner only, default path)
@@ -109,6 +161,7 @@ Skip this stage entirely for static/low-motion briefs.
 
 ### Stage 5 — Port + quality + learn
 1. **Port winner** (Q2): the single chosen static variant → the user's real framework (Next/Vite/etc). Only the winner pays build cost.
+1a. **Redesign path only:** run `redesign-existing-projects` on the existing codebase BEFORE porting — it audits for AI-slop patterns, broken layouts, and dead CSS, then applies targeted upgrades without breaking functionality. Merge its fixes into the port.
 2. **Quality pass (loophole #3):** the port is NOT trusted until it passes the relevant best-practices skill — `next-best-practices` (RSC boundaries, hydration, async APIs, no data waterfalls) and `react-best-practices` (bundle size, re-renders, code-split). Fix what they flag.
 3. **SEO pass:** `nextjs-seo` — metadata/`generateMetadata`, OG + twitter images, sitemap.xml, robots.txt, canonical, JSON-LD, favicons/manifest, Core Web Vitals. If the site has forms/backend, `api-design-patterns` for the endpoints.
 4. **Export design tokens (#5, #7):** emit the winner's colors / type scale / spacing / radius / motion as `DESIGN.md` + CSS custom properties (or `tailwind.config`). **Write `DESIGN.md` to the project root** so `impeccable` reads it next run = future work auto-on-brand (closes the loop). Use `impeccable`'s token output; don't hand-roll.

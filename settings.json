@@ -38,7 +38,7 @@
       "mcp__claude_ai_Notion"
     ]
   },
-  "model": "sonnet",
+  "model": "opus",
   "hooks": {
     "SessionStart": [
       {
@@ -60,6 +60,33 @@
             "command": "node \"$HOME/.claude/hooks/caveman-mode-tracker.js\"",
             "timeout": 5,
             "statusMessage": "Tracking caveman mode..."
+          },
+          {
+            "type": "command",
+            "command": "kill \"$(cat \"$HOME/.claude/.caffeinate.pid\" 2>/dev/null)\" 2>/dev/null; caffeinate -i -t 300 >/dev/null 2>&1 & echo $! > \"$HOME/.claude/.caffeinate.pid\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "kill \"$(cat \"$HOME/.claude/.caffeinate.pid\" 2>/dev/null)\" 2>/dev/null; caffeinate -i -t 300 >/dev/null 2>&1 & echo $! > \"$HOME/.claude/.caffeinate.pid\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "kill \"$(cat \"$HOME/.claude/.caffeinate.pid\" 2>/dev/null)\" 2>/dev/null; rm -f \"$HOME/.claude/.caffeinate.pid\"",
+            "timeout": 5
           }
         ]
       }
@@ -92,8 +119,14 @@
         "source": "directory",
         "path": "/Users/aurora/.claude/plugins/marketplaces/apple-skills"
       }
+    },
+    "last30days-skill": {
+      "source": {
+        "source": "github",
+        "repo": "mvanhorn/last30days-skill"
+      }
     }
   },
-  "effortLevel": "xhigh",
+  "effortLevel": "high",
   "tui": "fullscreen"
 }

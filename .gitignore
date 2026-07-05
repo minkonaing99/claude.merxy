@@ -34,3 +34,9 @@ plugins/.last_inuse_sweep
 
 # Plugin marketplaces (external clones, regenerated on install)
 plugins/marketplaces/
+
+# Runtime pid
+.caffeinate.pid
+
+# External clone (re-cloneable)
+reference/awesome-design-md/

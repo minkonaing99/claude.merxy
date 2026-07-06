@@ -1,6 +1,6 @@
 ---
 name: design-bakeoff
-description: Orchestrate all frontend/design skills into one website-design pipeline. Diverging variants, objective gates, real-pixel judging, a learned taste profile, and effort tiers. Use whenever the user wants to design or redesign a website, landing page, portfolio, dashboard, or app UI and wants the best UI/UX outcome. Triggers on "design a site/landing/portfolio/dashboard", "redesign this", "/design-bakeoff", or any frontend visual-design request.
+description: Orchestrate all frontend/design skills into one website-design pipeline. Diverging variants, objective gates, real-pixel judging, learned taste profile, effort tiers. Use when user wants to design/redesign website, landing page, portfolio, dashboard, or app UI and wants best UI/UX. Triggers on "design a site/landing/portfolio/dashboard", "redesign this", "/design-bakeoff", any frontend visual-design request.
 user-invocable: true
 allowed-tools:
   - Bash

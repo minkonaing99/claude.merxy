@@ -5,6 +5,10 @@ history.jsonl
 .last-cleanup
 .agents
 
+# Python bytecode
+__pycache__/
+*.pyc
+
 # Cache
 cache/
 image-cache/

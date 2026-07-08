@@ -38,7 +38,7 @@
       "mcp__claude_ai_Notion"
     ]
   },
-  "model": "opus",
+  "model": "sonnet",
   "hooks": {
     "SessionStart": [
       {

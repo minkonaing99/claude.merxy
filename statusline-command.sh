@@ -8,12 +8,14 @@ input=$(cat)
 cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // empty')
 model=$(echo "$input" | jq -r '.model.display_name // empty')
 used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
+used_tokens=$(echo "$input" | jq -r '.context_window.total_input_tokens // empty')
 five_pct=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
 five_reset=$(echo "$input" | jq -r '
   .rate_limits.five_hour.resets_at //
   .rate_limits.five_hour.reset_at //
   .rate_limits.five_hour.resets //
   empty')
+weekly_pct=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
 extra_pct=$(echo "$input" | jq -r '
   .rate_limits.extra.used_percentage //
   .rate_limits.extra_usage.used_percentage //
@@ -76,6 +78,44 @@ color_pct() {
   fi
 }
 
+# --- Color a percentage: 60-80% yellow, >80% red, else plain ---
+color_over80() {
+  local pct="$1"
+  local label="$2"
+  local YELLOW=$'\e[33m'
+  local RED=$'\e[31m'
+  local RESET=$'\e[0m'
+  local int_pct
+  int_pct=$(printf '%.0f' "$pct")
+  if [ "$int_pct" -gt 80 ]; then
+    printf "%s%s%s" "${RED}" "${label}" "${RESET}"
+  elif [ "$int_pct" -ge 60 ]; then
+    printf "%s%s%s" "${YELLOW}" "${label}" "${RESET}"
+  else
+    printf "%s" "${label}"
+  fi
+}
+
+# --- Format token count: >=1000 → k, >=1000000 → m ---
+format_tokens() {
+  local n="$1"
+  awk -v n="$n" '
+    function fmt(v, u) { s = sprintf("%.1f", v); sub(/\.0$/, "", s); return s u }
+    BEGIN {
+      if (n >= 1000000) {
+        v = n / 1000000
+        if (sprintf("%.1f", v) == "1000.0") { printf "%s", fmt(n/1000000000, "b"); exit }
+        printf "%s", fmt(v, "m")
+      } else if (n >= 1000) {
+        v = n / 1000
+        if (sprintf("%.1f", v) == "1000.0") { printf "%s", fmt(n/1000000, "m"); exit }
+        printf "%s", fmt(v, "k")
+      } else {
+        printf "%d", n
+      }
+    }'
+}
+
 # --- Assemble line ---
 # Segment separator
 SEP=" | "
@@ -83,7 +123,7 @@ SEP=" | "
 line=""
 
 # Folder
-line="${line} ${folder}"
+line=" ${folder}"
 
 # Git branch
 if [ -n "$branch" ]; then
@@ -95,13 +135,17 @@ if [ -n "$model" ]; then
   line="${line}${SEP}${model}"
 fi
 
-# Context: percentage only (no progress bar)
+# Context: percentage(token count)
 if [ -n "$used_pct" ]; then
   ctx_label=$(printf '%.0f' "$used_pct")
-  line="${line}${SEP}ctx:$(color_pct "$used_pct" "${ctx_label}%")"
+  ctx_str=$(color_pct "$used_pct" "${ctx_label}%")
+  if [ -n "$used_tokens" ]; then
+    ctx_str="${ctx_str}($(format_tokens "$used_tokens"))"
+  fi
+  line="${line}${SEP}${ctx_str}"
 fi
 
-# 5-hour rate limit: percentage only (only when present)
+# 5-hour percent : weekly percent (5-hour reset time) — red only if >80%
 if [ -n "$five_pct" ]; then
   five_label=$(printf '%.0f' "$five_pct")
   reset_str=""
@@ -117,11 +161,15 @@ if [ -n "$five_pct" ]; then
       [ -z "$reset_str" ] && reset_str=$(date -d "$five_reset" "+%-I:%M%p" 2>/dev/null | tr '[:upper:]' '[:lower:]')
     fi
   fi
-  if [ -n "$reset_str" ]; then
-    line="${line}${SEP}5h:$(color_pct "$five_pct" "${five_label}% (${reset_str})")"
-  else
-    line="${line}${SEP}5h:$(color_pct "$five_pct" "${five_label}%")"
+  combined=$(color_over80 "$five_pct" "${five_label}%")
+  if [ -n "$weekly_pct" ]; then
+    weekly_label=$(printf '%.0f' "$weekly_pct")
+    combined="${combined} : $(color_over80 "$weekly_pct" "${weekly_label}%")"
   fi
+  if [ -n "$reset_str" ]; then
+    combined="${combined} (${reset_str})"
+  fi
+  line="${line}${SEP}${combined}"
 fi
 
 # Extra usage: only when present and non-zero

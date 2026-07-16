@@ -1,4 +1,15 @@
 {
+  "cleanupPeriodDays": 7,
+  "env": {
+    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
+    "DISABLE_TELEMETRY": "1",
+    "DISABLE_ERROR_REPORTING": "1",
+    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1"
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "allow": [
       "Read",
@@ -39,32 +50,8 @@
       "mcp__claude_ai_Notion"
     ]
   },
-  "model": "opusplan",
-  "spinnerTipsEnabled": false,
-  "attribution": {
-    "commit": "",
-    "pr": ""
-  },
-  "cleanupPeriodDays": 7,
-  "autoCompactWindow": 150000,
-  "env": {
-    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
-    "DISABLE_TELEMETRY": "1",
-    "DISABLE_ERROR_REPORTING": "1",
-    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1"
-  },
+  "model": "opus",
   "hooks": {
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "kill \"$(cat \"$HOME/.claude/.caffeinate.pid\" 2>/dev/null)\" 2>/dev/null; caffeinate -i -t 300 >/dev/null 2>&1 & echo $! > \"$HOME/.claude/.caffeinate.pid\"",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
     "PreToolUse": [
       {
         "hooks": [
@@ -126,13 +113,10 @@
         "source": "directory",
         "path": "/Users/aurora/.claude/plugins/marketplaces/apple-skills"
       }
-    },
-    "last30days-skill": {
-      "source": {
-        "source": "github",
-        "repo": "mvanhorn/last30days-skill"
-      }
     }
   },
-  "tui": "fullscreen"
+  "spinnerTipsEnabled": false,
+  "awaySummaryEnabled": false,
+  "tui": "fullscreen",
+  "terminalProgressBarEnabled": true
 }

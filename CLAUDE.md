@@ -10,11 +10,17 @@
 
 ## Workflow Gates
 
+0. Trivial change? Skip gates 2 and 4. Trivial = ALL of:
+   - <=15 lines across <=2 files
+   - no new deps
+   - no auth/crypto/payment/input-parsing path
+   - no public API or schema change
+   Touches a security path? NEVER trivial.
 1. Unclear task? Stop. Ask. State assumptions before coding.
-2. Non-trivial work? Planner agent first.
+2. New feature, new file, or 3+ file change? Planner agent first.
 3. Multiple interpretations? Present them. Don't pick silently.
-4. After code: run code-reviewer. Fix CRITICAL + HIGH.
-5. Before commit: run security-reviewer.
+4. After non-trivial code: run code-reviewer. Fix CRITICAL + HIGH.
+5. Before commit: run security-reviewer (always; fast secrets/input scan on trivial).
 
 ## Change Discipline
 
@@ -26,6 +32,7 @@
 ## TDD
 
 RED -> GREEN -> REFACTOR. Failing test first. Always.
+Exempt: trivial tier (gate 0) + pure docs/config/rename.
 
 ## Language Rules (load only on demand)
 
@@ -35,7 +42,6 @@ RED -> GREEN -> REFACTOR. Failing test first. Always.
 - Java: `rules/java/{coding-style,patterns,testing,security}.md`
 - PHP: `rules/php/{coding-style,patterns,testing,security}.md`
 
-@rules/common/standards.md
 @rules/common/development-workflow.md
 
 ## Project Init

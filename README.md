@@ -259,7 +259,6 @@ Rules in `rules/` loaded by Claude on demand. `CLAUDE.md` specifies when to load
 
 | File | What it enforces |
 |------|-----------------|
-| `standards.md` | Immutability, file size limits (<800 lines), error handling, input validation |
 | `development-workflow.md` | Research -> Plan -> TDD -> Review -> Commit order, commit format, PR process |
 | `coding-style.md` | No mutation, high cohesion/low coupling, <50 line functions |
 | `testing.md` | TDD mandatory, 80%+ coverage, unit + integration + E2E |

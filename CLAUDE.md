@@ -42,7 +42,17 @@ Exempt: trivial tier (gate 0) + pure docs/config/rename.
 - Java: `rules/java/{coding-style,patterns,testing,security}.md`
 - PHP: `rules/php/{coding-style,patterns,testing,security}.md`
 
-@rules/common/development-workflow.md
+## Common Rules (load only on demand)
+
+Read the relevant file when the task calls for it; do not auto-load:
+- Workflow/commits/PRs: `rules/common/development-workflow.md`
+- Coding style/immutability: `rules/common/coding-style.md`
+- Testing/TDD/coverage: `rules/common/testing.md`
+- Model choice/context/perf: `rules/common/performance.md`
+- Design patterns: `rules/common/patterns.md`
+- Hooks/permissions/todos: `rules/common/hooks.md`
+- Agent orchestration: `rules/common/agents.md`
+- Security checklist: `rules/common/security.md`
 
 ## Project Init
 

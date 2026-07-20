@@ -7,11 +7,9 @@ Personal Claude Code configuration - agents, commands, hooks, skills, plugins, a
 ## Install on New Machine
 
 ```bash
-git clone --recurse-submodules https://github.com/minkonaing99/merxys-claude.git ~/.claude
+git clone https://github.com/minkonaing99/merxys-claude.git ~/.claude
 cd ~/.claude/hooks && npm install
 ```
-
-> `--recurse-submodules` pulls the caveman plugin from `JuliusBrussee/caveman`.
 
 **Requirements:** Node.js (for hooks), Claude Code CLI.
 
@@ -45,7 +43,6 @@ cd ~/.claude/hooks && npm install
 ├── hooks/                  # Lifecycle hook scripts (Node.js)
 ├── plugins/                # Plugin marketplace config
 │   └── marketplaces/
-│       ├── caveman/        # Caveman plugin (JuliusBrussee/caveman)
 │       ├── ponytail/       # Ponytail plugin (DietrichGebert/ponytail)
 │       └── apple-skills/   # Apple/iOS skills (local, disabled by default)
 ├── rules/                  # Coding standards loaded per language
@@ -64,22 +61,8 @@ cd ~/.claude/hooks && npm install
 
 | Plugin | Source | Status | Purpose |
 |--------|--------|--------|---------|
-| `caveman` | `JuliusBrussee/caveman` (GitHub) | Active | Token compression mode |
 | `ponytail` | `DietrichGebert/ponytail` (GitHub) | Active | Lazy-senior dev mode (YAGNI enforcer) |
 | `apple-skills` | Local directory | Disabled by default | 151 iOS/Apple dev skills |
-
-### Caveman
-
-Compressed communication mode - drops ~75% of response tokens while keeping all technical substance.
-
-| Mode | Description |
-|------|------------|
-| `lite` | Drop filler words, keep full sentences |
-| `full` | Drop articles + filler, fragments OK (default) |
-| `ultra` | Maximum compression, minimal words |
-| `wenyan-lite/full/ultra` | Classical Chinese compression style |
-
-Activate: `/caveman [lite|full|ultra]` - Stop: `stop caveman` or `normal mode`
 
 ### Ponytail
 
@@ -97,28 +80,13 @@ Enable for iOS work: `claude plugin enable apple-skills`
 
 ## Hooks
 
-Node.js scripts in `hooks/` wired via `settings.json`.
+Wired via `settings.json`.
 
-### `SessionStart` - `caveman-activate.js`
-
-- Reads configured caveman mode, injects ruleset as system context
-- Writes `.caveman-active` flag (statusline reads this)
-- Config resolution: `CAVEMAN_DEFAULT_MODE` env var -> `~/.config/caveman/config.json` -> defaults to `full`
-
-### `UserPromptSubmit` - `caveman-mode-tracker.js`
-
-- Watches for `/caveman`, mode switches, `stop caveman`, etc.
-- Also detects natural language: "activate caveman", "turn off caveman"
-- Updates `.caveman-active` flag so statusline stays in sync
-
-### Supporting files
-
-| File | Purpose |
-|------|---------|
-| `caveman-config.js` | Shared config loader |
-| `caveman-stats.js` | Token usage stats reader |
-| `caveman-statusline.sh` | Bash statusline output (macOS/Linux) |
-| `caveman-statusline.ps1` | PowerShell statusline (Windows) |
+| Event | What it does |
+|-------|-------------|
+| `PreToolUse` | Starts a 5-min `caffeinate` to keep the machine awake while Claude works |
+| `Stop` | Kills the `caffeinate` process when Claude finishes |
+| `Notification` | Plays a sound (`Glass.aiff`) on notifications |
 
 ---
 
@@ -170,18 +138,6 @@ Commands live in `commands/`. Invoke with `/command-name` in any session.
 ## Skills
 
 Skills are richer tools beyond commands. Located in `skills/`. Plugin skills come from their respective marketplaces. Symlinked skills (`->`) come from a shared `.agents/skills/` pack.
-
-### Caveman Skills
-
-| Skill | What it does |
-|-------|-------------|
-| `/caveman [mode]` | Activate caveman compression mode |
-| `/caveman-help` | Show all caveman commands and modes |
-| `/caveman-commit` | Ultra-compressed conventional commit messages (subject <= 50 chars) |
-| `/caveman-review` | One-line-per-finding PR review. Format: `path:line: severity: problem. fix.` |
-| `/caveman-compress FILE` | Compress CLAUDE.md or memory files into caveman format |
-| `/caveman-stats` | Real token usage and estimated savings for the session |
-| `/cavecrew` | (auto) Decision guide for spawning caveman-compressed subagents |
 
 ### Ponytail Skills
 
@@ -279,11 +235,11 @@ Each language folder (`typescript/`, `python/`, `swift/`, `java/`, `php/`) conta
 **Permissions** - pre-approved tools that skip prompts:
 `Read`, `Write`, `Edit`, `Glob`, `Grep`, `git`, `gh`, `npm`, `node`, `python3`, `swift`, `find`, `grep`, `ls`, `pnpm`, `tsc`, `npx`, select Chrome extension tools
 
-**Statusline** - runs `statusline-command.sh` to show caveman mode indicator in terminal.
+**Statusline** - runs `statusline-command.sh` in the terminal.
 
-**Hooks** - wires `caveman-activate.js` (SessionStart) and `caveman-mode-tracker.js` (UserPromptSubmit).
+**Hooks** - `caffeinate` keep-awake (PreToolUse/Stop) and a notification sound (Notification).
 
-**Plugins** - caveman and ponytail enabled; apple-skills disabled by default.
+**Plugins** - ponytail enabled; apple-skills disabled by default.
 
 ---
 

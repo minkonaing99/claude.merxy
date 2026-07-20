@@ -1,6 +1,5 @@
 # Session/runtime state
 history.jsonl
-.caveman-active
 .ponytail-active
 .last-cleanup
 .agents

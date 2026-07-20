@@ -15,6 +15,8 @@
       "Read",
       "Write",
       "Edit",
+      "NotebookEdit",
+      "WebFetch",
       "Glob",
       "Grep",
       "Bash(git *)",
@@ -40,7 +42,8 @@
       "Bash(tsc *)",
       "mcp__claude-in-chrome__tabs_context_mcp",
       "mcp__claude-in-chrome__get_page_text",
-      "mcp__claude-in-chrome__read_page"
+      "mcp__claude-in-chrome__read_page",
+      "mcp__xpenses"
     ],
     "deny": [
       "Bash(git push *)",
@@ -91,17 +94,10 @@
     "command": "bash \"$HOME/.claude/statusline-command.sh\""
   },
   "enabledPlugins": {
-    "caveman@caveman": true,
     "ponytail@ponytail": true,
     "apple-skills@apple-skills": false
   },
   "extraKnownMarketplaces": {
-    "caveman": {
-      "source": {
-        "source": "github",
-        "repo": "JuliusBrussee/caveman"
-      }
-    },
     "ponytail": {
       "source": {
         "source": "github",
@@ -117,6 +113,6 @@
   },
   "spinnerTipsEnabled": false,
   "awaySummaryEnabled": false,
-  "tui": "fullscreen",
+  "tui": "default",
   "terminalProgressBarEnabled": true
 }

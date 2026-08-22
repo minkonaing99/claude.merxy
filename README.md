@@ -169,7 +169,6 @@ Skills are richer tools beyond commands. Located in `skills/`. Plugin skills com
 |-------|-------------|
 | `/design-bakeoff` | Full website design pipeline - diverging variants, objective gates, real-pixel judging, taste profile |
 | `/impeccable [target]` | Frontend UI review - UX, visual hierarchy, accessibility, motion, design systems |
-| `/design-an-interface` | Design a UI interface from scratch |
 | `/emil-design-eng` | (auto) Emil Kowalski's UI polish philosophy - animation, invisible details |
 
 ### Video / Motion Skills

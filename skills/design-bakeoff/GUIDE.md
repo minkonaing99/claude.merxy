@@ -17,7 +17,7 @@ You never invoke `taste-skill`, `impeccable`, `gsap-*`, `emil-design-eng` etc. b
 | Use design-bakeoff | Use something else |
 |---|---|
 | Landing page, portfolio, marketing site | Backend/API logic → not a design task |
-| Dashboard, admin panel, app UI | Code module/API shape → `design-an-interface` |
+| Dashboard, admin panel, app UI | Code module/API shape → not a visual-design task |
 | Redesign an existing site | Pure copywriting → `edit-article` / `humanizer` |
 | "Make this section better" | A video/motion-graphic → `hyperframes` |
 | Any "which design is best?" question | Fixing one CSS bug → just edit it |

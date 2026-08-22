@@ -28,7 +28,6 @@ One brain (this file) drives the design engines. The engines stay pristine — s
 | Generator C | `stitch-skill` | DESIGN.md spec → build (only if user drives Google Stitch) |
 | Generator D | `high-end-visual-design` | Awwwards/agency briefs, VARIANCE ≥ 8 — expensive feel, blocks cheap defaults |
 | Lane guide: minimalist | `minimalist-ui` | inject into Generator when dial reads VARIANCE ≤ 4, editorial/clean brief |
-| Lane guide: brutalist | `industrial-brutalist-ui` | inject when brief explicitly calls for brutalist/tactical/raw aesthetic |
 | Visual mockup | `imagegen-frontend-web` | generate one image per section BEFORE coding — used as design reference for generators |
 | Visual mockup: mobile | `imagegen-frontend-mobile` | generate mobile screen concepts for mobile-first briefs or Stage 3 responsive check |
 | Brand identity | `brandkit` | generate logo/brand-kit when brief has no existing brand assets |
@@ -42,8 +41,6 @@ One brain (this file) drives the design engines. The engines stay pristine — s
 | SEO | `nextjs-seo`, `api-design-patterns` | meta/OG/sitemap/JSON-LD/CWV/favicons; form+API design |
 | Ship | `hostinger-deploy`, `e2e` / `playwright-cli` | smoke test + deploy live |
 
-`design-an-interface` is NOT here — it designs code/API module shapes, not visual UI.
-
 ## Skill firing matrix (efficiency governor — do NOT fire everything every run)
 
 The engines above are a *menu*, not a checklist. Firing all 20 on every job wastes tokens and time. Fire by tier + trigger. Cost must match the job.
@@ -56,7 +53,6 @@ The engines above are a *menu*, not a checklist. Firing all 20 on every job wast
 | Generator C `stitch-skill` | — | — | ○ | only if user drives Google Stitch |
 | Generator D `high-end-visual-design` | — | ○ | ✓ | only when VARIANCE ≥ 8 or brief says agency/Awwwards/premium |
 | Lane guide `minimalist-ui` | ○ | ○ | ○ | inject only into the variant whose lane is minimalist/editorial |
-| Lane guide `industrial-brutalist-ui` | ○ | ○ | ○ | inject only when brief explicitly names brutalist/tactical/raw |
 | `imagegen-frontend-web` | — | ○ | ✓ | skip if imagegen unavailable or visual direction already clear |
 | `imagegen-frontend-mobile` | — | ○ | ○ | mobile-first briefs only |
 | `brandkit` | — | ○ | ○ | ONLY when brief has no brand + explicitly wants identity work |
@@ -116,7 +112,6 @@ Auto-detect job size from the Design Read; this gates everything downstream:
 
 **Specialized lane guides:** when a variant's direction lane maps to a known aesthetic, inject the matching guide into that generator's context:
 - Minimalist / editorial / calm → `minimalist-ui`
-- Brutalist / tactical / raw / declassified → `industrial-brutalist-ui`
 - Awwwards / agency / expensive-feel / VARIANCE ≥ 8 → `high-end-visual-design` (Generator D)
 
 **Brand identity gap:** if the brief has no existing logo/brand, run `brandkit` first to generate a brand-kit board, then use its palette/type output to seed Stage 0 tokens before generators spawn.
@@ -138,7 +133,7 @@ Each variant gets a **divergence contract** so they CAN'T converge — assign pe
 | 2 | Swiss-grid / restrained | V7 / M4 / D4 | no centered hero | — |
 | 3 | minimalist / quiet | V3 / M2 / D2 | no gradient | `minimalist-ui` |
 | 4 | kinetic / Awwwards-maximal | V9 / M8 / D4 | no default glassmorphism | `high-end-visual-design` |
-| 5 | brutalist / tactical | V8 / M5 / D5 | no soft shadows | `industrial-brutalist-ui` |
+| 5 | brutalist / tactical | V8 / M5 / D5 | no soft shadows | — |
 
 Page tier picks the two lanes farthest apart on the read (usually 1 + 4, or 3 + 5). Each lane must diverge on layout/type/color — a shared palette across all five kills color divergence, so high-V lanes (4, 5) push off the seed hue.
 

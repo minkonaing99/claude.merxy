@@ -49,3 +49,11 @@ reference/awesome-design-md/
 
 # Usage stats
 stats-cache.json
+
+# Plugin runtime state
+.caveman-active
+.caveman-mode-log.jsonl
+.caveman-sessions/
+
+# rtk init backup
+settings.json.bak

@@ -4,7 +4,8 @@
     "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
     "DISABLE_TELEMETRY": "1",
     "DISABLE_ERROR_REPORTING": "1",
-    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1"
+    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
+    "PONYTAIL_DEFAULT_MODE": "off"
   },
   "attribution": {
     "commit": "",
@@ -55,9 +56,40 @@
     "type": "command",
     "command": "bash \"$HOME/.claude/statusline-command.sh\""
   },
+  "enabledPlugins": {
+    "caveman@caveman": true,
+    "ponytail@ponytail": true
+  },
+  "extraKnownMarketplaces": {
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    }
+  },
   "spinnerTipsEnabled": false,
   "awaySummaryEnabled": false,
   "tui": "fullscreen",
   "autoMemoryEnabled": false,
-  "terminalProgressBarEnabled": true
+  "terminalProgressBarEnabled": true,
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      }
+    ]
+  }
 }

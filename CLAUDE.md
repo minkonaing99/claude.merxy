@@ -90,3 +90,5 @@ Exempt: trivial tier (gate 0) + pure docs/config/rename.
 - Plain hyphens + straight quotes only.
 - Natural language chars (accented, CJK) fine when content needs them.
 - Code output must be copy-paste safe.
+
+@RTK.md

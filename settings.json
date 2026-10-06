@@ -40,9 +40,6 @@
       "Bash(grep *)",
       "Bash(pnpm *)",
       "Bash(tsc *)",
-      "mcp__claude-in-chrome__tabs_context_mcp",
-      "mcp__claude-in-chrome__get_page_text",
-      "mcp__claude-in-chrome__read_page",
       "mcp__xpenses"
     ],
     "deny": [
@@ -54,69 +51,9 @@
     ]
   },
   "model": "opus",
-  "hooks": {
-    "PreToolUse": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "kill \"$(cat \"$HOME/.claude/.caffeinate.pid\" 2>/dev/null)\" 2>/dev/null; caffeinate -i -t 300 >/dev/null 2>&1 & echo $! > \"$HOME/.claude/.caffeinate.pid\"",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "kill \"$(cat \"$HOME/.claude/.caffeinate.pid\" 2>/dev/null)\" 2>/dev/null; rm -f \"$HOME/.claude/.caffeinate.pid\"",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "afplay /System/Library/Sounds/Glass.aiff &",
-            "timeout": 5
-          }
-        ]
-      }
-    ]
-  },
   "statusLine": {
     "type": "command",
     "command": "bash \"$HOME/.claude/statusline-command.sh\""
-  },
-  "enabledPlugins": {
-    "ponytail@ponytail": true,
-    "apple-skills@apple-skills": false,
-    "caveman@caveman": true
-  },
-  "extraKnownMarketplaces": {
-    "ponytail": {
-      "source": {
-        "source": "github",
-        "repo": "DietrichGebert/ponytail"
-      }
-    },
-    "apple-skills": {
-      "source": {
-        "source": "directory",
-        "path": "/Users/aurora/.claude/plugins/marketplaces/apple-skills"
-      }
-    },
-    "caveman": {
-      "source": {
-        "source": "github",
-        "repo": "JuliusBrussee/caveman"
-      }
-    }
   },
   "spinnerTipsEnabled": false,
   "awaySummaryEnabled": false,

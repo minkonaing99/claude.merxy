@@ -1,12 +1,7 @@
 # Session/runtime state
 history.jsonl
-.ponytail-active
 .last-cleanup
-.agents
 statusline-metrics.json
-.caveman-active
-.caveman-active.prev
-.caveman-mode-log.jsonl
 .playwright/
 
 # Python bytecode
@@ -48,8 +43,9 @@ plugins/.last_inuse_sweep
 # Plugin marketplaces (external clones, regenerated on install)
 plugins/marketplaces/
 
-# Runtime pid
-.caffeinate.pid
 
 # External clone (re-cloneable)
 reference/awesome-design-md/
+
+# Usage stats
+stats-cache.json

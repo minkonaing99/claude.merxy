@@ -37,14 +37,10 @@ cd ~/.claude/hooks && npm install
 ├── CLAUDE.md               # Global rules Claude follows in every project
 ├── settings.json           # Permissions, hooks, statusline config
 ├── statusline-command.sh   # Terminal statusline script
-├── skills-lock.json        # Locked skill versions
 ├── agents/                 # Subagent definitions
 ├── commands/               # Slash commands (/plan, /tdd, etc.)
 ├── hooks/                  # Lifecycle hook scripts (Node.js)
-├── plugins/                # Plugin marketplace config
-│   └── marketplaces/
-│       ├── ponytail/       # Ponytail plugin (DietrichGebert/ponytail)
-│       └── apple-skills/   # Apple/iOS skills (local, disabled by default)
+├── plugins/                # Plugin registry (none installed)
 ├── rules/                  # Coding standards loaded per language
 │   ├── typescript/
 │   └── python/
@@ -55,34 +51,13 @@ cd ~/.claude/hooks && npm install
 
 ## Plugins
 
-| Plugin | Source | Status | Purpose |
-|--------|--------|--------|---------|
-| `ponytail` | `DietrichGebert/ponytail` (GitHub) | Active | Lazy-senior dev mode (YAGNI enforcer) |
-| `apple-skills` | Local directory | Disabled by default | 151 iOS/Apple dev skills |
-
-### Ponytail
-
-Lazy senior dev mode. Enforces YAGNI via a ladder: does it need to exist? -> stdlib? -> native platform feature? -> existing dep? -> one line? -> minimum code. Marks deliberate shortcuts with `// ponytail:` comments naming the ceiling and upgrade path.
-
-Activate: `/ponytail [lite|full|ultra]` - Stop: `stop ponytail` or `normal mode`
-
-### Apple Skills
-
-151 iOS/Apple development skills. Disabled by default to avoid polluting non-iOS sessions.
-
-Enable for iOS work: `claude plugin enable apple-skills`
+None installed.
 
 ---
 
 ## Hooks
 
-Wired via `settings.json`.
-
-| Event | What it does |
-|-------|-------------|
-| `PreToolUse` | Starts a 5-min `caffeinate` to keep the machine awake while Claude works |
-| `Stop` | Kills the `caffeinate` process when Claude finishes |
-| `Notification` | Plays a sound (`Glass.aiff`) on notifications |
+None configured.
 
 ---
 
@@ -116,10 +91,8 @@ Commands live in `commands/`. Invoke with `/command-name` in any session.
 | Command | What it does |
 |---------|-------------|
 | `/plan` | Spawns `planner`. Restates requirements, assesses risks, creates step-by-step plan. Waits for confirm before touching code. |
-| `/tdd` | Spawns `tdd-guide`. Writes failing tests first, then minimal implementation. Enforces 80%+ coverage. |
 | `/code-review` | Reviews uncommitted changes. Reports CRITICAL/HIGH issues. |
 | `/security-review` | Language-appropriate security audit (npm audit, pip-audit, etc.). Checks OWASP Top 10. |
-| `/test-coverage` | Measures coverage, generates missing tests to hit 80%+. |
 | `/build-fix` | Runs build, fixes errors incrementally with minimal diffs. |
 | `/lint` | Detects linting tools (ESLint, Ruff, SwiftLint, etc.), auto-fixes what's possible. |
 | `/deps` | Audits npm/pip/SwiftPM for outdated, vulnerable, and unused packages. |
@@ -133,72 +106,29 @@ Commands live in `commands/`. Invoke with `/command-name` in any session.
 
 ## Skills
 
-Skills are richer tools beyond commands. Located in `skills/`. Plugin skills come from their respective marketplaces. Symlinked skills (`->`) come from a shared `.agents/skills/` pack.
-
-### Ponytail Skills
-
-| Skill | What it does |
-|-------|-------------|
-| `/ponytail [mode]` | Activate lazy-senior mode (YAGNI + shortest-path enforcement) |
-| `/ponytail-help` | Show ponytail commands and the YAGNI ladder |
-| `/ponytail-audit` | Audit current code for over-engineering and unnecessary abstractions |
-| `/ponytail-debt` | Surface `// ponytail:` tagged shortcuts and their upgrade paths |
-| `/ponytail-review` | Review diff/PR for complexity debt |
+Skills are richer tools beyond commands. Located in `skills/`.
 
 ### Dev Workflow Skills
 
 | Skill | What it does |
 |-------|-------------|
-| `/security-audit [scope] [path]` | Full codebase security audit - secrets, injection, OWASP Top 10 across TS/Python/Swift/Java/PHP |
-| `/dep-audit [--fix] [--unused] [--licenses]` | Dependency vulnerabilities, outdated packages, unused deps, license risks |
 | `/test-coverage [path] [--threshold N]` | Coverage gap analysis + generate missing tests |
-| `/hostinger-deploy [scaffold\|deploy\|checklist] [name]` | Deploy to Hostinger shared hosting via rsync |
 | `/playwright-cli` | Playwright test generation and browser automation |
 | `/next-best-practices` | (auto) Next.js best practices - App Router patterns, RSC, caching |
 | `/nextjs-seo` | Next.js SEO setup - metadata, OG, sitemap, robots.txt |
 | `/react-best-practices` | (auto) React patterns, hooks discipline, performance |
 | `/api-design-patterns` | (auto) REST/GraphQL API design patterns |
-| `/php-best-practices` | (auto) PHP patterns and idioms |
-| `/php-error-handling` | (auto) PHP error handling patterns |
-| `/php-security` | (auto) PHP security pitfalls and mitigations |
-| `/php-testing` | (auto) PHP testing with PHPUnit/Pest |
 
 ### Design / UI Skills
 
 | Skill | What it does |
 |-------|-------------|
-| `/design-bakeoff` | Full website design pipeline - diverging variants, objective gates, real-pixel judging, taste profile |
-| `/impeccable [target]` | Frontend UI review - UX, visual hierarchy, accessibility, motion, design systems |
 | `/emil-design-eng` | (auto) Emil Kowalski's UI polish philosophy - animation, invisible details |
-
-### Video / Motion Skills
-
-| Skill | What it does |
-|-------|-------------|
-| `/hyperframes` | Hyperframes video framework (core orchestrator) |
-| `/remotion` | Remotion video creation in React |
-| `/remotion-to-hyperframes` | (auto) Migrate Remotion projects to Hyperframes |
-| `/motion-graphics` | Motion graphics design and animation |
-| `/gsap-core` | (auto) GSAP animation library - core, ScrollTrigger, timeline, plugins, React, performance, utils |
-| `/general-video` | General video production workflow |
-| `/faceless-explainer` | Faceless explainer video creation |
-| `/embedded-captions` | Burn subtitles/captions into video |
-| `/graphic-overlays` | Motion graphic overlays for video |
-| `/pr-to-video` | Convert PR/diff into explainer video |
-| `/product-launch-video` | Product launch video production |
-| `/website-to-video` | Convert website/design to video walkthrough |
-| `/slideshow` | Create animated slideshow |
-| `/stitch-skill` | (auto) Stitch video clips together |
 
 ### Utility Skills
 
 | Skill | What it does |
 |-------|-------------|
-| `/humanizer` | Remove AI-sounding patterns from text |
-| `/grill-me` | Stress-test a plan via relentless interviewing |
-| `/grill-with-docs` | Grill mode with documentation context |
-| `/handoff` | Compact conversation into handoff doc for another agent |
-| `/write-a-skill` | Generate a new skill definition |
 
 ---
 
@@ -215,13 +145,13 @@ Each language folder (`typescript/`, `python/`) contains `coding-style.md`, `pat
 ## Settings (`settings.json`)
 
 **Permissions** - pre-approved tools that skip prompts:
-`Read`, `Write`, `Edit`, `Glob`, `Grep`, `git`, `gh`, `npm`, `node`, `python3`, `swift`, `find`, `grep`, `ls`, `pnpm`, `tsc`, `npx`, select Chrome extension tools
+`Read`, `Write`, `Edit`, `Glob`, `Grep`, `git`, `gh`, `npm`, `node`, `python3`, `swift`, `find`, `grep`, `ls`, `pnpm`, `tsc`, `npx`
 
 **Statusline** - runs `statusline-command.sh` in the terminal.
 
-**Hooks** - `caffeinate` keep-awake (PreToolUse/Stop) and a notification sound (Notification).
+**Hooks** - none.
 
-**Plugins** - ponytail enabled; apple-skills disabled by default.
+**Plugins** - none installed.
 
 ---
 

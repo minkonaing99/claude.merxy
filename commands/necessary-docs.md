@@ -28,6 +28,9 @@ Either way, ensure these lines are present:
 # Claude
 CLAUDE.md
 .claude/
+
+# graphify
+graphify-out/
 ```
 
 Do not duplicate existing entries.
@@ -262,7 +265,7 @@ Undocumented? Add to /docs, not here.
 /necessary-docs complete
 
 Created:
-  + .gitignore (CLAUDE.md added)
+  + .gitignore (CLAUDE.md, .claude/, graphify-out/ added)
   + docs/PRD.md      (Product Requirements + App Flow)
   + docs/TECH.md     (Architecture + ADRs + Security)
   + docs/SCHEMA.md   (Backend Schema + API)

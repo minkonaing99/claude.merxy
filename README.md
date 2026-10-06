@@ -91,7 +91,6 @@ Commands live in `commands/`. Invoke with `/command-name` in any session.
 | Command | What it does |
 |---------|-------------|
 | `/plan` | Spawns `planner`. Restates requirements, assesses risks, creates step-by-step plan. Waits for confirm before touching code. |
-| `/code-review` | Reviews uncommitted changes. Reports CRITICAL/HIGH issues. |
 | `/security-review` | Language-appropriate security audit (npm audit, pip-audit, etc.). Checks OWASP Top 10. |
 | `/build-fix` | Runs build, fixes errors incrementally with minimal diffs. |
 | `/lint` | Detects linting tools (ESLint, Ruff, SwiftLint, etc.), auto-fixes what's possible. |

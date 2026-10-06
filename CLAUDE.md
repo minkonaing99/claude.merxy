@@ -50,6 +50,12 @@ Exempt: trivial tier (gate 0) + pure docs/config/rename.
 - Create new doc? Always write to `docs/`. Never scatter docs at root.
 - `docs/` is single source of truth for all project docs.
 
+## Database Rule
+
+- Existing project needs DB change? No migration. No migration files, no migrate commands.
+- Write the SQL to `docs/new-changes-db.sql` instead. File exists? Append.
+- User applies DB changes manually.
+
 ## Project Defaults
 
 - Websites: speed + minimal deps

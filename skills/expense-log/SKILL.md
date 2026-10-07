@@ -1,175 +1,175 @@
 ---
 name: expense-log
-description: Log daily spending to the xpenses MCP from a freeform recap of the user's day. Use whenever the user describes what they did, ate, bought, or where they went and it implies money spent — e.g. "log my day", "today I took the bus to Mahidol, ate breakfast, bought pizza", "spent 139 on pizza", "add my expenses", "log: bus 25, lunch at Big C", or any casual list of daily activities with costs. Trigger even if the user does not say the word "expense" or "log" — a recap of a day out almost always means expenses to record. Also handles explicit recurring-expense setup like "set up rent 4000/month" or "add a recurring 149 subscription every month". This skill knows the user's habitual prices, categories, and which account each thing comes from, fills gaps automatically, warns when a logged category nears its budget, and confirms the total before writing anything.
+description: Log spending, income and transfers to the xpenses MCP, plan purchases, and answer balance, budget and spending questions. Use whenever the user recaps their day or mentions buying, eating, paying or travelling, even without saying "expense" or "log" (e.g. "breakfast, bus to Mahidol, pizza", "spent 139 on pizza", "log my day"). Also use for "how much is left", "am I over budget", "got paid", "moved 500 to SCB", "plan to buy X". Applies the user's habitual prices and accounts and confirms before writing.
 ---
 
 # Expense Log
 
-Turn a freeform recap of the user's day into correctly-categorized expense
-entries in the xpenses MCP. The user types what they did in plain language;
-this skill parses each item, fills in known prices, picks the right category
-and account, shows a summary, and writes only after the user confirms.
+Turn a daily recap into correctly categorized xpenses entries. Parse items,
+apply stated prices or habits, show a summary, and wait for confirmation
+before writing.
 
-## Core rules (why they matter)
+## Rules
 
-1. **Read categories live first, every session.** Categories change and this
-   skill must never guess against a stale list. Call `get_categories` before
-   mapping anything. Match item -> category by the live names only. **Never
-   create or edit a category** — if nothing fits, use `Other` and flag it so
-   the user can fix it later. Silent miscategorization corrupts the budgets we
-   built the whole system around.
+- Never write before clear user confirmation of parsed items and total.
+- Amounts are baht. Default date is today in Bangkok. Honor a stated date
+  ("yesterday", "Monday") and resolve it to `YYYY-MM-DD` in the summary.
+- Call `get_categories` once per session before mapping. Pass live names
+  verbatim. The server also accepts unique prefix or substring matches; do
+  not rely on that. Use `Other` when no mapping fits and flag it.
+- Never create or edit categories or accounts. If a tool rejects a name as
+  unknown or ambiguous, resolve it with the user; never silently substitute.
+- Accounts: `KrungThai`, `Cash`, `TrueMoney`, `SCB`, `HOP`. Use
+  `get_balances` if a write rejects one of these.
+- `SCB` is savings only. Never offer it for spending.
+- `HOP` is a transit card. Use it for rail fares (BTS, MRT, Airport Rail
+  Link) and any fare the user says was paid by card or HOP. Buses stay
+  `Cash` unless the user says otherwise.
+- Account priority: stated account > 7/11 rule (`TrueMoney`) > habit map.
+- Every read response is in satang (`money_unit: "satang"`). Divide by 100
+  before showing baht. Write inputs (`amount_baht`) are baht.
+- Compute totals, subtotals and budget sums with a quick script when a shell
+  is available, not by hand. A wrong total breaks trust in every number.
 
-2. **Fill known prices, then confirm the total.** The user logs fast and
-   sloppy ("breakfast, bus to Mahidol, pizza"). Auto-fill habitual prices from
-   the table below so they don't have to type numbers, but always show the
-   parsed list + total and wait for a "yes" before writing. A wrong assumed
-   price is worse than asking, so the confirm step is non-negotiable.
+## Writes and retries
 
-3. **Pick the account by rule, ask only on a genuine coin-flip.**
-   - **TrueMoney** = everything from 7/11. Any 7/11 purchase (snacks, beer,
-     drinks, bills paid at counter) logs to TrueMoney, never Cash.
-   - **Cash** = buses/cycles, cheap street food (breakfast, dinner,
-     rice+something), small snacks, coffee carts.
-   - **KrungThai** (bank) = everything bigger: sit-down/branded food (Big C
-     lunch, KFC, pizza, hotpot), clothes, tech, personal care, bills, rent,
-     travel.
-   - **SCB** = savings only. Never log daily spending here. Don't offer it as
-     an expense account.
-   - Clear by rule -> just use it and note which in the summary. Truly
-     ambiguous -> ask.
-   - **Exact account names** (pass these verbatim to `create_expense`):
-     `KrungThai`, `Cash`, `SCB`, `TrueMoney`. No spaces in `TrueMoney`; the
-     `K` in `KrungThai` is followed by a capital `T`.
+- Write every confirmed batch with one `create_transactions` call (1-20
+  entries, atomic). More than 20: split into confirmed batches of 20 max.
+- One fresh UUID `request_id` per call. On a transient or uncertain failure,
+  retry once with the identical payload, UUID, and explicit `date`.
+- Never resend a failed or uncertain write under a new UUID. If still
+  uncertain, call `list_transactions` for that month and check for the
+  entries before doing anything else.
+- Report confirmed successes, failures, and uncertain results separately.
 
-4. **Default date = today (Bangkok).** If the user says "yesterday" or a date,
-   use that. `create_expense` defaults to today already.
+## Habit map
 
-5. **One `create_expense` call per item.** Amounts are in **baht** (the tool
-   converts). Keep the `note` short — just the item, with the meal/context in
-   parens when useful: `bread (dinner)`, `rice + chicken (lunch)`, `bus`,
-   `pizza`. Don't restate the account or "7/11"; the account already records
-   where it came from. If the user gives their own parenthetical (a source or
-   place like `powerbank (shopee)`, `case (lazada)`), keep it verbatim.
+Stated price overrides default. Ask when table says ask.
 
-6. **Warn on budget only after writing, only for what you touched.** After the
-   expenses are written, call `get_budgets` for the logged month and check the
-   categories you logged this session. If any touched category is at or above
-   **80%** of its limit, flag it in the final report. Ignore untouched
-   categories and any category with no budget set. This is a heads-up, not a
-   gate — never block or re-confirm because of budget.
+| Item | Baht | Category | Account |
+| --- | ---: | --- | --- |
+| breakfast; dinner; night meal | 20 | Groceries | Cash |
+| rice + something; cheap street meal | ask, about 30 | Groceries | Cash |
+| Big C lunch food | 50 | Eating Out | KrungThai |
+| Big C lunch coffee | 5 | Coffee | KrungThai |
+| pizza | 139 | Eating Out | KrungThai |
+| hotpot; suki | 279 | Eating Out | KrungThai |
+| Taobin coffee | ask, 5-10 | Coffee | KrungThai |
+| branded cafe coffee | ask | Coffee | KrungThai |
+| street-cart coffee | ask, 5-10 | Coffee | Cash |
+| bus to Mahidol | 25 | Transport | Cash |
+| bus home from Mahidol | 45 | Transport | Cash |
+| bus; cycle; songthaew | ask, 10-40 | Transport | Cash |
+| BTS; MRT; Airport Rail Link | ask | Transport | HOP |
+| 7/11 snack; beer; drink | ask | Entertainment | TrueMoney |
+| taxi; airport; intercity trip | ask | Travel | KrungThai |
+| clothes | stated price | Clothing | KrungThai |
+| skincare; grooming | stated price | Personal Care | KrungThai |
+| phone case; cable; gadget | stated price | Tech | KrungThai |
+| pharmacy; medicine; clinic | stated price | Health | KrungThai |
+| laundry | stated price | Laundry | Cash |
+| cleaning supplies; kitchenware; home items | stated price | Household | KrungThai |
+| mobile plan; subscription | stated price | Bills | KrungThai |
+| rent | stated price | Rent | KrungThai |
+| university fee; academic supplies | stated price | Mahidol | KrungThai |
 
-7. **Recurring rules are explicit-only and expense-only.** Only create a
-   recurring rule when the user asks for one in so many words ("set up rent
-   4000/month", "recurring Claude sub 149 monthly"). Never infer a recurring
-   rule from a normal daily recap. Only `type: expense` — this skill does not
-   create recurring income or transfers.
-
-## Habit map (the user's usual prices)
-
-Prices are defaults — override whenever the user states a real number.
-
-| Item (what user might type)        | Baht        | Category       | Account |
-|------------------------------------|-------------|----------------|---------|
-| breakfast                          | 20          | Groceries      | Cash    |
-| dinner / night / night meal        | 20          | Groceries      | Cash    |
-| rice + something / cheap street meal | ~30 (ask if unsure) | Groceries | Cash |
-| Big C lunch (food)                 | 50          | Eating Out     | KrungThai |
-| Big C lunch coffee                 | 5           | Coffee         | KrungThai |
-| pizza                              | 139         | Eating Out     | KrungThai |
-| hotpot / suki                      | 279         | Eating Out     | KrungThai |
-| coffee (Taobin)                    | 5-10 (ask)  | Coffee         | KrungThai |
-| coffee (branded cafe, e.g. Cafe Amazon) | ask    | Coffee         | KrungThai |
-| coffee (street cart)               | 5-10 (ask)  | Coffee         | Cash    |
-| bus to Mahidol                     | 25          | Transport      | Cash    |
-| bus back / home from Mahidol       | 45          | Transport      | Cash    |
-| other bus / cycle / songthaew      | ask (10-40) | Transport      | Cash    |
-| 7/11 anything (snacks/beer/drinks) | ask         | Entertainment  | TrueMoney |
-| taxi / airport / intercity trip    | ask         | Travel         | KrungThai |
-
-Notes:
-- **Bus to Mahidol is Transport, not the Mahidol category.** The `Mahidol`
-  category is only for university costs — tuition, document/admin fees,
-  academic supplies. Never route a bus fare there.
-- Groceries here holds the cheap daily meals (breakfast, dinner, street food),
-  by the user's budgeting convention. Branded/sit-down meals go to Eating Out.
-- **All coffee goes to `Coffee`, always.** Every coffee is its own entry in
-  the Coffee category — never fold it into Eating Out. Big C lunch splits into
-  two entries: food 50 (Eating Out) + coffee 5 (Coffee). The user names the
-  shop in parens (`coffee (Cafe Amazon)`, `coffee (Taobin)`) — keep it verbatim
-  in the note. Taobin and branded cafes -> KrungThai; street cart -> Cash.
-
-## Category guide for non-habit items
-
-Map by the live category names from `get_categories`. Typical routing:
-
-- **Clothing** — shirts, shoes, any apparel (KrungThai)
-- **Personal Care** — perfume, skincare, toothbrush, soap, grooming (KrungThai)
-- **Tech** — phone cases, screen glass, cables, gadgets (KrungThai)
-- **Health** — pharmacy, meds, clinic (usually KrungThai)
-- **Laundry** — wash/dry, laundromat, laundry service (Cash, or TrueMoney if 7/11-adjacent machine)
-- **Bills** — mobile package, Claude subscription, any recurring service (KrungThai)
-- **Rent** — monthly rent (KrungThai)
-- **Mahidol** — university fees, documents, academic (account per size: KrungThai)
-- **Other** — genuinely nothing fits; log here and tell the user to recategorize
-
-Any item bought **at 7/11** overrides account to **TrueMoney** regardless of
-category.
-
-## Recurring expenses
-
-Only when the user explicitly asks to set up a recurring/scheduled expense.
-Parse: amount (baht), `interval_unit` (day/week/month) and `interval_count`
-from the phrasing ("monthly" -> unit month, count 1; "every 2 weeks" -> unit
-week, count 2; default count 1), category (live match), account (rule).
-
-- **Always ask for `next_run_date`.** Never infer it silently. Confirm the
-  YYYY-MM-DD date the schedule should first fire before creating.
-- **Check for duplicates first.** Call `get_recurring`; if a rule with the same
-  category/note/amount already exists, flag it in the confirm and let the user
-  decide instead of blindly adding a second rule.
-- **Schedule only — no back-charge.** Creating the rule does not log the
-  current period. If the user also wants this month charged now, they must say
-  so as a normal expense item.
-- **Expense type only.** Use `create_recurring` with `type: expense`.
+`Mahidol` category is university costs only. Bus fares use `Transport`.
+Every coffee is a separate `Coffee` entry. Split Big C lunch into food and
+coffee only when the user mentions coffee. Keep notes short: the item, with
+meal or context in parens, e.g. `bread (dinner)`. Put a named shop or
+source in parens, e.g. "taobin coffee" -> `coffee (Taobin)`. Preserve
+user-supplied parentheticals verbatim, e.g. `powerbank (shopee)`. Do not repeat the account or "7/11" in the note.
 
 ## Workflow
 
-1. Call `get_categories` to load the live category list.
-2. Parse the user's message into one-off expense items and any explicit
-   recurring request. A message can contain both.
-3. For each one-off item: assign amount (habit map or stated), category (live
-   match), account (rule). Mark anything you had to guess. For a recurring
-   request: derive amount, interval, category, account, and the (asked)
-   next-run date; call `get_recurring` to check for a duplicate.
-4. Show a summary. If there are recurring requests, split it into two sections:
-   - **Expenses** — item | note | amount | category | account, plus the
-     **total** and per-account subtotals. Flag any `Other` or guessed prices.
-   - **Recurring** — amount | interval | next run | category | account, with a
-     duplicate warning if one was found.
-5. Ask any genuinely ambiguous questions (unknown price, coin-flip account,
-   the recurring next-run date) in one batch — don't nickel-and-dime the user.
-6. On one confirmation, write everything: `create_expense` once per one-off
-   item, `create_recurring` once per recurring rule.
-7. After writing, call `get_budgets` for the logged month and check the
-   categories you touched. Report what was written (count + total), then flag
-   any touched category at or above 80% of its limit. Keep it short; skip
-   categories with no budget.
+1. Parse one-off expense items from the message. Do not infer recurring
+   spending.
+2. Assign date, amount, category, account, and note. Apply the habit map.
+   Ask all unknown prices or genuine account coin-flips in one batch.
+3. If any item uses `Cash`, call `get_balances` and compare. Show item,
+   note, baht, category, account, total, per-account subtotals, and every
+   assumption or `Other` mapping. Ask for confirmation.
+4. On confirmation, write with `create_transactions`.
+5. After a successful write, call `get_budgets` for each logged `YYYY-MM`.
+   Warn only when a touched category is at or above 80% of its budget.
+   Ignore categories without a budget. Report count and total.
+
+If the user says an item may already be logged, call `list_transactions`
+for that month and show matches before asking to confirm.
+
+## Other xpenses requests
+
+Use only the tools the request needs. Read-only questions need no
+confirmation and must never trigger a write.
+
+| Request | Tool | Inputs |
+| --- | --- | --- |
+| Account balances | `get_balances` | none |
+| Category list | `get_categories` | none |
+| Transaction history; duplicate check | `list_transactions` | `month` |
+| Budget status | `get_budgets` | `month` |
+| Budget burn and velocity flags | `get_anomalies` | `month` |
+| Vs last month and trailing average | `get_comparisons` | `month` |
+| Month-end projection | `get_forecast` | `month` |
+| Planned purchases | `get_plans` | `month` |
+
+Month inputs use `YYYY-MM`. Default an unspecified month to the current
+Bangkok month and state the period. Forecasts are projections, not recorded
+spending. For balances, show `available` and mention `reserved` when it is
+non-zero.
+
+### Income and transfers
+
+For explicit income or transfer requests, use `create_transactions`.
+Income requires `type: income`, `account`, `amount_baht`. Transfer requires
+`type: transfer`, `from_account`, `to_account`, `amount_baht`. Both accept
+`date` and `note`; neither takes a category. Show type, amount, date, and
+accounts for confirmation. SCB is allowed for an explicitly requested
+savings transfer.
+
+Cash top-ups are transfers `KrungThai` -> `Cash`, never income. Treat
+"took out 500", "withdrew 500", "ATM 500", or "moved 500 to cash" as that
+transfer. Topping up HOP or TrueMoney from KrungThai is also a transfer.
+If a recap's Cash items exceed the Cash `available` balance, say so in the
+summary and ask whether a top-up is missing. Still log the expenses; the
+check is a heads-up, not a gate. Do not count transfers or income as expenses. Mixed
+batches may include expenses; apply budget warnings only to those.
+
+### Planned purchases
+
+Use `create_plan` only when the user wants a planned purchase. Resolve
+`name`, `amount_baht`, `category`, `account`, and `planned_date`
+(`YYYY-MM-DD`). Include `wait_days` (0-30) only when supplied or clarified.
+Confirm these fields, then write with a fresh UUID `request_id`. A plan is
+not a recorded expense; never also charge it.
+
+When the user buys a non-habit item (gadget, clothes, anything not in the
+daily habit rows), call `get_plans` for that month. If `get_plans` errors,
+say the plan check failed and continue. If a plan matches by name, log it as a normal expense
+and tell the user the plan still exists and may still reserve money. No
+tool links or closes plans, so the user must remove it in the app.
+
+### Recurring expenses
+
+No recurring tools are exposed. If asked to set up a recurring expense,
+say so. Do not substitute a plan or a one-off expense. If recurring tools
+appear later, inspect their schemas, check existing rules for duplicates,
+ask for the first run date, and never back-charge the current period.
 
 ## Example
 
-**Input:**
-> today breakfast, bus to mahidol and back, big c lunch, 7/11 beer 60, pizza for dinner
+Input: `today breakfast, bus to Mahidol and back, Big C lunch, 7/11 beer 60,
+pizza for dinner`
 
-**Parsed summary shown to user:**
+Summary before write (date 2026-10-06):
 
-| Item              | Note                | Baht | Category      | Account    |
-|-------------------|---------------------|------|---------------|------------|
-| breakfast         | breakfast         | 20   | Groceries     | Cash       |
-| bus to Mahidol    | bus (Mahidol)     | 25   | Transport     | Cash       |
-| bus home          | bus (home)        | 45   | Transport     | Cash       |
-| Big C lunch       | Big C (lunch)     | 55   | Eating Out    | KrungThai  |
-| 7/11 beer         | beer (snack)      | 60   | Entertainment | TrueMoney  |
-| pizza             | pizza (dinner)    | 139  | Eating Out    | KrungThai  |
+| Item | Note | Baht | Category | Account |
+| --- | --- | ---: | --- | --- |
+| breakfast | breakfast | 20 | Groceries | Cash |
+| bus to Mahidol | bus (Mahidol) | 25 | Transport | Cash |
+| bus home | bus (home) | 45 | Transport | Cash |
+| Big C lunch | Big C (lunch) | 50 | Eating Out | KrungThai |
+| 7/11 beer | beer | 60 | Entertainment | TrueMoney |
+| pizza | pizza (dinner) | 139 | Eating Out | KrungThai |
 
-Total: **344 baht** (Cash 90, KrungThai 194, TrueMoney 60). Confirm to log?
-Then write 6 entries.
+Total: 339 baht. Cash 90; KrungThai 189; TrueMoney 60. Ask user to confirm.

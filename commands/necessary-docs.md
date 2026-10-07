@@ -179,7 +179,7 @@ Skip each file if it already exists. Otherwise create with project-aware content
 
 ---
 
-### `docs/SETUP.md` — Setup + Testing + Changelog
+### `docs/SETUP.md` — Setup + Testing
 
 **Setup**
 - Prerequisites (Node/Python/etc. version — infer from project)
@@ -197,11 +197,34 @@ Skip each file if it already exists. Otherwise create with project-aware content
 - How to write new tests
 - Mocking strategy
 
-**Changelog**
-- Current version: `0.1.0`
-- Format: [Keep a Changelog](https://keepachangelog.com)
-- Sections: `### Added`, `### Changed`, `### Fixed`, `### Removed`
-- One initial entry dated today
+---
+
+### `docs/RELEASE-NOTES.md` — User-facing Release Notes
+
+- Header note: "Newest first. Follows SemVer. Dates ISO 8601."
+- `## [Unreleased]` section at top. Collect entries as work lands.
+- Per release block:
+  ```
+  ## [X.Y.Z] - YYYY-MM-DD
+  **Summary:** 1-3 sentences. What this release is about + who benefits.
+
+  ### Highlights
+  ### New Features
+  ### Improvements
+  ### Bug Fixes
+  ### Security
+  ### Deprecated
+  ### Removed
+  ### Breaking Changes
+  ### Upgrade / Migration Steps
+  ### Known Issues
+  ### Links
+  ```
+- Omit empty sections, but keep section names and order fixed across releases.
+- Entry format: `- **Headline** - what changed + why it matters to user. (#issue/PR)`
+- Plain language. Benefit-first. No internal jargon, no commit hashes as prose.
+- API projects: list new/changed endpoints, deprecation timeline, migration snippet.
+- One initial entry: `## [0.1.0] - <today>` with "Initial release" summary.
 
 ---
 
@@ -240,12 +263,13 @@ Build and maintain this project with clean architecture, scalable structure, cle
 | Schema + API       | docs/SCHEMA.md   |
 | UI/UX Design       | docs/DESIGN.md   |
 | Plan + Tasks       | docs/PLAN.md     |
-| Setup + Test + Log | docs/SETUP.md    |
+| Setup + Testing    | docs/SETUP.md    |
+| Release Notes      | docs/RELEASE-NOTES.md |
 
 ## Workflow
 
 Before coding: check relevant doc.
-After coding: update PLAN.md tasks + SETUP.md changelog.
+After coding: update PLAN.md tasks + RELEASE-NOTES.md [Unreleased].
 Undocumented? Add to /docs, not here.
 
 ## Behavior
@@ -271,7 +295,8 @@ Created:
   + docs/SCHEMA.md   (Backend Schema + API)
   + docs/DESIGN.md   (UI/UX Design Brief)
   + docs/PLAN.md     (Implementation Plan + Tasks)
-  + docs/SETUP.md    (Setup + Testing + Changelog)
+  + docs/SETUP.md    (Setup + Testing)
+  + docs/RELEASE-NOTES.md (Release Notes)
   + CLAUDE.md
 
 Skipped (already existed):

@@ -5,7 +5,8 @@
     "DISABLE_TELEMETRY": "1",
     "DISABLE_ERROR_REPORTING": "1",
     "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
-    "PONYTAIL_DEFAULT_MODE": "off"
+    "PONYTAIL_DEFAULT_MODE": "off",
+    "ENABLE_CLAUDEAI_MCP_SERVERS": "false"
   },
   "attribution": {
     "commit": "",
@@ -44,14 +45,35 @@
       "mcp__xpenses"
     ],
     "deny": [
-      "Bash(git push *)",
       "mcp__claude_ai_Gmail",
       "mcp__claude_ai_Google_Calendar",
       "mcp__claude_ai_Google_Drive",
-      "mcp__claude_ai_Notion"
+      "mcp__claude_ai_Notion",
+      "mcp__hostinger-agency-hosting",
+      "mcp__hostinger-dns",
+      "mcp__hostinger-domains",
+      "mcp__hostinger-hosting",
+      "mcp__hostinger-reach"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(rtk git push *)"
     ]
   },
   "model": "opus",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "bash \"$HOME/.claude/statusline-command.sh\""
@@ -78,18 +100,5 @@
   "awaySummaryEnabled": false,
   "tui": "fullscreen",
   "autoMemoryEnabled": false,
-  "terminalProgressBarEnabled": true,
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "rtk hook claude"
-          }
-        ]
-      }
-    ]
-  }
+  "terminalProgressBarEnabled": true
 }

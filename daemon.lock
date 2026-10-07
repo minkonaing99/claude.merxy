@@ -1,0 +1,16 @@
+{
+  "pid": 4922,
+  "version": "2.1.285",
+  "jsonPath": "/Users/aurora/.claude/daemon.json",
+  "logPath": "/Users/aurora/.claude/daemon.log",
+  "startedAt": 1791390153028,
+  "origin": "transient",
+  "spawnedBy": {
+    "label": "claude",
+    "cwd": "/Users/aurora/Documents/structure/03_projects/active/linknest-hostinger",
+    "pid": 4803
+  },
+  "procStart": "Wed Oct  7 16:22:32 2026",
+  "launchTarget": "/opt/homebrew/Caskroom/claude-code/2.1.285/claude",
+  "processWrapper": ""
+}

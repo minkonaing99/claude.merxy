@@ -57,3 +57,5 @@ stats-cache.json
 
 # rtk init backup
 settings.json.bak
+
+plugins/plugin-directory-cache-v2.json

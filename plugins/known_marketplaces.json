@@ -14,5 +14,21 @@
     },
     "installLocation": "/Users/aurora/.claude/plugins/marketplaces/ponytail",
     "lastUpdated": "2026-10-06T08:56:11.590Z"
+  },
+  "claude-animation-skill": {
+    "source": {
+      "source": "github",
+      "repo": "buildwithhanif/claude-animation-skill"
+    },
+    "installLocation": "/Users/aurora/.claude/plugins/marketplaces/claude-animation-skill",
+    "lastUpdated": "2026-10-13T17:06:38.020Z"
+  },
+  "nateherk": {
+    "source": {
+      "source": "github",
+      "repo": "nateherkai/scroll-craft"
+    },
+    "installLocation": "/Users/aurora/.claude/plugins/marketplaces/nateherk",
+    "lastUpdated": "2026-10-13T20:08:02.905Z"
   }
 }

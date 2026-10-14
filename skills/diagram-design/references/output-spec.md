@@ -11,6 +11,15 @@ Four dials decide what an imported diagram becomes. Set them **before** redrawin
 
 Infer choices that are clear from the request (for example, "for my deck" implies a slide preset). Ask one concise question for anything material that remains ambiguous. If the user does not care, use the defaults above and say which ones you used.
 
+## Contents
+
+- [1. Format](#1-format)
+- [2. Size](#2-size)
+- [3. Detail level](#3-detail-level)
+- [4. Audience level](#4-audience-level)
+- [5. Fidelity ledger](#5-fidelity-ledger)
+- [6. Checklist](#6-checklist)
+
 ---
 
 ## 1. Format

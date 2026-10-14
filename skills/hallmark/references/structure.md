@@ -6,6 +6,14 @@ This file catalogues the **primitive axes** of structural variety. For most buil
 
 The axes below are still the building blocks. Pick one option from each to form a *structural fingerprint*. Two pages should never share the same fingerprint.
 
+## Contents
+
+- [The six axes](#the-six-axes)
+- [Picking a fingerprint](#picking-a-fingerprint)
+- [Theme-suggested fingerprints](#theme-suggested-fingerprints)
+- [Anti-patterns of structural sameness](#anti-patterns-of-structural-sameness)
+- [When you don't know](#when-you-dont-know)
+
 ## The six axes
 
 ### 1. Section-heading placement

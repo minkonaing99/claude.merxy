@@ -1,3 +1,31 @@
+### Contents
+
+- [Purpose](#purpose)
+- [Hard Invariants](#hard-invariants)
+- [Setup](#setup)
+- [Assessment Orchestration](#assessment-orchestration)
+- [Assessment A: Design Review](#assessment-a-design-review)
+- [Assessment B: Detector + Browser Evidence](#assessment-b-detector--browser-evidence)
+- [Generate Combined Critique Report](#generate-combined-critique-report)
+- [Report header provenance](#report-header-provenance)
+- [Design Health Score](#design-health-score)
+- [Design Specificity Verdict](#design-specificity-verdict)
+- [Overall Impression](#overall-impression)
+- [What's Working](#whats-working)
+- [Priority Issues](#priority-issues)
+- [Persona Red Flags](#persona-red-flags)
+- [Minor Observations](#minor-observations)
+- [Questions to Consider](#questions-to-consider)
+- [Deliver the Report](#deliver-the-report)
+- [Persist the Snapshot](#persist-the-snapshot)
+- [Ask the User](#ask-the-user)
+- [Recommended Actions](#recommended-actions)
+- [Action Summary](#action-summary)
+- [Reference Material](#reference-material)
+  - [Cognitive Load Assessment](#cognitive-load-assessment)
+  - [Heuristics Scoring Guide](#heuristics-scoring-guide)
+  - [Persona-Based Design Testing](#persona-based-design-testing)
+
 ### Purpose
 
 Resolve one stable target, run two independent assessments, synthesize a design critique, persist a snapshot, and ask the user what to improve next. The chat response is the primary deliverable; the snapshot is an archive of that run.

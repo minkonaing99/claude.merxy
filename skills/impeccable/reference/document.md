@@ -2,6 +2,17 @@ Generate a `DESIGN.md` file at the project root that captures the current visual
 
 DESIGN.md follows the [official DESIGN.md format spec](https://raw.githubusercontent.com/google-labs-code/design.md/main/docs/spec.md): optional YAML frontmatter carrying machine-readable design tokens, followed by up to eight markdown sections in a fixed order. **Tokens are normative; prose provides context for how to apply them.** Sections may be omitted when not relevant, but those present stay in the specified order. Use the canonical headings below so the file remains portable across DESIGN.md-aware tools.
 
+## Contents
+
+- [The frontmatter: token schema](#the-frontmatter-token-schema)
+- [The markdown body: eight sections (canonical order)](#the-markdown-body-eight-sections-canonical-order)
+- [When to run](#when-to-run)
+- [Two paths](#two-paths)
+- [Scan mode (approach C: auto-extract, then confirm descriptive language)](#scan-mode-approach-c-auto-extract-then-confirm-descriptive-language)
+- [Seed mode](#seed-mode)
+- [Style guidelines](#style-guidelines)
+- [Pitfalls](#pitfalls)
+
 ## The frontmatter: token schema
 
 The YAML frontmatter is the machine-readable layer. It's what Stitch's linter validates and what the live panel renders tiles from. Keep it tight; every entry should correspond to a token the project actually uses.

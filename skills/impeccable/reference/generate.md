@@ -12,6 +12,13 @@ Three prohibitions cover the known ways this command goes wrong:
 - **Never hand-write a variants wrapper or invent a session id.** Only the browser mints session ids (8 hex characters, at Go). A missing event is fixed by rerunning Step 2, never with a direct source edit.
 - **Do not act on hook findings while live markers are in the file**, and do not restyle variants to appease them; the accept verifies the file once the variant is permanent.
 
+## Contents
+
+- [Step 1: Parse the request](#step-1-parse-the-request)
+- [Step 2: Reuse the page, then start](#step-2-reuse-the-page-then-start)
+- [Step 3: Generate](#step-3-generate)
+- [Step 4: Accept and close](#step-4-accept-and-close)
+
 ## Step 1: Parse the request
 
 Three parts, all from the user's sentence:

@@ -2,6 +2,15 @@
 
 `init` captures durable product truth in PRODUCT.md. It does not invent a visual world and does not write DESIGN.md; [new-work.md](new-work.md) creates or expands one, and [document.md](document.md) records an incumbent one. Existing runnable web projects may also receive `.impeccable/live/config.json`.
 
+## Contents
+
+- [Step 1: Load current state](#step-1-load-current-state)
+- [Step 2: Explore the project](#step-2-explore-the-project)
+- [Step 3: Interview for product truth](#step-3-interview-for-product-truth)
+- [Step 4: Write PRODUCT.md](#step-4-write-productmd)
+- [Step 5: Record workflow defaults](#step-5-record-workflow-defaults)
+- [Step 6: Wrap up or resume](#step-6-wrap-up-or-resume)
+
 ## Step 1: Load current state
 
 Use the PRODUCT.md path resolved by `impeccable context`. Update it instead of creating a competing authority. In a child app inheriting root context, confirm shared versus app-specific scope before writing.

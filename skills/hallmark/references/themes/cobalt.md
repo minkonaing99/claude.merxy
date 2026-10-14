@@ -6,6 +6,21 @@ Loaded eagerly by SKILL.md Step 3 whenever the catalog pick is `cobalt`. The OKL
 
 > **Why not orange.** GitBook and Firecrawl both converged on orange-as-signal — but that lane is now crowded, and Hallmark's warm slots are already taken (Lumen brass, Bloom terracotta, Coral coral). Cobalt keeps their *discipline* (cool ground + one signal + code-as-hero + hairlines) and aims the signal at the open electric-blue lane instead. The blue is the differentiator, not a copy.
 
+## Contents
+
+- [Axes (diversification)](#axes-diversification)
+- [Reference register](#reference-register)
+- [Required dependencies](#required-dependencies)
+- [The signature moves](#the-signature-moves)
+- [Motion](#motion)
+- [Anti-patterns](#anti-patterns)
+- [Macrostructure affinity](#macrostructure-affinity)
+- [Macrostructure rejection](#macrostructure-rejection)
+- [Voice fixtures](#voice-fixtures)
+- [How Cobalt differs from neighbouring themes](#how-cobalt-differs-from-neighbouring-themes)
+- [Test brief expectations](#test-brief-expectations)
+- [Build hint](#build-hint)
+
 ## Axes (diversification)
 
 - **Paper band** — cool light (`L 98.5%`, hue ~250, very low chroma). An engineered near-white — distinct from Coral's warm grey and from the genre's dark grounds.

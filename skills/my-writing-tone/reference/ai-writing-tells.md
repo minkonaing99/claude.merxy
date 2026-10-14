@@ -4,6 +4,17 @@ Full catalog of signs of AI-generated text, used by the AI-tells pass in `../SKI
 
 When cleaning a draft: identify AI patterns, rewrite (don't delete), preserve meaning, match the register. Cover everything the original covers. If the original has five paragraphs, the rewrite has five.
 
+## Contents
+
+- [Personality and Soul](#personality-and-soul)
+- [Content Patterns](#content-patterns)
+- [Language and Grammar Patterns](#language-and-grammar-patterns)
+- [Style Patterns](#style-patterns)
+- [Communication Patterns](#communication-patterns)
+- [Filler and Hedging](#filler-and-hedging)
+- [Detection Guidance](#detection-guidance)
+- [Reference](#reference)
+
 ## Personality and Soul
 
 Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as obvious as slop.

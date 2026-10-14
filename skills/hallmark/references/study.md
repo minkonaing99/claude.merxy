@@ -6,6 +6,19 @@ This file is loaded when the `hallmark study` verb runs. It defines the protocol
 
 **The mental model.** A designer who likes a reference site does not photocopy it. They look at it long enough to say "ah — that's a Marquee Hero with a single column body, italic-editorial display paired with monospace labels, anchored on a desaturated forest green at maybe 3 % footprint, with hairline rules and one orchestrated entrance." Then they go build something *different* with the same skeleton. That sentence is what `study` outputs. The build is what `default` or `redesign` does after.
 
+## Contents
+
+- [Source mode — image or URL](#source-mode--image-or-url)
+- [Refusal — when not to study](#refusal--when-not-to-study)
+- [The five-step protocol](#the-five-step-protocol)
+- [The structured fields](#the-structured-fields)
+- [Theme mapping](#theme-mapping)
+- [The diagnosis report](#the-diagnosis-report)
+- [Worked example](#worked-example)
+- [Limits and disclaimers](#limits-and-disclaimers)
+- [Emitting a design.md from study](#emitting-a-designmd-from-study)
+- [When study should hand off](#when-study-should-hand-off)
+
 ---
 
 ## Source mode — image or URL

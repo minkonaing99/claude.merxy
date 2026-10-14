@@ -6,6 +6,17 @@ This file is loaded only when an enrichment archetype requires construction (Tie
 
 The 2026 canon is set by Lynn Fisher (*A Single Div*), Diana Smith (*Pure CSS Francine* / *Lace*), Rauno Freiberg, Paco Coursey, Jhey Tompkins, and Adam Argyle. The thread: constraint-driven, hand-crafted, performance-respecting, accessibility-embedded. Use the platform; don't fight it.
 
+## Contents
+
+- [Tier A · Pure CSS art](#tier-a--pure-css-art)
+- [Tier B · Hand-built SVG illustration](#tier-b--hand-built-svg-illustration)
+- [Tier C · Declarative animation (CSS-first, JS-when-needed)](#tier-c--declarative-animation-css-first-js-when-needed)
+- [Tier D · Three.js / WebGL / shaders](#tier-d--threejs--webgl--shaders)
+- [Tier E · Generated stills (Nanobanana / Recraft V4 / Midjourney)](#tier-e--generated-stills-nanobanana--recraft-v4--midjourney)
+- [Tier F · Library illustrations + Lottie (last resort)](#tier-f--library-illustrations--lottie-last-resort)
+- [The bakery worked example, end-to-end](#the-bakery-worked-example-end-to-end)
+- [Recipe library](#recipe-library)
+
 ---
 
 ## Tier A · Pure CSS art

@@ -2,6 +2,18 @@
 
 Words are part of the design. A great layout with stock copy looks generic. Tight copy in an average layout reads as considered.
 
+## Contents
+
+- [Principles](#principles)
+- [Buttons](#buttons)
+- [Error messages](#error-messages)
+- [Empty states](#empty-states)
+- [Loading](#loading)
+- [Microcopy bans](#microcopy-bans)
+- [Proper typography](#proper-typography)
+- [Voice samples per tone](#voice-samples-per-tone)
+- [Banned opening lines (anti-patterns)](#banned-opening-lines-anti-patterns)
+
 ## Principles
 
 - **Specific verbs.** "Save changes" beats "OK" beats "Submit".

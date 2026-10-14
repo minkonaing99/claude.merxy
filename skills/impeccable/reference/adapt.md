@@ -4,6 +4,14 @@ Adapt an existing design to a different context: another screen size, device, pl
 
 **Web only** (mobile web included). Native platforms (`ios` / `android` / `adaptive`) route to [adapt.native.md](adapt.native.md) instead; if the project is native, switch to it now.
 
+## Contents
+
+- [Assess Adaptation Challenge](#assess-adaptation-challenge)
+- [Plan Adaptation Strategy](#plan-adaptation-strategy)
+- [Implement Adaptations](#implement-adaptations)
+- [Verify Adaptations](#verify-adaptations)
+- [Reference Material](#reference-material)
+
 ---
 
 ## Assess Adaptation Challenge

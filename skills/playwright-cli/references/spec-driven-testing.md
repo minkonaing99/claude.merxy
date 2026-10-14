@@ -8,6 +8,13 @@ End-to-end workflow for authoring and maintaining Playwright tests using `playwr
 
 All three lean on the same mechanic: run `npx playwright test --debug=cli` in the background, then `playwright-cli attach tw-XXXX` to drive the paused page interactively. See [playwright-tests.md](playwright-tests.md) for the debug/attach mechanics and [test-generation.md](test-generation.md) for how every `playwright-cli` action emits Playwright TypeScript.
 
+## Contents
+
+- [1. Planning](#1-planning)
+- [2. Generate](#2-generate)
+- [3. Heal](#3-heal)
+- [Cross-references](#cross-references)
+
 ---
 
 ## 1. Planning

@@ -10,6 +10,14 @@ The skill doesn't ship the binaries — it ships the manifest. References are ab
 
 **Why this exists.** The v0.9.0 watercolor sprinkle was generated per-emit and was inconsistent. The kit recovers that aesthetic but as discrete, swappable, deliberately-composed assets. Compose with them like a senior frontend engineer: layered transparent PNG behind text, biased off-centre, intentionally large, mix-blend-mode where it earns its place. Not "abstract gradient on top of headline" — that's the AI default.
 
+## Contents
+
+- [Categories](#categories)
+- [Manifest (placeholder until generation pass ships)](#manifest-placeholder-until-generation-pass-ships)
+- [Usage patterns — how a senior engineer would compose these](#usage-patterns--how-a-senior-engineer-would-compose-these)
+- [Anti-patterns](#anti-patterns)
+- [Generation pipeline (out-of-band, one-time)](#generation-pipeline-out-of-band-one-time)
+
 ---
 
 ## Categories

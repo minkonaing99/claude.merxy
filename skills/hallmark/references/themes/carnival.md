@@ -4,6 +4,21 @@ Loud-maximalist editorial. **Duo-tone accent system across six named palette dro
 
 Loaded eagerly by SKILL.md Step 3 whenever the catalog pick is `carnival`. The default palette ("Cold Snap") and font stack live in [`site/css/tokens.css`](../../../../site/css/tokens.css) under `[data-theme="carnival"]`; this file carries the **palette drops** (six variants) plus the rules that tokens cannot encode.
 
+## Contents
+
+- [Axes (diversification)](#axes-diversification)
+- [Palette drops](#palette-drops)
+- [Reference register](#reference-register)
+- [Signature moves](#signature-moves)
+- [Layout pitfalls (must avoid)](#layout-pitfalls-must-avoid)
+- [Macrostructure affinity](#macrostructure-affinity)
+- [Macrostructure rejection](#macrostructure-rejection)
+- [Voice fixtures](#voice-fixtures)
+- [Anti-patterns (theme-specific)](#anti-patterns-theme-specific)
+- [How Carnival differs from neighbouring themes](#how-carnival-differs-from-neighbouring-themes)
+- [Test brief expectations](#test-brief-expectations)
+- [Build hint](#build-hint)
+
 ## Axes (diversification)
 
 - **Paper band** — light (`L 88–95%`, tinted — varies by drop)

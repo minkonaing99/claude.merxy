@@ -6,6 +6,21 @@ Prefer standard **Swimlane** for cross-functional business processes (HR approva
 
 This type is **parametric** — the inputs schema in §1 drives every coordinate via the formulas in §2. Two generations from the same inputs must produce visually identical SVG.
 
+## Contents
+
+- [1. Inputs — the parameter contract](#1-inputs--the-parameter-contract)
+- [2. Layout formulas — deterministic geometry](#2-layout-formulas--deterministic-geometry)
+- [3. Arrow rules (mandatory)](#3-arrow-rules-mandatory)
+- [4. Component color override](#4-component-color-override)
+- [5. Focal rule](#5-focal-rule)
+- [6. Dark mode](#6-dark-mode)
+- [7. Reproducibility checklist (taste gate)](#7-reproducibility-checklist-taste-gate)
+- [8. Data-type chips reference (input + output)](#8-data-type-chips-reference-input--output)
+- [9. Legend (3- or 4-row strip)](#9-legend-3--or-4-row-strip)
+- [10. Complexity budget](#10-complexity-budget)
+- [11. Anti-patterns](#11-anti-patterns)
+- [12. Examples](#12-examples)
+
 ---
 
 ## 1. Inputs — the parameter contract

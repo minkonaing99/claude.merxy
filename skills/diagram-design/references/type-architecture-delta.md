@@ -9,6 +9,15 @@
 - Requests over time → **Sequence** (`type-sequence.md`); deployment phases → **Timeline** (`type-timeline.md`). A delta has exactly two states and does not establish migration order, downtime, or causality.
 - Host/container placement in one environment → **Deployment** (`type-deployment.md`).
 
+## Contents
+
+- [Layout conventions](#layout-conventions)
+- [Change vocabulary and redundant encoding](#change-vocabulary-and-redundant-encoding)
+- [Public HTML metadata contract](#public-html-metadata-contract)
+- [Verification and its boundaries](#verification-and-its-boundaries)
+- [Anti-patterns](#anti-patterns)
+- [Examples](#examples)
+
 ## Layout conventions
 
 - **Three panels, one reading order: Before · Changes · After.** Both topology panels use the same width, height, and internal grid pitch. The center panel is a short change ledger, not a third topology. Name the two snapshots with meaningful versions or dates.

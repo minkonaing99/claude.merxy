@@ -2,6 +2,13 @@
 
 Generate Playwright test code automatically as you interact with the browser.
 
+## Contents
+
+- [How It Works](#how-it-works)
+- [Example Workflow](#example-workflow)
+- [Building a Test File](#building-a-test-file)
+- [Best Practices](#best-practices)
+
 ## How It Works
 
 Every action you perform with `playwright-cli` generates corresponding Playwright TypeScript code.

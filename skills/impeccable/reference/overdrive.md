@@ -9,6 +9,15 @@ Push an interface past conventional limits. This isn't just about visual effects
 
 **EXTRA IMPORTANT FOR THIS COMMAND**: Context determines what "extraordinary" means. A particle system on a creative portfolio is impressive. The same particle system on a settings page is embarrassing. But a settings page with instant optimistic saves and animated state transitions? That's extraordinary too. Understand the project's personality and goals before deciding what's appropriate.
 
+### Contents
+
+- [Propose Before Building](#propose-before-building)
+- [Iterate with Browser Automation](#iterate-with-browser-automation)
+- [Assess What "Extraordinary" Means Here](#assess-what-extraordinary-means-here)
+- [The Toolkit](#the-toolkit)
+- [Implement with Discipline](#implement-with-discipline)
+- [Verify the Result](#verify-the-result)
+
 ### Propose Before Building
 
 This command has the highest potential to misfire. Do NOT jump straight into implementation. You MUST:

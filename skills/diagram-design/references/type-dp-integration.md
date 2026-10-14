@@ -6,6 +6,21 @@ Use when the question is *"what surfaces does this platform expose, and over wha
 
 This type is **parametric** — like `type-high-level.md`, every coord is derived from a small inputs schema. Two generations from the same inputs must produce visually identical SVG.
 
+## Contents
+
+- [1. Inputs — the parameter contract](#1-inputs--the-parameter-contract)
+- [2. Layout formulas — deterministic geometry](#2-layout-formulas--deterministic-geometry)
+- [3. Connector rules (mandatory)](#3-connector-rules-mandatory)
+- [4. Component color override (mirrors type-high-level.md §3.4)](#4-component-color-override-mirrors-type-high-levelmd-34)
+- [5. Focal rule](#5-focal-rule)
+- [6. Dark mode](#6-dark-mode)
+- [7. Reproducibility checklist (taste gate)](#7-reproducibility-checklist-taste-gate)
+- [8. Sources and consumers — icon library](#8-sources-and-consumers--icon-library)
+- [9. Identity, common services → connect to the layer, not to components](#9-identity-common-services--connect-to-the-layer-not-to-components)
+- [10. Budget — this type exceeds the default](#10-budget--this-type-exceeds-the-default)
+- [11. Anti-patterns](#11-anti-patterns)
+- [12. Examples](#12-examples)
+
 ---
 
 ## 1. Inputs — the parameter contract

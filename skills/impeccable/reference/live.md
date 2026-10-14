@@ -1,5 +1,23 @@
 Interactive live variant mode: select elements in the browser, pick a design action, and get AI-generated HTML+CSS variants hot-swapped via the dev server's HMR.
 
+## Contents
+
+- [Prerequisites](#prerequisites)
+- [The contract (read once)](#the-contract-read-once)
+- [Poll loop](#poll-loop)
+- [Start](#start)
+- [Recovery commands](#recovery-commands)
+- [Handle generate](#handle-generate)
+- [Handle fallback](#handle-fallback)
+- [Handle accept](#handle-accept)
+- [Handle discard](#handle-discard)
+- [Handle steer](#handle-steer)
+- [Handle prefetch](#handle-prefetch)
+- [Handle manual_edit_apply](#handle-manual_edit_apply)
+- [Exit](#exit)
+- [Cleanup](#cleanup)
+- [First-time setup](#first-time-setup)
+
 ## Prerequisites
 
 A running dev server with HMR (Vite, Next.js, Bun, etc.), OR a static HTML file open in the browser. If the dev server's default port is busy, the app is very likely ALREADY running; probe the default URL before spawning a second server.

@@ -1,6 +1,14 @@
 Strip a design to its essence. Remove anything that doesn't earn its place: redundant elements, repeated information, decorative noise, cosmetic complexity.
 
 
+## Contents
+
+- [Assess Current State](#assess-current-state)
+- [Plan Simplification](#plan-simplification)
+- [Simplify the Design](#simplify-the-design)
+- [Verify Simplification](#verify-simplification)
+- [Document Removed Complexity](#document-removed-complexity)
+
 ---
 
 ## Assess Current State

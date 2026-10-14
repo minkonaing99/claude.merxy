@@ -6,6 +6,19 @@ Use when stakeholders need to see the friction in the current setup — siloed s
 
 This type is **parametric** — the inputs schema in §1 drives every coordinate via the formulas in §2. The rule shape mirrors `type-dp-integration.md` (zones + cross-cutting footer bars), `type-process.md` (rounded right-angle connectors), and `type-medallion.md` (per-element `color` override) so the focal rule, color override, dark mode, and reproducibility checklist read identically across types.
 
+## Contents
+
+- [1. Inputs — the parameter contract](#1-inputs--the-parameter-contract)
+- [2. Layout formulas — deterministic geometry](#2-layout-formulas--deterministic-geometry)
+- [3. Connector rules (mandatory)](#3-connector-rules-mandatory)
+- [4. Component color override (per-component color: "#hex")](#4-component-color-override-per-component-color-hex)
+- [5. Focal rule](#5-focal-rule)
+- [6. Dark mode](#6-dark-mode)
+- [7. Reproducibility checklist (taste gate)](#7-reproducibility-checklist-taste-gate)
+- [8. Anti-patterns](#8-anti-patterns)
+- [9. Examples](#9-examples)
+- [10. Worked YAML — full inputs for example-it-state.html](#10-worked-yaml--full-inputs-for-example-it-statehtml)
+
 ---
 
 ## 1. Inputs — the parameter contract

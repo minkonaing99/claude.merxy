@@ -6,6 +6,25 @@ Lumen runs a strict **two-register typography system**: all prose is **lowercase
 
 Loaded eagerly by SKILL.md Step 3 whenever the catalog pick is `lumen`. Palettes + font stack live in [`site/css/tokens.css`](../../../../site/css/tokens.css) under `[data-theme="lumen"]` (Night, default) and `[data-theme="lumen"][data-drop="day"]` (Day). This file carries the drops + apparatus family + signature moves + motion + anti-patterns.
 
+## Contents
+
+- [Axes (diversification)](#axes-diversification)
+- [Reference register](#reference-register)
+- [Palette drops](#palette-drops)
+- [The apparatus family](#the-apparatus-family)
+- [The seven signature moves](#the-seven-signature-moves)
+- [Motion direction](#motion-direction)
+- [Required dependencies](#required-dependencies)
+- [Macrostructure affinity](#macrostructure-affinity)
+- [Macrostructure rejection](#macrostructure-rejection)
+- [Voice fixtures](#voice-fixtures)
+- [Anti-patterns (theme-specific)](#anti-patterns-theme-specific)
+- [Macrostructure pitfalls](#macrostructure-pitfalls)
+- [How Lumen differs from neighbouring themes](#how-lumen-differs-from-neighbouring-themes)
+- [Test brief expectations](#test-brief-expectations)
+- [Build hint](#build-hint)
+- [What Lumen refuses (restated)](#what-lumen-refuses-restated)
+
 ## Axes (diversification)
 
 - **Paper band** — Night: dark cool-violet (`L 13%, H 265`). Day: light cool bone with violet pull (`L 97%, H 265`). The 265° hue is deliberate — sits 25° from Midnight's 250 and 65° from Aurora's 200, so a Lumen page is not confusable with either neighbour at a glance.

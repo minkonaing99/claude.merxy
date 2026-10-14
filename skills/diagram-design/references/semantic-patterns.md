@@ -4,6 +4,20 @@ Semantic patterns describe **what a system does**; the 44 visual types describe 
 
 Use one primary pattern per figure. A second pattern may supply at most one supporting primitive; if both need full treatment, split overview and detail. Labels and outcomes must remain complete in a static frame.
 
+## Contents
+
+- [Routing table](#routing-table)
+- [1. Fan-in queue / bottleneck](#1-fan-in-queue--bottleneck)
+- [2. Stage framework with semantic slots](#2-stage-framework-with-semantic-slots)
+- [3. Unstructured input → structured artifact](#3-unstructured-input--structured-artifact)
+- [4. Paired policy-evaluation traces](#4-paired-policy-evaluation-traces)
+- [5. Secure paved road](#5-secure-paved-road)
+- [6. Governance / control catalog](#6-governance--control-catalog)
+- [7. Compensating security layers](#7-compensating-security-layers)
+- [8. Traceable block decomposition](#8-traceable-block-decomposition)
+- [9. Lifecycle phase map](#9-lifecycle-phase-map)
+- [Composition rules](#composition-rules)
+
 ## Routing table
 
 | The reader must understand… | Semantic pattern | Nearest visual type |

@@ -9,6 +9,15 @@ Loaded by [`SKILL.md`](../SKILL.md) Step 6 when emitting the design system as po
 
 The output rule: `tokens.css` is always written. The other three live inline in `design.md` so the user copies whichever they need into a new project. **No new verb.** This is a side effect of every build.
 
+## Contents
+
+- [Token taxonomy — Hallmark's source of truth](#token-taxonomy--hallmarks-source-of-truth)
+- [Format 1 — tokens.css](#format-1--tokenscss)
+- [Format 2 — Tailwind v4 @theme](#format-2--tailwind-v4-theme)
+- [Format 3 — DTCG tokens.json](#format-3--dtcg-tokensjson)
+- [Format 4 — shadcn/ui CSS variables](#format-4--shadcnui-css-variables)
+- [Output rule](#output-rule)
+
 ---
 
 ## Token taxonomy — Hallmark's source of truth

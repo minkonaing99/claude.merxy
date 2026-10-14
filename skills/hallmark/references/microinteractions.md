@@ -4,6 +4,18 @@ The single biggest gap in 2026's anti-slop canon. Most skills correct typography
 
 A microinteraction is one event with four parts: trigger → rules → feedback → loops/modes (Saffer). Get any of those wrong and the interface feels uncrafted. Ship them all right and the interface feels *made* — even when nothing else is unusual.
 
+## Contents
+
+- [Principles](#principles)
+- [When to ship motion by default](#when-to-ship-motion-by-default)
+- [The timing canon](#the-timing-canon)
+- [The easing canon](#the-easing-canon)
+- [Recipes](#recipes)
+- [The named tells (what AI defaults produce)](#the-named-tells-what-ai-defaults-produce)
+- [Theme-aware microinteractions](#theme-aware-microinteractions)
+- [Accessibility ground truth](#accessibility-ground-truth)
+- [When in doubt, cut](#when-in-doubt-cut)
+
 ## Principles
 
 - **Motion has intent or motion is cut.** Every animation must clarify, guide, or confirm. If you cannot name what a transition communicates, it is decoration. Decoration is slop.

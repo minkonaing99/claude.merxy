@@ -2,6 +2,13 @@
 
 **Best for:** comparing discrete quantities across categories or time intervals — sprint velocity, monthly revenue, feature adoption, cohort counts. Use when each category has a single numeric value and the comparison between bars is the primary message — or, in the dumbbell variant below, exactly two values whose difference is the message.
 
+## Contents
+
+- [Layout conventions](#layout-conventions)
+- [Anti-patterns](#anti-patterns)
+- [Variants](#variants)
+- [Examples](#examples)
+
 ## Layout conventions
 
 - **Orientation:** Vertical bars (columns) are default. Horizontal bars are appropriate when category labels are long or you have more than 8 categories.

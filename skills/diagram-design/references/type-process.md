@@ -6,6 +6,22 @@ Prefer swimlane (simpler) when the data types and tools don't matter. Prefer pro
 
 This type is **parametric** — the inputs schema in §1 drives every coordinate via the formulas in §2. Two generations from the same inputs must produce visually identical SVG. The rule shapes mirror `type-data-flow.md` so color override, IN/OUT chip semantic, and reproducibility checklist read identically across types.
 
+## Contents
+
+- [1. Inputs — the parameter contract](#1-inputs--the-parameter-contract)
+- [2. Layout formulas — deterministic geometry](#2-layout-formulas--deterministic-geometry)
+- [3. Connector rules (mandatory)](#3-connector-rules-mandatory)
+- [4. Component color override](#4-component-color-override)
+- [5. Focal rule](#5-focal-rule)
+- [6. Dark mode](#6-dark-mode)
+- [7. Reproducibility checklist (taste gate)](#7-reproducibility-checklist-taste-gate)
+- [8. Data-type chips reference (input + output)](#8-data-type-chips-reference-input--output)
+- [9. Legend (3- or 4-row strip)](#9-legend-3--or-4-row-strip)
+- [10. Complexity budget](#10-complexity-budget)
+- [11. Anti-patterns](#11-anti-patterns)
+- [12. Worked example — full YAML for an extended process variant](#12-worked-example--full-yaml-for-an-extended-process-variant)
+- [13. Examples](#13-examples)
+
 ---
 
 ## 1. Inputs — the parameter contract

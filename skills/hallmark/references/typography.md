@@ -2,6 +2,20 @@
 
 Type carries the design. If the type is wrong, nothing else matters.
 
+## Contents
+
+- [Principles](#principles)
+- [The 2+1 rule — three faces is the ceiling](#the-21-rule--three-faces-is-the-ceiling)
+- [Banned defaults](#banned-defaults)
+- [The font catalog](#the-font-catalog)
+- [Wordmark / logo typography](#wordmark--logo-typography)
+- [Scale](#scale)
+- [Weights](#weights)
+- [Required features](#required-features)
+- [Body text rules](#body-text-rules)
+- [Headings rules](#headings-rules)
+- [Bans](#bans)
+
 ## Principles
 
 - A page is a pairing, not a single font. Display face + body face, minimum. *Single-font pages are allowed only when the single font IS the design choice* — a true terminal aesthetic is monospace-everywhere on purpose; a Manifesto poster might be one display face on purpose. The default is a pairing.

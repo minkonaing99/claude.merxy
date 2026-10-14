@@ -2,6 +2,17 @@
 
 **Best for:** request/response flows, protocol exchanges, multi-actor interactions over time, API call traces, incident reconstructions, auth/token refresh paths with branching.
 
+## Contents
+
+- [Layout conventions](#layout-conventions)
+- [Message kinds](#message-kinds)
+- [Combined fragments (alt / opt / loop)](#combined-fragments-alt--opt--loop)
+- [Complexity budget (sequence-specific)](#complexity-budget-sequence-specific)
+- [Lifeline primitive](#lifeline-primitive)
+- [Activation bar primitive](#activation-bar-primitive)
+- [Anti-patterns](#anti-patterns)
+- [Examples](#examples)
+
 ## Layout conventions
 - Actors as boxes in a horizontal row at the top.
 - **Lifelines**: dashed vertical lines descending from each actor to the bottom.

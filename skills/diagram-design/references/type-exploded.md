@@ -9,6 +9,15 @@
 - Containment without an order → **nested** (`type-nested.md`).
 - Where software runs → **deployment** (`type-deployment.md`).
 
+## Contents
+
+- [Projection](#projection)
+- [Layout conventions](#layout-conventions)
+- [Optional motion](#optional-motion)
+- [Metadata contract](#metadata-contract)
+- [Anti-patterns](#anti-patterns)
+- [Examples](#examples)
+
 ## Projection
 
 2:1 dimetric. The ground axes run at 26.565 degrees, so every edge lands on whole pixels when model units are multiples of 4. World x runs right and down, y runs left and down, z runs up. Project every point with one function and never place a coordinate by hand:

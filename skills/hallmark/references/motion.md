@@ -4,6 +4,17 @@ Most AI-generated motion is scattered — hover lifts on every card, fade-in on 
 
 > For per-interaction recipes (button press, focus, modal, toast, optimistic update, command palette, drag handle, etc.), see [`microinteractions.md`](microinteractions.md). This file is the *language* of motion; that file is the *vocabulary*.
 
+## Contents
+
+- [Principles](#principles)
+- [Easings](#easings)
+- [Durations](#durations)
+- [Page-load orchestration](#page-load-orchestration)
+- [Scroll-linked motion](#scroll-linked-motion)
+- [State transitions](#state-transitions)
+- [Reduced motion](#reduced-motion)
+- [Bans](#bans)
+
 ## Principles
 
 - **Animate only `transform` and `opacity`.** These are GPU-composited; they don't trigger layout. Anything else is a performance bug waiting.

@@ -6,6 +6,17 @@ Prefer **Flowchart** when the path ends, branches toward an outcome, or never tr
 
 This type is **parametric**. The inputs in §1 determine station count, angles, edge intersections, connector paths, and viewBox bounds. Identical inputs should produce identical geometry.
 
+## Contents
+
+- [1. Inputs — the parameter contract](#1-inputs--the-parameter-contract)
+- [2. Layout math — deterministic geometry](#2-layout-math--deterministic-geometry)
+- [3. Visual grammar](#3-visual-grammar)
+- [4. Connector rules (mandatory)](#4-connector-rules-mandatory)
+- [5. Dark variant — token swap](#5-dark-variant--token-swap)
+- [6. Reproducibility checklist](#6-reproducibility-checklist)
+- [7. Anti-patterns](#7-anti-patterns)
+- [8. Examples](#8-examples)
+
 ---
 
 ## 1. Inputs — the parameter contract

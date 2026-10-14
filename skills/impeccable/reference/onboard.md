@@ -2,6 +2,15 @@
 
 Get users to first value as fast as possible. Onboarding's job is not to teach the product. Its job is to get people to the moment that proves the product is worth their time.
 
+## Contents
+
+- [Assess Onboarding Needs](#assess-onboarding-needs)
+- [Onboarding Principles](#onboarding-principles)
+- [Design Onboarding Experiences](#design-onboarding-experiences)
+- [Empty State Design](#empty-state-design)
+- [Implementation Patterns](#implementation-patterns)
+- [Verify Onboarding Quality](#verify-onboarding-quality)
+
 ## Assess Onboarding Needs
 
 Understand what users need to learn and why:

@@ -6,6 +6,14 @@ Default skin is a cool editorial palette — white-smoke paper, jet-black ink, b
 
 To generate your own from a website URL, see [`onboarding.md`](onboarding.md).
 
+## Contents
+
+- [Tokens](#tokens)
+- [Typography](#typography)
+- [Stroke, radius, spacing](#stroke-radius-spacing)
+- [Node type → treatment](#node-type--treatment)
+- [Customizing the skin](#customizing-the-skin)
+
 ---
 
 ## Tokens

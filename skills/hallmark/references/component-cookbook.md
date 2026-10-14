@@ -9,6 +9,15 @@ The same macrostructure (e.g., Bento Grid) can be built from many different comb
 ---
 
 
+## Contents
+
+- [Archetype index — load ONLY the picks you need](#archetype-index--load-only-the-picks-you-need)
+- [Within-archetype variation knobs](#within-archetype-variation-knobs)
+- [Routing — which footer fits which genre](#routing--which-footer-fits-which-genre)
+- [Routing — which nav fits which genre / theme](#routing--which-nav-fits-which-genre--theme)
+- [Picking from this file](#picking-from-this-file)
+- [Mobile collapse — per archetype](#mobile-collapse--per-archetype)
+
 ---
 
 ## Archetype index — load ONLY the picks you need

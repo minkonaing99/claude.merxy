@@ -4,6 +4,27 @@ Run this list before handing back any output. Every answer must be **no**. Updat
 
 Some gates are **universal** (apply to every genre); some are **genre-scoped** (apply only when the active genre is editorial, atmospheric, modern-minimal, or playful). Genre overrides are noted inline. Where a gate has *no* genre note, treat it as universal.
 
+## Contents
+
+- [Pre-emit self-critique (six axes)](#pre-emit-self-critique-six-axes)
+- [Visual](#visual)
+- [Structural](#structural)
+- [Microinteractions](#microinteractions)
+- [Variety](#variety)
+- [Implementation gates](#implementation-gates)
+- [Hero enrichment gates](#hero-enrichment-gates)
+- [Diversification gates](#diversification-gates)
+- [Layout-safety gates](#layout-safety-gates)
+- [Typography discipline gates](#typography-discipline-gates)
+- [Input-state gate](#input-state-gate)
+- [Contrast & readability](#contrast--readability)
+- [Nav · footer · hero structural slop](#nav--footer--hero-structural-slop)
+- [Honest copy · no fabricated content](#honest-copy--no-fabricated-content)
+- [Re-drawn UI chrome](#re-drawn-ui-chrome)
+- [Token discipline](#token-discipline)
+- [Responsive — clickable affordances](#responsive--clickable-affordances)
+- [Mobile-responsiveness — the non-negotiables](#mobile-responsiveness--the-non-negotiables)
+
 ---
 
 ## Pre-emit self-critique (six axes)

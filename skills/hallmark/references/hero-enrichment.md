@@ -6,6 +6,19 @@ This file is loaded after the macrostructure pick (Step 3 in the design flow), w
 
 **The bar.** Better nothing than bad something. A page that ships a quiet, well-set typographic hero is always better than a page that ships a stock illustration, a Lottie checkmark, an aurora-blob background, or a generic centred demo video block.
 
+## Contents
+
+- [Image-need detection — does this brief need imagery at all?](#image-need-detection--does-this-brief-need-imagery-at-all)
+- [The enrichment hierarchy](#the-enrichment-hierarchy)
+- [Eyeball or ask — the decision protocol](#eyeball-or-ask--the-decision-protocol)
+- [Eight enrichment archetypes](#eight-enrichment-archetypes)
+- [Hero shape polish — patterns beyond enrichment](#hero-shape-polish--patterns-beyond-enrichment)
+- [Hero space discipline](#hero-space-discipline)
+- [Animation discipline (hero specifically)](#animation-discipline-hero-specifically)
+- [Quality bar — eight pre-flight questions](#quality-bar--eight-pre-flight-questions)
+- [Output stamp](#output-stamp)
+- [Common mistakes — and the fixes](#common-mistakes--and-the-fixes)
+
 ---
 
 ## Image-need detection — does this brief need imagery at all?

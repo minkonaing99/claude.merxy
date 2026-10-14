@@ -4,6 +4,16 @@ Use this flow for a new surface or a replacement visual identity. PRODUCT.md own
 
 For a chosen comp’s region map, see [region-map.md](region-map.md) for the command sequence and schema.
 
+## Contents
+
+- [1. Decide what is already true](#1-decide-what-is-already-true)
+- [2. Ask what will change the work](#2-ask-what-will-change-the-work)
+- [3. Choose the right amount of invention](#3-choose-the-right-amount-of-invention)
+- [4. Commit the world](#4-commit-the-world)
+- [5. Record the decision](#5-record-the-decision)
+- [6. Build with full commitment](#6-build-with-full-commitment)
+- [7. Inspect and finish](#7-inspect-and-finish)
+
 ## 1. Decide what is already true
 
 Read DESIGN.md, representative code, tokens, components, and assets.

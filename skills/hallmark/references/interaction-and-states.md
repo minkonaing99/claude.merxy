@@ -2,6 +2,20 @@
 
 Every interactive element has eight states. Most AI-generated UI styles two (default, hover) and forgets the rest. That's where interfaces break.
 
+## Contents
+
+- [The eight states](#the-eight-states)
+- [Focus rings](#focus-rings)
+- [Hit targets](#hit-targets)
+- [Forms](#forms)
+- [Input field states — the exhaustive checklist](#input-field-states--the-exhaustive-checklist)
+- [Modals and overlays](#modals-and-overlays)
+- [Dropdowns, tooltips, popovers](#dropdowns-tooltips-popovers)
+- [Undo over confirm](#undo-over-confirm)
+- [Loading and empty states](#loading-and-empty-states)
+- [Bans](#bans)
+- [Contrast discipline](#contrast-discipline)
+
 ## The eight states
 
 | State | When | Treatment |

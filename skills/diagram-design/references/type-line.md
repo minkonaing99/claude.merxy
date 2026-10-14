@@ -2,6 +2,13 @@
 
 **Best for:** continuous trends over time or a sequential index — signups over weeks, revenue by month, latency over releases. Use when the direction and rate of change between points is the primary message.
 
+## Contents
+
+- [Layout conventions](#layout-conventions)
+- [Anti-patterns](#anti-patterns)
+- [Variants](#variants)
+- [Examples](#examples)
+
 ## Layout conventions
 
 - **Plot area margins:** left 80px, bottom 60px, top 40px, right 40px — inside `0 0 1000 500` viewBox.

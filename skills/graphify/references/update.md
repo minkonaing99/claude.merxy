@@ -2,6 +2,11 @@
 
 Load this only when the user passed `--update` or `--cluster-only`. A first-time full build never reads this file.
 
+## Contents
+
+- [For --update (incremental re-extraction)](#for---update-incremental-re-extraction)
+- [For --cluster-only](#for---cluster-only)
+
 ## For --update (incremental re-extraction)
 
 Use when you've added or modified files since the last run. Only re-extracts changed files - saves tokens and time.

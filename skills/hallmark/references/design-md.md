@@ -4,6 +4,16 @@ Loaded by [`SKILL.md`](../SKILL.md) Step 6 ONLY when the user explicitly asks Ha
 
 This file is **also** loaded by [`study.md`](study.md) when the user — after a successful `study` diagnosis — asks for the DNA to be emitted as a portable system. The format below is shared between the two paths; the only differences are spelled out in § Two emission paths (default vs study) and in [`study.md`](study.md) § Emitting a `design.md` from `study`.
 
+## Contents
+
+- [Triggers (phrase-only — no new verb)](#triggers-phrase-only--no-new-verb)
+- [Two emission paths (default vs study)](#two-emission-paths-default-vs-study)
+- [Scope](#scope)
+- [CTA — surface the offer in the Step 5 preview](#cta--surface-the-offer-in-the-step-5-preview)
+- [Format (the tight version)](#format-the-tight-version)
+- [After the file is written](#after-the-file-is-written)
+- [Why opt-in (not auto-emit)](#why-opt-in-not-auto-emit)
+
 ## Triggers (phrase-only — no new verb)
 
 Fire ONLY when the user says one of:

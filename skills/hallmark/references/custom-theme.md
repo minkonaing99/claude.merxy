@@ -4,6 +4,20 @@ Loaded only when the user has opted into the **custom** theme route in Step 1 of
 
 **The freedom is the combination — and, at the bespoke depth, the whole structure — but never the floor.** Every constraint in [`color.md`](color.md), [`typography.md`](typography.md), and [`anti-patterns.md`](anti-patterns.md) still applies, and **every slop-test gate fires unchanged at every depth** — the gates are the floor that never moves. The Step 5 preview surfaces the palette + pairing (plus the bespoke structure, when there is one) in plain text *before* any code is emitted, so the user can redirect.
 
+## Contents
+
+- [Two routes, plain English](#two-routes-plain-english)
+- [When to surface this fork — Step 1 trigger signals](#when-to-surface-this-fork--step-1-trigger-signals)
+- [§ A · The one follow-up question](#-a--the-one-follow-up-question)
+- [§ Bespoke depth — custom that designs the whole page](#-bespoke-depth--custom-that-designs-the-whole-page)
+- [§ B · Palette construction](#-b--palette-construction)
+- [§ C · Font pairing](#-c--font-pairing)
+- [§ D · Custom-axis computation](#-d--custom-axis-computation)
+- [§ E · Stamp format](#-e--stamp-format)
+- [§ F · .hallmark/log.json entry shape](#-f--hallmarklogjson-entry-shape)
+- [§ G · Three worked examples](#-g--three-worked-examples)
+- [What custom does not do (worth restating)](#what-custom-does-not-do-worth-restating)
+
 ## Two routes, plain English
 
 - **catalog** — the named-theme catalogue. Hallmark's 21 themes (Specimen, Midnight, Brutal, Garden, Atelier, Newsprint, Terminal, Manifesto, Almanac, Sport, Studio, Riso, Bloom, Coral, Cobalt, Aurora, Editorial, Carnival, Lumen, Hum, Grid). Each one is a fixed combination of paper-band, display-style, and accent-hue. The rotation rule cycles through them so two consecutive runs don't read alike. **This is the default.** Most briefs use it.

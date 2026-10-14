@@ -2,6 +2,13 @@
 
 The user wants a different page from the same content. They are not happy with the current visual structure — typically because it reads as templated, generic, or AI-shaped. Your job is to redesign the page's structure, rhythm, and component voice while respecting the existing implementation boundaries unless the user explicitly confirms a full rebuild.
 
+## Contents
+
+- [Non-destructive implementation rule](#non-destructive-implementation-rule)
+- [Step 0 · Detect scope first](#step-0--detect-scope-first)
+- [§ Multi-page flow — design.md first, then redesign](#-multi-page-flow--designmd-first-then-redesign)
+- [§ Single-page flow](#-single-page-flow)
+
 ## Non-destructive implementation rule
 
 Hallmark redesigns visual and interaction layers. It does not delete production files by default.

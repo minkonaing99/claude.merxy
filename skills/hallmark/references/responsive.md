@@ -2,6 +2,21 @@
 
 Mobile-first. Content-driven breakpoints. No desktop-only interactions.
 
+## Contents
+
+- [Mobile — non-negotiable](#mobile--non-negotiable)
+- [Principles](#principles)
+- [Breakpoints](#breakpoints)
+- [Fluid scaling](#fluid-scaling)
+- [Pointer and hover queries](#pointer-and-hover-queries)
+- [Clickable text — never wraps](#clickable-text--never-wraps)
+- [Viewport units](#viewport-units)
+- [Safe areas](#safe-areas)
+- [Tables on small screens](#tables-on-small-screens)
+- [Images](#images)
+- [Internationalisation](#internationalisation)
+- [Bans](#bans)
+
 ## Mobile — non-negotiable
 
 Every Hallmark output must render flawlessly at **320 px, 375 px, 414 px, and 768 px** CSS-pixel widths. Eyeball each viewport before marking the output complete:

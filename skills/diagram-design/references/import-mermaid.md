@@ -4,6 +4,20 @@ Turn Mermaid source into an editorial-quality diagram at the format, size, and d
 
 **This is a redraw, not a render or conversion.** Mermaid supplies content and declared direction, not coordinates. Discard its computed renderer layout, theme, classes, and shape styling; create a fresh layout in this skill's design system.
 
+## Contents
+
+- [Trigger](#trigger)
+- [Step 1 — Extract the IR](#step-1--extract-the-ir)
+- [Step 2 — Set the four dials](#step-2--set-the-four-dials)
+- [Step 3 — Pick the target type](#step-3--pick-the-target-type)
+- [Step 4 — Build the semantic model](#step-4--build-the-semantic-model)
+- [Step 5 — Redraw](#step-5--redraw)
+- [Step 6 — Deliver](#step-6--deliver)
+- [Worked example](#worked-example)
+- [Multi-block files](#multi-block-files)
+- [Edge cases](#edge-cases)
+- [Anti-patterns](#anti-patterns)
+
 ## Trigger
 
 Load this file for `.mmd`, `.mermaid`, or Markdown containing fenced `mermaid` blocks when the user asks to convert, redraw, simplify, or present the diagram, or uses `/diagram-design:import-mermaid`.

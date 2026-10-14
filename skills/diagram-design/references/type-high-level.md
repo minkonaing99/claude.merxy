@@ -4,6 +4,18 @@
 
 This type is **parametric**. The diagram is fully determined by a small list of inputs (chevrons, sources, components, connections). The formulas below tell you exactly where every shape lands given those inputs — two generations from the same inputs must produce visually identical SVG.
 
+## Contents
+
+- [1. Inputs — the parameter contract](#1-inputs--the-parameter-contract)
+- [2. Layout formulas — deterministic geometry](#2-layout-formulas--deterministic-geometry)
+- [3. Connector rules (mandatory)](#3-connector-rules-mandatory)
+- [4. Block branching rules (fan-out)](#4-block-branching-rules-fan-out)
+- [5. Vertical chevrons — semantics](#5-vertical-chevrons--semantics)
+- [6. Dark mode](#6-dark-mode)
+- [7. Reproducibility checklist (the taste gate)](#7-reproducibility-checklist-the-taste-gate)
+- [8. Anti-patterns](#8-anti-patterns)
+- [9. Examples](#9-examples)
+
 ---
 
 ## 1. Inputs — the parameter contract

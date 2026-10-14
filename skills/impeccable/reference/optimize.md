@@ -1,5 +1,13 @@
 Performance is a feature. Identify the actual bottleneck for THIS interface, fix it, then measure. Don't optimize what isn't slow.
 
+## Contents
+
+- [Assess Performance Issues](#assess-performance-issues)
+- [Optimization Strategy](#optimization-strategy)
+- [Core Web Vitals Optimization](#core-web-vitals-optimization)
+- [Performance Monitoring](#performance-monitoring)
+- [Verify Improvements](#verify-improvements)
+
 ## Assess Performance Issues
 
 Understand current performance and identify problems:

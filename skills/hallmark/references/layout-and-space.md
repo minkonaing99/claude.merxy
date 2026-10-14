@@ -2,6 +2,17 @@
 
 Layout is where "AI-generated" gets caught. Equal columns, everything centred, every card identical — these are the tells.
 
+## Contents
+
+- [Principles](#principles)
+- [The spacing scale](#the-spacing-scale)
+- [Grids](#grids)
+- [Asymmetry techniques](#asymmetry-techniques)
+- [Depth](#depth)
+- [Bans](#bans)
+- [Page-edge clipping](#page-edge-clipping)
+- [When in doubt](#when-in-doubt)
+
 ## Principles
 
 - A layout has a **primary axis**. Left-biased, right-biased, top-heavy, or bottom-weighted. Centre-biased is a default, not a choice.

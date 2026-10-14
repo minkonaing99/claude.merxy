@@ -2,6 +2,17 @@
 
 Animation explains a complete static diagram; it never supplies missing meaning. Load this reference only when motion is explicitly requested or materially clarifies order, accumulation, evaluation, containment, or propagation. Otherwise use mode `none` and ship static HTML.
 
+## Contents
+
+- [Modes](#modes)
+- [Static-first enhancement contract](#static-first-enhancement-contract)
+- [Semantic primitives](#semantic-primitives)
+- [Interactive controls and keyboard](#interactive-controls-and-keyboard)
+- [Reduced motion, color, and accessibility](#reduced-motion-color-and-accessibility)
+- [Complexity and deterministic timing](#complexity-and-deterministic-timing)
+- [Export and verification](#export-and-verification)
+- [Anti-patterns](#anti-patterns)
+
 ## Modes
 
 Choose one mode per figure with `data-motion-mode="none|reveal|step|loop"`.

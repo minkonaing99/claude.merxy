@@ -4,6 +4,14 @@
 
 Not for: ranked lists where exact values matter more than proportion (use a **bar chart**), containment or scope relationships with no quantity (use **nested**), or a hierarchy you need to trace parent-to-child (use a **tree**).
 
+## Contents
+
+- [Layout conventions](#layout-conventions)
+- [Honest-data rule](#honest-data-rule)
+- [Anti-patterns](#anti-patterns)
+- [Variants](#variants)
+- [Examples](#examples)
+
 ## Layout conventions
 
 - **Plot area:** `x` 40 → 956, `y` 40 → 420 inside a `0 0 1000 500` viewBox — the same vertical rhythm as bar, line and scatter, so the legend block sits where a reader of those types already expects it (rule at `y=462`, `LEGEND` at `478`, keys at `488`).

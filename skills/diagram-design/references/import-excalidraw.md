@@ -4,6 +4,19 @@ Turn an Excalidraw board into an editorial-quality diagram at the format, size, 
 
 **This is a redraw, not a render or conversion.** An Excalidraw scene supplies content — shapes, connections, bound labels, frames, groups — plus hand-dragged sketch coordinates. Discard the sketch geometry, the rough hand-drawn styling, and the source palette; create a fresh layout in this skill's design system. A converter that kept the whiteboard's wobbly boxes would just be Excalidraw output with different fonts.
 
+## Contents
+
+- [Trigger](#trigger)
+- [Step 1 — Extract the IR](#step-1--extract-the-ir)
+- [Step 2 — Set the four dials](#step-2--set-the-four-dials)
+- [Step 3 — Pick the target type](#step-3--pick-the-target-type)
+- [Step 4 — Build the semantic model](#step-4--build-the-semantic-model)
+- [Step 5 — Redraw](#step-5--redraw)
+- [Step 6 — Deliver](#step-6--deliver)
+- [Worked example](#worked-example)
+- [Edge cases](#edge-cases)
+- [Anti-patterns](#anti-patterns)
+
 ## Trigger
 
 Load this file for `.excalidraw` or `.excalidraw.json` files (saved from excalidraw.com, the desktop app, or the Obsidian plugin) when the user asks to convert, redraw, clean up, or present the board, or uses `/diagram-design:import-excalidraw`.

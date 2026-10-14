@@ -6,6 +6,19 @@ Use when stakeholders need to audit *who can do what* across the platform. Prefe
 
 This type is **parametric** — the inputs schema in §1 drives every coordinate via the formulas in §2. The rule shape mirrors `type-medallion.md` / `type-process.md` / `type-data-flow.md` so the focal rule, color override, dark mode, and reproducibility checklist read identically across types.
 
+## Contents
+
+- [1. Inputs — the parameter contract](#1-inputs--the-parameter-contract)
+- [2. Layout formulas — deterministic geometry](#2-layout-formulas--deterministic-geometry)
+- [3. Cells, not connectors](#3-cells-not-connectors)
+- [4. Color overrides](#4-color-overrides)
+- [5. Focal rule](#5-focal-rule)
+- [6. Dark mode](#6-dark-mode)
+- [7. Reproducibility checklist (taste gate)](#7-reproducibility-checklist-taste-gate)
+- [8. Anti-patterns](#8-anti-patterns)
+- [9. Examples](#9-examples)
+- [10. Worked YAML — full inputs for example-dp-security-matrix.html](#10-worked-yaml--full-inputs-for-example-dp-security-matrixhtml)
+
 ---
 
 ## 1. Inputs — the parameter contract

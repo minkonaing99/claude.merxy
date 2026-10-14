@@ -4,6 +4,16 @@ Named profiles let one Diagram Design install serve several clients without repe
 
 This file is the source of truth for profile resolution and for the `save`, `load`/`switch`, `list`, `show`, `update`, `reset`, and `delete` verbs.
 
+## Contents
+
+- [Paths and terms](#paths-and-terms)
+- [Profile file format](#profile-file-format)
+- [Built-in default](#built-in-default)
+- [Resolution before every generation](#resolution-before-every-generation)
+- [Current-schema structural check](#current-schema-structural-check)
+- [Verb procedures](#verb-procedures)
+- [Failure and recovery cases](#failure-and-recovery-cases)
+
 ## Paths and terms
 
 - **Profile library:** `~/.diagram-design/profiles/`

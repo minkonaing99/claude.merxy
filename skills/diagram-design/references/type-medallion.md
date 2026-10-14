@@ -6,6 +6,19 @@ Prefer **Process** if the subject is a workflow with role lanes. Prefer **High-L
 
 This type is **parametric** — the inputs schema in §1 drives every coordinate via the formulas in §2. Two generations from the same inputs must produce visually identical SVG. The rule shapes mirror `type-process.md` and `type-data-flow.md` so color override, focal rule, and reproducibility checklist read identically across types.
 
+## Contents
+
+- [1. Inputs — the parameter contract](#1-inputs--the-parameter-contract)
+- [2. Layout formulas — deterministic geometry](#2-layout-formulas--deterministic-geometry)
+- [3. Connector rules (mandatory)](#3-connector-rules-mandatory)
+- [4. Component color override](#4-component-color-override)
+- [5. Focal rule](#5-focal-rule)
+- [6. Dark mode](#6-dark-mode)
+- [7. Reproducibility checklist (taste gate)](#7-reproducibility-checklist-taste-gate)
+- [8. Anti-patterns](#8-anti-patterns)
+- [9. Examples](#9-examples)
+- [10. Worked YAML](#10-worked-yaml)
+
 ---
 
 ## 1. Inputs — the parameter contract

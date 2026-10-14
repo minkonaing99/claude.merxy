@@ -2,6 +2,12 @@
 
 **Best for:** correlation and distribution — two continuous variables plotted against each other. Use when the relationship (or lack of one) between variables is the message, or when you need to identify clusters, outliers, and high/low performers.
 
+## Contents
+
+- [Layout conventions](#layout-conventions)
+- [Anti-patterns](#anti-patterns)
+- [Examples](#examples)
+
 ## Layout conventions
 
 - **Plot area margins:** left 80px, bottom 60px, top 40px, right 40px — inside `0 0 1000 500` viewBox.

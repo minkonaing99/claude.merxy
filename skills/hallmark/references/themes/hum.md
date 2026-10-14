@@ -4,6 +4,26 @@ The playful, vibrant, **alive** register. Cream paper, multi-accent palette (pea
 
 Loaded eagerly by SKILL.md Step 3 whenever the catalog pick is `hum`. The palette + font stack live in [`site/css/tokens.css`](../../../../site/css/tokens.css) under `[data-theme="hum"]`. This file carries signature moves, motion direction, voice fixtures, anti-patterns, and how Hum holds its identity against neighbouring themes. Hum is the catalog's only playful theme — its closest siblings are Coral (single-accent restraint, modern-minimal) and Bloom (warm-light atmospheric), not another playful register.
 
+## Contents
+
+- [Axes (diversification)](#axes-diversification)
+- [Reference register](#reference-register)
+- [Palette](#palette)
+- [Typography](#typography)
+- [The seven signature moves](#the-seven-signature-moves)
+- [Motion direction](#motion-direction)
+- [Required dependencies](#required-dependencies)
+- [Macrostructure affinity](#macrostructure-affinity)
+- [Macrostructure rejection](#macrostructure-rejection)
+- [Layout & emphasis discipline (non-negotiable)](#layout--emphasis-discipline-non-negotiable)
+- [Not-AI discipline — make every build read as a different studio (non-negotiable)](#not-ai-discipline--make-every-build-read-as-a-different-studio-non-negotiable)
+- [Voice fixtures](#voice-fixtures)
+- [Anti-patterns (theme-specific)](#anti-patterns-theme-specific)
+- [How Hum differs from neighbouring themes](#how-hum-differs-from-neighbouring-themes)
+- [Test brief expectations](#test-brief-expectations)
+- [Build hint](#build-hint)
+- [What Hum refuses (restated)](#what-hum-refuses-restated)
+
 ## Axes (diversification)
 
 - **Paper band** — light (`L 97%`), warm cream tinted toward pear-yellow hue (~95°). Yellower and brighter than any other warm-paper theme in the catalog — never the rose-warm or oat-warm cream of the editorial themes.

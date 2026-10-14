@@ -2,6 +2,12 @@
 
 Self-testing with a score, weak-topic links, saved progress, and a cover-formulas toggle. Plain HTML first: with JS off, every question is still a working `<details>` and every formula is visible. Copy the markup contract, CSS and script below; adapt only the colors to the page's variables.
 
+## Contents
+
+- [Markup contract](#markup-contract)
+- [CSS](#css)
+- [Script](#script)
+
 ## Markup contract
 
 ```html

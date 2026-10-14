@@ -2,6 +2,18 @@
 
 **Best for:** one quantitative series across 4–8 categories whose clockwise order is meaningful.
 
+## Contents
+
+- [Input contract](#input-contract)
+- [Quantitative encoding](#quantitative-encoding)
+- [Layout conventions](#layout-conventions)
+- [Geometry](#geometry)
+- [Visual treatment](#visual-treatment)
+- [Complexity budget](#complexity-budget)
+- [When not to use](#when-not-to-use)
+- [Anti-patterns](#anti-patterns)
+- [Examples](#examples)
+
 ## Input contract
 
 ```yaml

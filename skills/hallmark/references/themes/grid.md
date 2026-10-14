@@ -6,6 +6,21 @@ The material, in one line: **a visible column grid, one grotesk, one signal ink,
 
 > **The editorial exception.** The editorial cluster is otherwise serif-led (Newsprint, Editorial, Specimen). Grid is its Swiss neo-grotesque slot: no serif anywhere, structure carried by an exposed grid and hairlines, warmth carried by one signal ink. A brief wanting a roman serif or a soft column is a different editorial theme.
 
+## Contents
+
+- [Axes (diversification)](#axes-diversification)
+- [Reference register](#reference-register)
+- [Typography](#typography)
+- [The marks kit](#the-marks-kit)
+- [The plate](#the-plate)
+- [Material](#material)
+- [Motion](#motion)
+- [Do-nots (this theme's own failure modes)](#do-nots-this-themes-own-failure-modes)
+- [Voice range](#voice-range)
+- [How Grid differs from its neighbours](#how-grid-differs-from-its-neighbours)
+- [When the brief routes here](#when-the-brief-routes-here)
+- [Build hint](#build-hint)
+
 ## Axes (diversification)
 
 - **Paper band** - **light**, cool near-white (`--color-paper: oklch(99% 0.003 255)`, faintly cool, never `#fff`). Stepped at `paper-2 97.2%` and `paper-3 94.5%`. Ink is cool near-black `--color-ink: oklch(16% 0.010 255)`.

@@ -16,6 +16,14 @@ Use two diagnostic modes:
   root contains `CONTRIBUTING.md`, `.github/workflows/ci.yml`, and
   `scripts/verify-plugin-package.py`. Add the repository integrity checks below.
 
+## Contents
+
+- [Inputs](#inputs)
+- [Required checks](#required-checks)
+- [Output contract](#output-contract)
+- [Safety and behavior rules](#safety-and-behavior-rules)
+- [Example result](#example-result)
+
 ## Inputs
 
 Optional flags:

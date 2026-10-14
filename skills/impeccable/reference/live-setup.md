@@ -1,5 +1,12 @@
 One-time live-mode project setup. Loaded from [live.md](live.md) only when `impeccable live` reports `config_missing` / `config_invalid`, when `configDrift` needs handling, or when the config lacks `cspChecked`. Not part of the per-session hot path.
 
+## Contents
+
+- [Write the config](#write-the-config)
+- [Config drift](#config-drift)
+- [CSP detection (first-time only)](#csp-detection-first-time-only)
+- [Troubleshooting](#troubleshooting)
+
 ## Write the config
 
 Create the file at the `path` the boot reported (default `.impeccable/live/config.json`):

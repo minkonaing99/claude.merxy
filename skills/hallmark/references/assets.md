@@ -4,6 +4,20 @@ This file is loaded when an enrichment archetype actually needs an external asse
 
 **The reflex.** Before reaching here, ask two questions in order: (1) Does the brief actually need imagery at all? See [`hero-enrichment.md` § Image-need detection](hero-enrichment.md). (2) If yes, can it be hand-built? See [`custom-craft.md`](custom-craft.md). The assets in this file are for the moments when both answers send you here.
 
+## Contents
+
+- [Placeholder strategy](#placeholder-strategy)
+- [Icons](#icons)
+- [Brand / company logos](#brand--company-logos)
+- [Generated illustration (Tier C in the enrichment hierarchy)](#generated-illustration-tier-c-in-the-enrichment-hierarchy)
+- [Library illustrations (Tier D — not first choice)](#library-illustrations-tier-d--not-first-choice)
+- [App mockups / device frames](#app-mockups--device-frames)
+- [Hero / demo video](#hero--demo-video)
+- [Photography](#photography)
+- [Abstract backgrounds](#abstract-backgrounds)
+- [Lottie / Rive (Tier F — last resort)](#lottie--rive-tier-f--last-resort)
+- [Quick-reference: which source for which job](#quick-reference-which-source-for-which-job)
+
 ---
 
 ## Placeholder strategy

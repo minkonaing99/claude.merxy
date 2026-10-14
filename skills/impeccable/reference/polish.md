@@ -4,6 +4,14 @@ Polish is refinement, never concealed redesign. Preserve the incumbent visual wo
 
 A detector result is defect evidence, not proof of quality. Inspect the rendered experience and real interaction path.
 
+## Contents
+
+- [1. Establish the system](#1-establish-the-system)
+- [2. Gather the evidence](#2-gather-the-evidence)
+- [3. Triage](#3-triage)
+- [4. Polish the whole path](#4-polish-the-whole-path)
+- [5. Verify and finish](#5-verify-and-finish)
+
 ## 1. Establish the system
 
 Read DESIGN.md and representative tokens, shared components, patterns, and neighboring flows. If no formal system exists, use coherent project conventions.

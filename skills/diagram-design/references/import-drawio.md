@@ -4,6 +4,20 @@ Turn a `.drawio` file into an editorial-quality diagram at the format, size, and
 
 **This is a redraw, not a conversion.** You read the source for its *content* — components, relationships, grouping, direction — and then draw a new diagram in this skill's design system. Nothing about the source's geometry, palette, or shape vocabulary carries over. A converter that preserved draw.io's layout would just be draw.io output with different fonts.
 
+## Contents
+
+- [Trigger](#trigger)
+- [Step 1 — Extract the IR](#step-1--extract-the-ir)
+- [Step 2 — Set the four dials](#step-2--set-the-four-dials)
+- [Step 3 — Pick the target type](#step-3--pick-the-target-type)
+- [Step 4 — Build the semantic model](#step-4--build-the-semantic-model)
+- [Step 5 — Redraw](#step-5--redraw)
+- [Step 6 — Deliver](#step-6--deliver)
+- [Worked example](#worked-example)
+- [Multi-page files](#multi-page-files)
+- [Edge cases](#edge-cases)
+- [Anti-patterns](#anti-patterns)
+
 ## Trigger
 
 Load this file when the user points at a `.drawio`, `.drawio.xml`, `.drawio.png`, or `.drawio.svg` file and wants a diagram out of it — "convert this drawio", "redraw this diagram", "make this presentable", "この drawio をきれいにして", or the `/diagram-design:import-drawio` slash command.

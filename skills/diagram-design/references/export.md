@@ -2,6 +2,16 @@
 
 Convert a generated diagram HTML file into a portable `.svg` and/or `.png` next to it. **Manual only — never run unprompted.**
 
+## Contents
+
+- [Trigger](#trigger)
+- [Scope](#scope)
+- [SVG export procedure](#svg-export-procedure)
+- [PNG export procedure](#png-export-procedure)
+- [Sizing the export](#sizing-the-export)
+- [Edge cases](#edge-cases)
+- [What this command never does](#what-this-command-never-does)
+
 ## Trigger
 
 Load this file when:

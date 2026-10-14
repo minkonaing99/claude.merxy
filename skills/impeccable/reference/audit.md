@@ -4,6 +4,12 @@ This is a code-level audit, not a design critique. Check what's measurable and v
 
 **Web only.** Native platforms (`ios` / `android` / `adaptive`) route to [audit.native.md](audit.native.md) instead; if the project is native, switch to it now.
 
+## Contents
+
+- [Diagnostic Scan](#diagnostic-scan)
+- [Generate Report](#generate-report)
+- [Recommended Actions](#recommended-actions)
+
 ## Diagnostic Scan
 
 Run comprehensive checks across 5 dimensions. Score each dimension 0-4 using the criteria below.

@@ -4,6 +4,14 @@ The `hallmark audit` verb flags these by name. Every one of these is a signature
 
 Each entry: the tell, why it reads as AI-generated, and the fix.
 
+## Contents
+
+- [Critical (ships as slop)](#critical-ships-as-slop)
+- [Major (looks AI-generated)](#major-looks-ai-generated)
+- [Microinteraction tells](#microinteraction-tells)
+- [Minor (small taste issues)](#minor-small-taste-issues)
+- [How hallmark audit should report](#how-hallmark-audit-should-report)
+
 ---
 
 ## Critical (ships as slop)

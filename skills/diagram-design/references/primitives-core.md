@@ -6,6 +6,16 @@ Type-specialized primitives (lifeline, activation bar, region) live in the relev
 
 Snippets here and in every type reference name colors and fonts by role, never by value: `{ink}`, `{muted}`, `{paper}`, `{accent}`, `{link}`, `{soft}` for colors, `{ink @ 0.10}` for a role at an opacity, and `{title}`, `{node-name}`, `{sublabel}`, `{eyebrow}`, `{arrow-label}`, `{callout}` for font families. Resolve each against the active skin in [`style-guide.md`](style-guide.md) before emitting: `{ink @ 0.10}` becomes the `ink` color as `rgba(r,g,b,0.10)`, and `{sublabel}` becomes that role's full family stack. Uppercase names (`X`, `FILL`, `STROKE`) are geometry and per-node values you compute.
 
+## Contents
+
+- [Background](#background)
+- [Arrow markers (define all three, always)](#arrow-markers-define-all-three-always)
+- [Mandatory connector rules](#mandatory-connector-rules)
+- [Node box — full pattern](#node-box--full-pattern)
+- [Arrow labels — always mask, always with margin](#arrow-labels--always-mask-always-with-margin)
+- [Legend — horizontal strip at the bottom](#legend--horizontal-strip-at-the-bottom)
+- [Accessible SVG contract](#accessible-svg-contract)
+
 ## Background
 
 **Default: clean paper, no dot pattern.** Single `<rect>` filled with `paper`. Don't wrap the diagram in a secondary container background — the diagram sits directly on the page.

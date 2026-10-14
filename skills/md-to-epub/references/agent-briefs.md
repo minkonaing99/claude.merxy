@@ -4,6 +4,12 @@ Copy-ready prompts for phases 2 and 3. Both phases fan out across batches, and
 batches drift when each agent invents its own standard — so send every agent the
 same brief, and paste finished examples from earlier batches into later ones.
 
+## Contents
+
+- [Repair brief (phase 2)](#repair-brief-phase-2)
+- [Recap brief (phase 3)](#recap-brief-phase-3)
+- [Merging results](#merging-results)
+
 ## Repair brief (phase 2)
 
 Fill in the batch and paths, then send as the subagent prompt.

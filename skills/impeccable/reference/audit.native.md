@@ -2,6 +2,12 @@ Run systematic **technical** quality checks on a native app (`ios` / `android` /
 
 This is a code-level audit, not a design critique. Audit from source (SwiftUI / UIKit / Compose / React Native / Flutter); no browser tooling or `impeccable detect` applies. Score against the platform reference(s): [ios.md](ios.md) / [android.md](android.md), both for `adaptive`. Read them before scoring if Setup hasn't already. The report skeleton mirrors [audit.md](audit.md); keep the two in sync when changing it.
 
+## Contents
+
+- [Diagnostic Scan](#diagnostic-scan)
+- [Generate Report](#generate-report)
+- [Recommended Actions](#recommended-actions)
+
 ## Diagnostic Scan
 
 Run comprehensive checks across 5 dimensions. Score each dimension 0-4 using the criteria below.

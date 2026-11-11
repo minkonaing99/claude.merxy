@@ -94,3 +94,7 @@ skills/remotion-to-hyperframes
 skills/remotion-upgrade
 skills/slideshow
 skills/talking-head-recut
+
+# Machine-local state
+.claude.json
+.ponytail-band

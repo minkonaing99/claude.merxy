@@ -13,7 +13,7 @@
       "repo": "DietrichGebert/ponytail"
     },
     "installLocation": "/Users/aurora/.claude/plugins/marketplaces/ponytail",
-    "lastUpdated": "2026-10-06T08:56:11.590Z"
+    "lastUpdated": "2026-10-26T16:15:37.649Z"
   },
   "claude-animation-skill": {
     "source": {
@@ -30,5 +30,21 @@
     },
     "installLocation": "/Users/aurora/.claude/plugins/marketplaces/nateherk",
     "lastUpdated": "2026-10-13T20:08:02.905Z"
+  },
+  "bama": {
+    "source": {
+      "source": "github",
+      "repo": "daveebbelaar/bama"
+    },
+    "installLocation": "/Users/aurora/.claude/plugins/marketplaces/bama",
+    "lastUpdated": "2026-10-27T07:30:20.872Z"
+  },
+  "claude-plugins-official": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/claude-plugins-official"
+    },
+    "installLocation": "/Users/aurora/.claude/plugins/marketplaces/claude-plugins-official",
+    "lastUpdated": "2026-11-11T16:11:37.295Z"
   }
 }

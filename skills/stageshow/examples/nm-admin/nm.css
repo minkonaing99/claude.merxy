@@ -1,0 +1,97 @@
+.nm {
+  & .ss-stage {
+    --g: 32px;
+    --green: #2d6a3e;
+    --tint: #e8f2e9;
+    --ink: #1d1d1f;
+    --sec: #636366;
+    --rule: #eeeae2;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #e9efe8;
+  }
+
+  /* Pinned top-left, bleeding off the right and bottom: the product, not a screenshot */
+  .nm-window {
+    position: absolute;
+    top: var(--g);
+    left: var(--g);
+    width: 900px;
+    height: 460px;
+  }
+  & .ss-stage[data-layout="compact"] .nm-window { top: 16px; left: 16px; width: 380px; }
+
+  .nm-app { display: flex; height: 100%; background: #f7f7f7; color: var(--ink); font-size: 12px; }
+
+  .nm-side {
+    display: flex; flex-direction: column; gap: 2px; flex: none;
+    width: 168px; padding: 12px 10px; background: #fff; border-right: 1px solid var(--rule);
+  }
+  .nm-brand { display: flex; align-items: center; gap: 8px; padding: 0 4px 12px; }
+  .nm-logo { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 8px; background: var(--green); color: #fff; }
+  .nm-brand-name { font-weight: 600; font-size: 12px; line-height: 1.3; }
+  .nm-brand-sub { margin-top: 3px; font-size: 10px; line-height: 1.3; color: var(--sec); }
+  .nm-nav {
+    display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 10px;
+    border-radius: 999px; color: var(--ink); transition: background-color 0.2s, color 0.2s;
+  }
+  .nm-nav svg { color: var(--sec); transition: color 0.2s; }
+  .nm-nav[data-active="true"] { background: var(--tint); color: var(--green); font-weight: 600; }
+  .nm-nav[data-active="true"] svg { color: var(--green); }
+  .nm-nav[data-hover]:not([data-active="true"]) { background: #f2f1ed; }
+  .nm-user { margin-top: auto; display: flex; align-items: center; gap: 8px; padding: 10px 4px 0; border-top: 1px solid var(--rule); }
+  .nm-avatar { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--green); font-size: 10px; font-weight: 600; }
+
+  .nm-main { flex: 1; min-width: 0; padding: 20px 22px; display: flex; flex-direction: column; }
+  .nm-main > * { align-content: start; align-items: start; }
+  .nm-page { display: flex; flex-direction: column; gap: 12px; width: 612px; }
+  & .ss-stage[data-layout="compact"] .nm-page { width: 300px; }
+  .nm-h1 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+  .nm-sub { margin: -8px 0 2px; color: var(--sec); font-size: 11px; }
+  .nm-crumb { color: var(--sec); font-size: 11px; margin-bottom: -8px; }
+  .nm-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  & .ss-stage[data-layout="compact"] .nm-head { flex-direction: column; align-items: flex-start; }
+
+  .nm-kpis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+  .nm-kpis--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  & .ss-stage[data-layout="compact"] .nm-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nm-kpi { padding: 12px; background: #fff; border: 1px solid var(--rule); border-radius: 12px; box-shadow: 0 2px 10px rgba(29, 29, 31, 0.04); }
+  .nm-kpi-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 6px; }
+  .nm-kpi-label { color: var(--sec); font-size: 11px; line-height: 1.3; }
+  .nm-kpi-value { margin-top: 8px; font-size: 18px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .nm-tile { display: grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: 7px; }
+  .nm-tile[data-tone="green"] { background: var(--tint); color: var(--green); }
+  .nm-tile[data-tone="amber"] { background: #fff3df; color: #8f5400; }
+  .nm-tile[data-tone="red"] { background: #fdecec; color: #d70015; }
+
+  .nm-card { padding: 12px 14px 4px; background: #fff; border: 1px solid var(--rule); border-radius: 12px; box-shadow: 0 2px 10px rgba(29, 29, 31, 0.04); }
+  .nm-card-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .nm-line { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 36px; border-top: 1px solid var(--rule); }
+  .nm-card-title + .nm-line { border-top: 0; }
+  .nm-strong { font-weight: 600; }
+  .nm-muted { color: var(--sec); }
+  .nm-money { font-weight: 600; font-variant-numeric: tabular-nums; min-width: 64px; text-align: right; }
+  .nm-badges { display: inline-flex; align-items: center; gap: 6px; }
+
+  .nm-badge { display: inline-flex; align-items: center; height: 20px; padding: 0 8px; border-radius: 999px; font-size: 10.5px; font-weight: 600; white-space: nowrap; }
+  .nm-badge[data-tone="green"] { background: var(--tint); color: #24573a; }
+  .nm-badge[data-tone="grey"] { background: #f0eee9; color: var(--sec); }
+  .nm-badge[data-tone="amber"] { background: #fff3df; color: #8f5400; }
+  .nm-badge[data-tone="outline"] { border: 1px solid var(--rule); color: var(--ink); font-weight: 500; background: #fff; }
+
+  .nm-toolbar { display: flex; align-items: center; gap: 10px; }
+  & .ss-stage[data-layout="compact"] .nm-search { display: none; }
+  .nm-topnav { display: flex; gap: 4px; margin-bottom: 14px; }
+  .nm-topnav .nm-nav { font-weight: 600; }
+  .nm-search { flex: 1; display: flex; align-items: center; height: 30px; padding: 0 12px; border: 1px solid var(--rule); border-radius: 8px; background: #fff; color: var(--sec); }
+  .nm-pills { display: inline-flex; padding: 2px; border: 1px solid var(--rule); border-radius: 999px; background: #fff; }
+  .nm-pill { padding: 5px 12px; border-radius: 999px; color: var(--sec); font-weight: 600; transition: background-color 0.25s, color 0.25s; }
+  .nm-pill[data-on="true"] { background: var(--tint); color: var(--green); }
+
+  .nm-table { background: #fff; border: 1px solid var(--rule); border-radius: 12px; box-shadow: 0 2px 10px rgba(29, 29, 31, 0.04); overflow: hidden; }
+  .nm-tr { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.1fr; align-items: center; height: 38px; padding: 0 14px; border-top: 1px solid var(--rule); transition: background-color 0.2s; }
+  & .ss-stage[data-layout="compact"] .nm-tr { grid-template-columns: 1.5fr 1fr 1fr; }
+  & .ss-stage[data-layout="compact"] .nm-tr > :nth-child(3) { display: none; }
+  .nm-th { height: 30px; border-top: 0; background: #fbfaf7; color: var(--sec); font-size: 11px; font-weight: 500; }
+  .nm-tr[data-hover] { background: #f3f8f3; }
+}

@@ -1,0 +1,10 @@
+let done=0,right=0;const box=document.getElementById('quiz'),sc=document.getElementById('score');
+Q.forEach((q,i)=>{const d=document.createElement('div');d.className='q';d.innerHTML='<p>'+(i+1)+'. '+q[0]+'</p>';
+const fb=document.createElement('div');fb.className='fb';
+q[1].forEach((o,j)=>{const b=document.createElement('button');b.textContent=o;b.onclick=()=>{if(d.dataset.a)return;d.dataset.a=1;done++;
+const ok=j===q[2];if(ok)right++;b.classList.add(ok?'right':'wrong');d.querySelectorAll('button')[q[2]].classList.add('right');
+fb.textContent=(ok?'Correct. ':'Wrong. ')+q[3];sc.textContent='Score: '+right+' / '+done};d.appendChild(b)});
+d.appendChild(fb);box.appendChild(d)});
+</script>
+</body>
+</html>

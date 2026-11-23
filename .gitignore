@@ -98,3 +98,4 @@ skills/talking-head-recut
 # Machine-local state
 .claude.json
 .ponytail-band
+node_modules/

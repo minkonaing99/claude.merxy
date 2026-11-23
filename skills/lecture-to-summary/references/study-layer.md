@@ -10,12 +10,13 @@ The sections that come after the slide walk-through in `lecture.html`. They turn
   - Side-by-side comparison tables.
   - Memory hooks for lists (acronym sentences, short phrases), each with its slide label.
   - Common traps: the mistakes a student is most likely to make on this material.
-- **Mixed practice quiz**: one section holding every practice question, interleaved across topics (never grouped by topic), in the quiz markup from [`quiz-js.md`](quiz-js.md). Mix question kinds. Understanding mode: 10+ questions. Exam mode: 15+.
+- **Mixed practice quiz**: one section holding every practice question, interleaved across topics (never grouped by topic), built with the quiz from [`lecture-template.html`](lecture-template.html) (one entry per question in its `Q` array). Mix question kinds. Understanding mode: 10+ questions. Exam mode: 15+.
 
 ## Math / procedure lectures
 
 - **Derive, don't memorize**: for each formula family, show how the dependent results (e.g. a verify step) fall out of the one equation worth memorizing.
 - **Worked examples**: at least two per major formula or procedure, every intermediate step shown, small numbers a student can do by hand. Add a "what goes wrong" case where one fits (tampered input, wrong parameter, reused value). Run every number before writing it. Label each `own example, based on slide N`.
+- **Faded worked examples**: after the fully worked examples, give a sequence for each major procedure: one example with the last step blank, one with the last two steps blank, then a problem solved alone. Each blank is a `<details>` the user opens to check, and every answer is verified by running it.
 - **Hand techniques**: any arithmetic shortcut the quiz will need (modular inverse by search, square-and-multiply), labelled `not on slides`.
 - **Quiz questions**: calculations with full worked answers, derivation questions, and "why" questions about each step.
 

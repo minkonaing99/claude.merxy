@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lecture 6 - RSA Digital Signatures</title>
+<style>
+:root{
+  --bg:#f9f6f0; --surface:#fdfcf9; --text:#1f1c17; --muted:#625b4e; --line:#ebe5da; --line-strong:#ddd5c6;
+  --accent:#0a66c2; --accent-bg:#eef5fc; --ok:#1a7f37; --ok-bg:#eefbf1; --warn:#c4320a; --warn-bg:#fff4ee;
+  --ease-out:cubic-bezier(0.23,1,0.32,1); --ease-in-out:cubic-bezier(0.77,0,0.175,1);
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --code-bg:#eceef1; --th-bg:#eef0f3; --zebra:#f8f9fa; --hover:#eef0f3; --glass:rgba(244,245,247,.85); --star:#b7791f; --img-bg:#fff;
+}
+:root{ --bg:#f4f5f7; --surface:#fff; --text:#1a1c20; --muted:#5b616b; --line:#e3e6ea; --line-strong:#cfd4da; --accent-bg:#eaf3fc; }
+:root[data-theme="dark"]{ color-scheme:dark;
+  --bg:#15171c; --surface:#1d2027; --text:#e7e9ec; --muted:#a4aab4; --line:#2b2f38; --line-strong:#3b404b;
+  --accent:#6cb6ff; --accent-bg:#1b2a3c; --ok:#4cc38a; --ok-bg:#16301f; --warn:#ff8f6b; --warn-bg:#3a231b;
+  --code-bg:#23272f; --th-bg:#252a33; --zebra:#1a1d23; --hover:#262a33; --glass:rgba(21,23,28,.85); --star:#f2b94b; --img-bg:#f4f5f7;
+}
+figure svg rect{fill:var(--surface);stroke:var(--line-strong)}
+figure svg rect[stroke="#0a66c2"]{fill:var(--accent-bg);stroke:var(--accent)}
+figure svg rect[stroke="#1f1c17"]{stroke:var(--text)}
+figure svg text{fill:var(--text)}figure svg text[fill="#625b4e"]{fill:var(--muted)}figure svg text[fill="#0a66c2"]{fill:var(--accent)}
+figure svg line,figure svg path{stroke:var(--muted)}figure svg marker path{fill:var(--muted);stroke:none}
+figure img{display:block;width:100%;height:auto;border-radius:8px;background:var(--img-bg);border:1px solid var(--line)}
+:root[data-theme="dark"] figure img{filter:brightness(.88)}
+.theme-btn{position:fixed;top:calc(1rem + env(safe-area-inset-top,0px));right:1rem;z-index:5;font:500 .85rem var(--sans);padding:.45rem .9rem;border-radius:999px;
+  border:1px solid var(--line-strong);background:var(--surface);color:var(--text);cursor:pointer;transition:transform 160ms var(--ease-out)}
+.theme-btn:active{transform:scale(.97)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16.5px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+::selection{background:#cfe3f7}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+a{color:var(--accent);text-decoration:none}
+main{width:80%;margin:0 auto;padding:3.5rem 0 6rem}
+.col{max-width:none}
+header{padding-bottom:2rem;border-bottom:1px solid var(--line);margin-bottom:2rem}
+.course{font-size:.85rem;color:var(--muted);margin:0 0 .75rem}
+h1{font-size:2.6rem;line-height:1.1;letter-spacing:-.035em;font-weight:650;margin:0 0 .75rem}
+h2{font-size:1.5rem;letter-spacing:-.02em;font-weight:620;margin:4rem 0 1rem;scroll-margin-top:5rem}
+h3{font-size:1rem;font-weight:600;margin:2rem 0 .5rem}
+p{margin:0 0 1rem}
+.lede{font-size:1.15rem;color:var(--muted);margin:0}
+.ref{font-size:.75rem;font-weight:500;color:var(--muted);border:1px solid var(--line-strong);border-radius:999px;padding:.05rem .5rem;margin-left:.35rem;white-space:nowrap}
+/* document-style contents: numbered, nested, dotted leaders to the stars */
+.toc{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.25rem 1.5rem 1rem;margin:0 0 2rem}
+.toc h2{font-size:1.1rem;margin:0 0 .75rem}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+.toc li{counter-increment:toc}
+.toc ol ol{padding-left:2rem;margin:.1rem 0 .3rem}
+.toc a{display:flex;align-items:baseline;gap:.5rem;color:var(--text);padding:.32rem .4rem;border-radius:6px;font-size:.97rem;
+  transition:background-color 150ms ease}
+.toc a::before{content:counters(toc,".") ".";min-width:2rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.toc ol ol a{font-size:.92rem;color:var(--muted)}
+.toc .t{flex:0 1 auto;min-width:0}.toc .stars{flex:none}
+.toc a::after{content:"";flex:1;border-bottom:1px dotted var(--line-strong);transform:translateY(-.3em);order:2}
+.toc .stars{order:3}
+@media (hover:hover) and (pointer:fine){.toc a:hover{background:var(--bg)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.25rem;margin:1.25rem 0}
+.terms dl{display:grid;grid-template-columns:max-content 1fr;column-gap:1.5rem;margin:.6rem 0 0;font-size:.97rem}.terms dt,.terms dd{padding:.6rem 0;border-top:1px solid var(--line)}.terms dt:first-of-type,.terms dt:first-of-type+dd{border-top:0;padding-top:.2rem}.terms dt{font-weight:600;color:var(--text);white-space:nowrap}.terms dd{margin:0;color:var(--text);max-width:75ch}.terms dd .ref{margin-left:.5rem}
+.label{font-size:.8rem;font-weight:600;color:var(--accent);margin:0;letter-spacing:.01em}
+.note{border-radius:12px;padding:.9rem 1.15rem;margin:1.25rem 0;font-size:.97rem}
+.note.rule{background:var(--accent-bg)}.note.trap{background:var(--warn-bg)}
+.note b{font-weight:600}
+.plain{color:var(--muted);font-size:.97rem;margin-top:1.5rem}
+.plain::before{content:"In plain words: ";color:var(--text);font-weight:600}
+pre.formula{font:.95rem/1.7 var(--mono);background:var(--code-bg);border-radius:10px;padding:.9rem 1.1rem;margin:1rem 0;overflow-x:auto}
+figure{margin:1.5rem 0;padding:1.25rem;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+figcaption{font-size:.85rem;color:var(--muted);margin-top:.75rem}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:.95rem;font-variant-numeric:tabular-nums;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:1rem 0}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:.45rem .2rem 0}
+th,td{text-align:left;padding:.7rem .95rem;border-bottom:1px solid var(--line);vertical-align:top}th{background:var(--th-bg);color:var(--text);font-weight:600;font-size:.82rem}tr:last-child td{border-bottom:0}tbody tr:nth-child(even) td,table tr:nth-child(odd):not(:first-child) td{background:var(--zebra)}td:first-child{font-weight:600;color:var(--text)}.card table{border:0;margin:0;border-radius:0}@media (max-width:600px){table{display:block;overflow-x:auto}}
+ol.steps{padding-left:1.25rem}ol.steps li{margin:.4rem 0;padding-left:.25rem}
+/* disclosure: grid-rows height transition, interruptible */
+.disc{border:1px solid var(--line);border-radius:12px;background:var(--surface);margin:.6rem 0;overflow:hidden;
+  transition:border-color 200ms ease}
+.disc.open{border-color:var(--line-strong)}
+.disc>button.head{all:unset;box-sizing:border-box;display:flex;gap:.75rem;align-items:center;width:100%;padding:.85rem 1.1rem;cursor:pointer;font-weight:500;
+  transition:transform 160ms var(--ease-out)}
+.disc>button.head:active{transform:scale(.99)}
+.chev{flex:none;width:.95rem;height:.95rem;transition:transform 200ms var(--ease-out);color:var(--muted)}
+.disc.open .chev{transform:rotate(90deg)}
+.body{display:grid;grid-template-rows:0fr;transition:grid-template-rows 250ms var(--ease-out)}
+.disc.open .body{grid-template-rows:1fr}
+.body>div{overflow:hidden}
+.inner{padding:0 1.1rem 1rem 2.8rem;opacity:0;filter:blur(2px);transform:translateY(-4px);
+  transition:opacity 200ms ease,filter 200ms ease,transform 250ms var(--ease-out)}
+.disc.open .inner{opacity:1;filter:none;transform:none}
+.mark{display:flex;gap:.5rem;margin-top:.75rem}
+.btn{font:inherit;font-size:.85rem;font-weight:500;padding:.4rem .9rem;border-radius:8px;border:1px solid var(--line-strong);background:var(--surface);color:var(--text);cursor:pointer;
+  transition:transform 160ms var(--ease-out),background-color 150ms ease}
+.btn:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){.btn:hover{background:var(--hover)}}
+.disc[data-result="right"] .head{color:var(--ok)}.disc[data-result="wrong"] .head{color:var(--warn)}
+.tag{margin-left:auto;font-size:.75rem;font-weight:600;border-radius:999px;padding:.1rem .55rem;opacity:0;transform:scale(.95);
+  transition:opacity 150ms ease,transform 200ms var(--ease-out)}
+.disc[data-result="right"] .tag{opacity:1;transform:none;background:var(--ok-bg);color:var(--ok)}
+.disc[data-result="wrong"] .tag{opacity:1;transform:none;background:var(--warn-bg);color:var(--warn)}
+.score{position:sticky;top:env(safe-area-inset-top,0px);z-index:3;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;
+  background:var(--glass);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);
+  border-bottom:1px solid var(--line);padding:.7rem 0;margin-bottom:1rem;font-size:.9rem}
+.bar{flex:1;min-width:8rem;height:6px;background:var(--line);border-radius:99px;overflow:hidden;display:flex}
+.bar i{display:block;height:100%;transition:width 300ms var(--ease-in-out)}.bar .r{background:var(--ok)}.bar .w{background:var(--warn)}
+.weak a{margin-right:.6rem}
+/* importance stars: 3 = most likely tested, 2 = likely, 1 = good to know */
+.stars{color:var(--star);font-size:.8em;letter-spacing:.06em;margin-left:.4rem;white-space:nowrap;vertical-align:.08em}
+h2 .stars{font-size:.6em}
+.toc a .stars{font-size:.9em;margin-left:.3rem}
+.legend{font-size:.85rem;color:var(--muted);margin:-1.25rem 0 2rem}.legend .stars{font-size:1em}
+/* first-view stagger for sections, once */
+.reveal{animation:in 400ms var(--ease-out) both}
+.reveal:nth-of-type(2){animation-delay:40ms}.reveal:nth-of-type(3){animation-delay:80ms}
+@keyframes in{from{opacity:0;transform:translateY(6px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.inner,.body,.chev,.bar i{transition-duration:0ms!important}}
+@media (max-width:600px){main{width:auto;padding:2rem 1.25rem 4rem}h1{font-size:2rem}.terms dl{grid-template-columns:1fr}.terms dt{white-space:normal;padding-bottom:0}.terms dd{border-top:0;padding-top:.15rem}}
+@media print{.score,.mark{display:none}.body{grid-template-rows:1fr}.inner{opacity:1;filter:none;transform:none}}
+/* hierarchy: numbered sections with divider, numbered subsections */
+main{counter-reset:sec}
+main section{counter-increment:sec;counter-reset:sub}
+main section>h2{font-size:1.8rem;line-height:1.2;margin:3.5rem 0 1.25rem;padding-top:2.5rem;border-top:1px solid var(--line)}
+main section>h2::before{content:counter(sec) ".";color:var(--muted);font-weight:500;margin-right:.6rem;font-variant-numeric:tabular-nums}
+main section h3{counter-increment:sub;font-size:1.28rem;font-weight:620;letter-spacing:-.01em;line-height:1.3;margin:2.75rem 0 .8rem}
+main section h3::before{content:counter(sec) "." counter(sub);color:var(--accent);font-size:.82em;font-weight:600;margin-right:.65rem;font-variant-numeric:tabular-nums}
+main section#start>h2{border-top:0;padding-top:0;margin-top:2rem}
+@media (max-width:600px){main section>h2{font-size:1.45rem;margin-top:2.5rem;padding-top:1.75rem}main section h3{font-size:1.12rem}}
+</style>
+</head>
+<body>
+<button class="theme-btn" id="theme" type="button">Light mode</button>
+<main>
+<!-- TEMPLATE: keep <style> and <script> exactly as they are. Replace only the content inside <main> and the Q array with the real lecture. Every section is a <section> with one <h2>; subsections are <h3> inside it. -->
+<header class="reveal">
+<p class="course">CSIA 601 Applied Cryptography / Lecture 6 / Demo page</p>
+<h1>RSA Digital Signatures</h1>
+<p class="lede col">How a sender proves a message came from them and was not changed, using the same RSA keys you already know, run in the opposite direction.</p>
+</header>
+
+<nav class="toc reveal" aria-labelledby="toc-title">
+<h2 id="toc-title">Contents</h2>
+<ol>
+<li><a href="#start"><span class="t">Start here</span></a></li>
+<li><a href="#why"><span class="t">Why signatures exist</span><span class="stars" aria-label="likely tested">&#9733;&#9733;</span></a></li>
+<li><a href="#how"><span class="t">Sign and verify</span><span class="stars" aria-label="most likely tested">&#9733;&#9733;&#9733;</span></a>
+  <ol><li><a href="#derive"><span class="t">Derive, don't memorize</span></a></li></ol></li>
+<li><a href="#example"><span class="t">Worked example</span><span class="stars" aria-label="most likely tested">&#9733;&#9733;&#9733;</span></a></li>
+<li><a href="#faded"><span class="t">Your turn</span></a>
+  <ol><li><a href="#gap1"><span class="t">One gap</span></a></li><li><a href="#gap2"><span class="t">Two gaps</span></a></li><li><a href="#own"><span class="t">On your own</span></a></li></ol></li>
+<li><a href="#quiz"><span class="t">Practice quiz</span></a></li>
+</ol>
+</nav>
+<p class="legend"><span class="stars" style="margin:0">&#9733;&#9733;&#9733;</span> most likely to be asked &nbsp; <span class="stars" style="margin:0">&#9733;&#9733;</span> likely &nbsp; <span class="stars" style="margin:0">&#9733;</span> good to know</p>
+
+<div class="col">
+<section id="start" class="reveal">
+<h2>Start here</h2>
+<ol class="steps">
+<li>Read "Why signatures exist" for the problem in one picture.</li>
+<li>Learn the two formulas in "Sign and verify". Only one needs memorizing.</li>
+<li>Follow the worked example with pen and paper.</li>
+<li>Fill in the gaps in "Your turn" before opening each answer.</li>
+<li>Take the quiz, then re-read whatever it marks for review.</li>
+</ol>
+</section>
+
+<section id="why">
+<h2>Why signatures exist<span class="stars" aria-label="likely tested">&#9733;&#9733;</span></h2>
+<div class="card terms"><p class="label">Key terms</p><dl>
+<dt>Integrity</dt><dd>The message arrived exactly as sent.</dd>
+<dt>Authenticity</dt><dd>The message really came from the claimed sender.</dd>
+<dt>Non-repudiation</dt><dd>The sender cannot later deny sending it.</dd>
+</dl></div>
+<p>Encryption hides a message. It does not tell Bob who sent it. Anyone with Bob's public key can encrypt a note and sign it "Alice". <span class="ref">slide 3</span></p>
+<p>A signature solves the opposite problem. The message can be public; what matters is proof that only Alice could have produced it. Think of a wax seal: anyone can read the letter, but only the owner of the ring can press that seal. <span class="ref">slide 4</span></p>
+<div class="note rule"><b>Rule.</b> Encryption uses the receiver's public key. Signing uses the sender's private key.</div>
+<p class="plain">a signature is something only Alice can make and anyone can check.</p>
+</section>
+
+<section id="how">
+<h2>Sign and verify<span class="stars" aria-label="most likely tested">&#9733;&#9733;&#9733;</span></h2>
+<div class="card terms"><p class="label">Key terms</p><dl>
+<dt>H(m)</dt><dd>The hash of message m: a short fixed-size fingerprint.</dd>
+<dt>d</dt><dd>Alice's private exponent. Only she knows it.</dd>
+<dt>(e, n)</dt><dd>Alice's public key. Everyone knows it.</dd>
+<dt>s</dt><dd>The signature, a number sent alongside the message.</dd>
+</dl></div>
+<p>Alice hashes the message, then raises the hash to her private exponent. Bob raises the signature to Alice's public exponent and checks that he gets the same hash back. <span class="ref">slide 7</span></p>
+<figure>
+<svg viewBox="0 0 760 250" style="width:100%;height:auto" role="img" aria-label="Alice hashes message m to H(m), signs with private key d to get s. Bob receives m and s, hashes m, computes s to the e mod n, and compares the two hashes.">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#625b4e"/></marker></defs>
+<g font-family="-apple-system,system-ui,sans-serif">
+<text x="20" y="28" font-size="13" font-weight="600" fill="#0a66c2">Alice signs</text>
+<rect x="20" y="45" width="120" height="50" rx="10" fill="#fdfcf9" stroke="#ddd5c6"/><text x="80" y="75" text-anchor="middle" font-size="15" fill="#1f1c17">message m</text>
+<rect x="200" y="45" width="120" height="50" rx="10" fill="#fdfcf9" stroke="#ddd5c6"/><text x="260" y="75" text-anchor="middle" font-size="15" fill="#1f1c17">H(m)</text>
+<rect x="380" y="45" width="170" height="50" rx="10" fill="#eef5fc" stroke="#0a66c2"/><text x="465" y="75" text-anchor="middle" font-size="15" fill="#1f1c17">s = H(m)^d mod n</text>
+<line x1="140" y1="70" x2="196" y2="70" stroke="#625b4e" marker-end="url(#a)"/><text x="168" y="62" text-anchor="middle" font-size="12" fill="#625b4e">hash</text>
+<line x1="320" y1="70" x2="376" y2="70" stroke="#625b4e" marker-end="url(#a)"/><text x="348" y="62" text-anchor="middle" font-size="12" fill="#625b4e">private d</text>
+<line x1="465" y1="95" x2="465" y2="150" stroke="#625b4e" stroke-dasharray="4 4" marker-end="url(#a)"/><text x="475" y="128" font-size="12" fill="#625b4e">send m and s</text>
+<text x="20" y="150" font-size="13" font-weight="600" fill="#0a66c2">Bob verifies</text>
+<rect x="380" y="160" width="170" height="50" rx="10" fill="#eef5fc" stroke="#0a66c2"/><text x="465" y="190" text-anchor="middle" font-size="15" fill="#1f1c17">s^e mod n</text>
+<rect x="200" y="160" width="120" height="50" rx="10" fill="#fdfcf9" stroke="#ddd5c6"/><text x="260" y="190" text-anchor="middle" font-size="15" fill="#1f1c17">H(m)</text>
+<rect x="610" y="160" width="130" height="50" rx="10" fill="#fdfcf9" stroke="#1f1c17"/><text x="675" y="185" text-anchor="middle" font-size="14" fill="#1f1c17">equal?</text><text x="675" y="202" text-anchor="middle" font-size="11" fill="#625b4e">yes = valid</text>
+<line x1="550" y1="185" x2="606" y2="185" stroke="#625b4e" marker-end="url(#a)"/><text x="578" y="177" text-anchor="middle" font-size="12" fill="#625b4e">public e</text>
+<path d="M260 210 Q260 238 470 238 Q675 238 675 214" fill="none" stroke="#625b4e" marker-end="url(#a)"/><text x="470" y="232" text-anchor="middle" font-size="12" fill="#625b4e">compare</text>
+</g></svg>
+<figcaption>slide 7, redrawn. Follow the top row left to right, then the bottom row: Bob makes the hash two ways and checks they match.</figcaption>
+</figure>
+<pre class="formula">Sign:   s = H(m)^d mod n
+Verify: H(m) =? s^e mod n</pre>
+<h3 id="derive">Derive, don't memorize</h3>
+<p>Remember only the sign line. Verify falls out because e and d undo each other: (H^d)^e = H^(de) = H mod n, since de = 1 mod φ(n). <span class="ref">slide 8</span></p>
+<div class="note trap"><b>Common trap.</b> Signing with the receiver's key, or verifying with the private key. The private key never leaves Alice. <span class="ref">slide 9</span></div>
+<p class="plain">Alice locks the fingerprint with a key only she has; anyone can unlock it with her public key and see if the fingerprint matches.</p>
+</section>
+
+<section id="example">
+<h2>Worked example<span class="stars" aria-label="most likely tested">&#9733;&#9733;&#9733;</span></h2>
+<p>Tiny numbers so you can do it by hand. Real keys are 2048 bits or more. <span class="ref">own example, based on slide 7</span></p>
+<table><caption>own example, based on slide 7</caption><tr><th>Value</th><th>Number</th><th>Where it comes from</th></tr>
+<tr><td>p, q</td><td>5, 11</td><td>two primes</td></tr>
+<tr><td>n</td><td>55</td><td>5 x 11</td></tr>
+<tr><td>φ(n)</td><td>40</td><td>(5-1)(11-1)</td></tr>
+<tr><td>e</td><td>3</td><td>public, shares no factor with 40</td></tr>
+<tr><td>d</td><td>27</td><td>3 x 27 = 81 = 2 x 40 + 1</td></tr>
+<tr><td>H(m)</td><td>7</td><td>pretend hash of the message</td></tr></table>
+<ol class="steps">
+<li>Alice signs: s = 7^27 mod 55 = <b>28</b>.</li>
+<li>She sends the message and s = 28.</li>
+<li>Bob computes 28^3 mod 55 = 21952 mod 55 = <b>7</b>.</li>
+<li>Bob hashes the message himself and also gets 7. They match: valid.</li>
+</ol>
+<div class="note trap"><b>What goes wrong.</b> If an attacker changes the message so its hash becomes 8, Bob still computes 28^3 mod 55 = 7. Since 7 is not 8, the signature fails and the change is caught.</div>
+</section>
+
+<section id="faded">
+<h2>Your turn</h2>
+<p>Same keys (n = 55, e = 3, d = 27). Each example leaves more for you. <span class="ref">own example, based on slide 7</span></p>
+<h3 id="gap1">One gap</h3>
+<ol class="steps"><li>H(m) = 9, so s = 9^27 mod 55 = 4.</li><li>Bob computes 4^3 mod 55 = ?</li></ol>
+<div class="disc"><button class="head" type="button"><svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>Check your answer</button>
+<div class="body"><div><div class="inner"><p>64 mod 55 = 9. Matches the hash, so the signature is valid.</p></div></div></div></div>
+<h3 id="gap2">Two gaps</h3>
+<ol class="steps"><li>H(m) = 12, so s = 12^27 mod 55 = ?</li><li>Bob's check: s^3 mod 55 = ?</li></ol>
+<div class="disc"><button class="head" type="button"><svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>Check your answer</button>
+<div class="body"><div><div class="inner"><p>s = 23. Then 23^3 = 12167, and 12167 mod 55 = 12. Valid.</p></div></div></div></div>
+<h3 id="own">On your own</h3>
+<p>Someone sends H(m) = 7 with signature s = 13. Is it valid?</p>
+<div class="disc"><button class="head" type="button"><svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>Check your answer</button>
+<div class="body"><div><div class="inner"><p>13^3 = 2197, and 2197 mod 55 = 52. Since 52 is not 7, reject it.</p></div></div></div></div>
+</section>
+
+<section id="quiz">
+<h2>Practice quiz</h2>
+<div class="score" id="score"><span id="score-text"></span><div class="bar" aria-hidden="true"><i class="r"></i><i class="w"></i></div>
+<span class="weak" id="weak"></span><button class="btn" type="button" id="reset">Reset</button></div>
+<div id="qs"></div>
+</section>
+</div>
+</main>
+<script>
+(() => {
+  const root = document.documentElement, tb = document.getElementById('theme');
+  const setT = t => { root.dataset.theme = t; tb.textContent = t === 'dark' ? 'Light mode' : 'Dark mode'; try { localStorage.setItem('lecture-theme', t); } catch (e) {} };
+  let saved = null; try { saved = localStorage.getItem('lecture-theme'); } catch (e) {}
+  setT(saved || 'dark');
+  tb.addEventListener('click', () => setT(root.dataset.theme === 'dark' ? 'light' : 'dark'));
+  const chev = '<svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>';
+  const st = '<span class="stars">&#9733;&#9733;&#9733;</span>';
+  const Q = [
+    ['key-sign','Which key does Alice use to sign?' + st,'slide 4','Her own private key d. Signing must be something only she can do.','Which key signs','#why'],
+    ['calc','With n = 55, e = 3, check s = 28 for H(m) = 7.','slide 7','28^3 mod 55 = 7, which equals H(m). Valid.','Worked example','#example'],
+    ['why-hash','Why sign the hash instead of the whole message?','slide 8','The hash is short and fixed-size, so one RSA operation covers a message of any length, and it blocks attacks that combine signatures on raw numbers.','Why hash first','#how'],
+    ['derive','Show why verification returns H(m).','slide 8','s^e = (H^d)^e = H^(de), and de = 1 mod φ(n), so the result is H mod n.','Derivation','#derive'],
+    ['nonrep','A signature gives which property that a shared-key MAC does not?','slide 3','Non-repudiation. With a MAC, both sides hold the key, so either could have made it.','Security properties','#why']
+  ];
+  const host = document.getElementById('qs');
+  Q.forEach(([id, q, ref, a, topic, href]) => {
+    host.insertAdjacentHTML('beforeend', `<div class="disc q" data-id="${id}" data-topic="${topic}" data-href="${href}">
+      <button class="head" type="button">${chev}<span>${q} <span class="ref">${ref}</span></span><span class="tag"></span></button>
+      <div class="body"><div><div class="inner"><p>${a}</p><div class="mark"><button class="btn" data-v="right" type="button">Got it</button><button class="btn" data-v="wrong" type="button">Missed it</button></div></div></div></div></div>`);
+  });
+  document.querySelectorAll('.disc').forEach(d => {
+    const head = d.querySelector('.head');
+    head.setAttribute('aria-expanded', 'false');
+    head.addEventListener('click', () => { const o = d.classList.toggle('open'); head.setAttribute('aria-expanded', o); });
+  });
+  const KEY = 'quiz:' + location.pathname;
+  let state = {}; try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+  const qs = [...document.querySelectorAll('.disc.q')];
+  qs.forEach(q => q.querySelectorAll('.mark .btn').forEach(b => b.addEventListener('click', () => { state[q.dataset.id] = b.dataset.v; save(); render(); })));
+  function render() {
+    let r = 0, w = 0; const weak = new Map();
+    qs.forEach(q => { const v = state[q.dataset.id] || ''; q.dataset.result = v;
+      q.querySelector('.tag').textContent = v === 'right' ? 'Got it' : v === 'wrong' ? 'Review' : '';
+      if (v === 'right') r++; if (v === 'wrong') { w++; weak.set(q.dataset.topic, q.dataset.href); } });
+    document.getElementById('score-text').textContent = `${r} of ${qs.length} right`;
+    document.querySelector('.bar .r').style.width = (r / qs.length * 100) + '%';
+    document.querySelector('.bar .w').style.width = (w / qs.length * 100) + '%';
+    document.getElementById('weak').innerHTML = weak.size ? 'Re-read: ' + [...weak].map(([t, h]) => `<a href="${h}">${t}</a>`).join('') : '';
+  }
+  document.getElementById('reset').addEventListener('click', () => { state = {}; save(); qs.forEach(q => q.classList.remove('open')); render(); });
+  render();
+})();
+</script>
+</body>
+</html>

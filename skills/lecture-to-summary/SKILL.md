@@ -36,7 +36,7 @@ Then classify the lecture as **math/procedure**, **concept**, or **mixed**. The 
 
 ## Step 2: Check before overwriting
 
-This skill generates `summary.md`, `lecture.html` and `cheatsheet.html`. All are its own output and normally safe to regenerate. But the user may have hand-edited one. Before overwriting a file that already exists, read it and look for signs of manual work: added prose outside the expected sections, extra sections, inline commentary, reworded bullets. If it looks like a clean prior generation, overwrite it. If it looks hand-edited, stop and ask whether to overwrite, keep, or merge. Losing the user's own edits is far worse than an extra question. Never touch `notes.md`.
+This skill generates `summary.md`, `lecture.html`, `cheatsheet.html` and the images in `assets/`. All are its own output and normally safe to regenerate. But the user may have hand-edited one. Before overwriting a file that already exists, read it and look for signs of manual work: added prose outside the expected sections, extra sections, inline commentary, reworded bullets. If it looks like a clean prior generation, overwrite it. If it looks hand-edited, stop and ask whether to overwrite, keep, or merge. Losing the user's own edits is far worse than an extra question. Never touch `notes.md`.
 
 ## Step 3: Write summary.md
 
@@ -95,22 +95,35 @@ Write `lecture_N/lecture.html`: a single self-contained page the user can read t
 **Content model.** Walk the slides in order. For each slide (or small group of related slides), write a section that fuses the slide's content with the matching spoken explanation from the transcript. Terse bullets become clear paragraphs; every concrete example, analogy and aside the professor gave gets woven in where it belongs. Keep the slide order so it still maps to the deck. Write the teaching prose in the user's voice via `my-writing-tone`.
 
 **Understanding tools in every section:**
+- **Key terms first**: a short glossary box at the top of the section defining the new terms it uses, so the explanation never stops to introduce a word.
 - **Big picture first**: open with 2-3 lines on what problem this section solves, before any formula or detail.
 - **Analogy**: one everyday comparison where it fits naturally. Skip it where it would be forced.
 - **Prerequisite refresher**: a short box for background the lecture assumes but doesn't teach (e.g. modular inverse, hashing), labelled `not on slides`.
 - **In plain words**: end the section with a 1-2 sentence recap, as if explaining to a classmate who missed class.
 - **Builds on**: when an earlier lecture's `summary.md` covers the base idea, link to it (`../lecture_M/lecture.html#section` or the summary).
 
-**Diagrams.** Redraw the slides' process and flow diagrams as inline SVG: see [`references/diagrams.md`](references/diagrams.md).
+**Explain for a beginner.** Write as if the user has never seen the topic: define every term the first time it appears, build from simple to hard, and use every means that helps (plain-words restatements, analogies, small worked examples, step-by-step walk-throughs, pictures). Ideas an earlier lecture's `summary.md` already covers get a one-line recap and a "Builds on" link instead of the full beginner treatment, so the page stays focused on what is new.
 
-**Study layer.** After the slide walk-through, add the study sections for this lecture type: see [`references/study-layer.md`](references/study-layer.md). Its quiz is interactive: see [`references/quiz-js.md`](references/quiz-js.md).
+**Visuals.** Put the relevant slide images next to the explanation, and draw diagrams with the `diagram-design` skill where a picture helps: see [`references/diagrams.md`](references/diagrams.md).
 
-**Design.** This is a page the user reads for hours, so its craft matters. Invoke `emil-design-eng` for typography, spacing rhythm and the small touches that make a reading surface feel considered. The requirements below are the hard constraints it stays inside.
+**Study layer.** After the slide walk-through, add the study sections for this lecture type: see [`references/study-layer.md`](references/study-layer.md). The quiz uses the template's markup and script.
 
-**Technical requirements.** One file, fully self-contained, because the vault syncs over iCloud and must open offline:
-- All CSS inline in one `<style>` block, all JS inline in one `<script>`. No external stylesheets, CDN, web fonts, images, or JS libraries.
-- System font stack, generous line-height, light comfortable background. Width follows the Content width rule at the end of this file.
-- Start with the lecture title, an in-page table of contents (anchor links), and a short "start here" study plan.
+**Design: use the template exactly.** Build every `lecture.html` from [`references/lecture-template.html`](references/lecture-template.html), the look the user approved. Copy its `<style>` and `<script>` blocks unchanged (colors, fonts, spacing, 80% width, motion, quiz) and reuse its components for the content: `.card.terms` for key terms, `.note.rule` / `.note.trap` callouts, `.plain` recaps, `pre.formula`, `figure`, tables (first column is the row label; put the slide source in a `<caption>` as the table's first child, not a `.ref` below it), `ol.steps`, `.disc` answer reveals, and the quiz (`Q` array in the script). Replace only the demo content. When the lecture needs a component the template lacks, add it in the same style with `emil-design-eng`, and never restyle the existing ones.
+
+**Readability rules the user approved** (the template's CSS already does these; follow them in any new component too):
+- Tables sit in a card: tinted header row, alternating row shading, bold first column as the row label, roomy padding. Source goes in a `<caption>` (first child of the table), never a `.ref` tag below it. Wide tables scroll sideways on phones.
+- Key terms (`.card.terms`): one term per row, term kept on one line, a thin divider between rows, definitions in full-contrast text capped at about 75 characters per line. On phones the term sits above its definition.
+- Box headings like "Key terms" use the accent color so the box is easy to spot.
+- Dark theme by default, with a "Light mode" button (neutral gray, no cream) that the page remembers. Every color comes from the CSS variables, so both themes work; never hardcode a color in new components or SVGs. Slide images get a soft frame and are slightly dimmed in dark mode.
+- Clear hierarchy: each `<h2>` section has a divider line above it and its number ("5."), each `<h3>` is a larger heading with an accent number ("5.6"). Numbers come from CSS counters and match the table of contents, so keep sections as `<section>` with one `<h2>` and nest subsections as `<h3>` inside them.
+- Content still fills the 80% column; only definition text inside a box is capped.
+
+**Importance stars.** Mark how likely each part is to be asked, using the ranking evidence in [`references/exam-mode.md`](references/exam-mode.md) (applies on every run, not only exam mode): `<span class="stars">` with three stars for most likely to be asked, two for likely, one for good to know. Put them on every `<h2>` section heading, on the matching table-of-contents link, and on each key-term row and quiz question that is three-star. Keep the legend under the table of contents.
+
+**Technical requirements.** Self-contained and offline, because the vault syncs over iCloud:
+- All CSS inline in one `<style>` block, all JS inline in one `<script>`. No external stylesheets, CDN, web fonts, or JS libraries. Images only from `lecture_N/assets/` by relative path, never remote URLs.
+- Width follows the Content width rule at the end of this file.
+- Start with the lecture title, then a document-style numbered table of contents (the template's `nav.toc`: every `<h2>` as 1, 2, 3, its `<h3>` subsections nested as 1.1, 1.2, dotted leaders to the stars), the star legend, and a short "start here" study plan.
 - Semantic structure: `<h1>`/`<h2>`, `<p>`, `<ul>`, `<blockquote>` for the professor's direct quotes. Callout boxes for important rules, deadlines and the assignment.
 
 Every section teaches something; nothing restates a slide title.
@@ -153,4 +166,4 @@ When the exam covers several lectures, build the course-level `exam-prep.html`: 
 
 ## Content width
 
-In `lecture.html`, the content column is exactly 80% of the viewport width, horizontally centered: `main { width: 80%; margin: 0 auto; }`. No narrower cap (`min(80vw, 46rem)`, a fixed `max-width` in px or rem) on top of it, so wide screens get the full 80%. Tables and formula blocks fill that column. The one exception is phones (`max-width: 600px`), where the column goes full width with a 1rem side gutter.
+In `lecture.html`, the content column is exactly 80% of the viewport width, horizontally centered: `main { width: 80%; margin: 0 auto; }`. No narrower cap (`min(80vw, 46rem)`, a fixed `max-width` in px or rem, or a `ch` measure on paragraphs) on top of it, so wide screens get the full 80% and all content, text included, fills that column. The one exception is phones (`max-width: 600px`), where the column goes full width with a 1.25rem side gutter. The template already does this.

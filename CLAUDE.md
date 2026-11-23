@@ -4,7 +4,7 @@
 
 - Prefer immutable data. Mutate only where the language or perf needs it (Swift `var` state, hot loops).
 - <400 lines/file. <50 lines/fn.
-- Research (GitHub, registries, docs) before write anything new.
+- Research (GitHub, registries, docs) before adding a new dependency or an unfamiliar pattern.
 - No hardcoded secrets. Validate all input.
 - 80%+ test coverage for app/library code.
 
@@ -17,7 +17,7 @@
    - no public API or schema change
    Touches security path? NEVER trivial.
 1. Unclear task? Stop. Ask. State assumptions before code.
-2. New feature, new file, or 3+ file change? Planner agent first.
+2. New feature or cross-module change? Planner agent first. Otherwise plan inline.
 3. Multiple interpretations? Present them. No silent pick.
 4. After non-trivial code: run code-reviewer. Fix CRITICAL + HIGH.
 5. Before commit: run security-reviewer (always; fast secrets/input scan on trivial).
@@ -68,7 +68,7 @@ Exempt: scripts, prototypes, one-off tools, trivial tier (gate 0), pure docs/con
 ## Output
 
 - Code first. Explanation after, only if non-obvious.
-- No inline prose. Comments only where logic unclear.
+- No prose mixed into code. Comments only where logic unclear.
 - No boilerplate unless requested.
 
 ## Code Rules
@@ -101,7 +101,3 @@ Exempt: scripts, prototypes, one-off tools, trivial tier (gate 0), pure docs/con
 - Code output must be copy-paste safe.
 
 @RTK.md
-
-# graphify
-- **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
-When the user types `/graphify`, use the installed graphify skill or instructions before doing anything else.

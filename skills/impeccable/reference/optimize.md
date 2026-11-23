@@ -1,13 +1,5 @@
 Performance is a feature. Identify the actual bottleneck for THIS interface, fix it, then measure. Don't optimize what isn't slow.
 
-## Contents
-
-- [Assess Performance Issues](#assess-performance-issues)
-- [Optimization Strategy](#optimization-strategy)
-- [Core Web Vitals Optimization](#core-web-vitals-optimization)
-- [Performance Monitoring](#performance-monitoring)
-- [Verify Improvements](#verify-improvements)
-
 ## Assess Performance Issues
 
 Understand current performance and identify problems:
@@ -25,7 +17,7 @@ Understand current performance and identify problems:
    - How bad is it? (Perceivable? Annoying? Blocking?)
    - Who's affected? (All users? Mobile only? Slow connections?)
 
-**CRITICAL**: Measure before and after. Premature optimization wastes time. Optimize what actually matters.
+Measure before and after. Optimizing without a measurement spends effort on things that do not matter.
 
 ## Optimization Strategy
 
@@ -46,7 +38,6 @@ Create systematic improvement plan:
   src="hero.webp"
   srcset="hero-400.webp 400w, hero-800.webp 800w, hero-1200.webp 1200w"
   sizes="(max-width: 400px) 400px, (max-width: 800px) 800px, 1200px"
-  loading="lazy"
   alt="Hero image"
 />
 ```
@@ -241,9 +232,9 @@ const observer = new IntersectionObserver((entries) => {
 - Bundle size
 - Request count
 
-**IMPORTANT**: Measure on real devices with real network conditions. Desktop Chrome with fast connection isn't representative.
+Measure on real devices with real network conditions. Desktop Chrome on a fast connection isn't representative.
 
-**NEVER**:
+**Avoid**:
 - Optimize without measuring (premature optimization)
 - Sacrifice accessibility for performance
 - Break functionality while optimizing

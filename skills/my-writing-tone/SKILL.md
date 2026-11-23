@@ -1,6 +1,6 @@
 ---
 name: my-writing-tone
-description: "Write in Thomas's (Min Ko Naing's) voice and tone, and strip every AI-writing tell before delivering. Use this skill whenever Thomas says \"write in my tone\", \"use my style\", \"write this for me\", \"reply in my voice\", \"make it sound like me\", \"how would I say this\", \"humanize this\", or asks you to draft, reply to, or clean up ANY email (Gmail replies, university inquiries, freelance client emails, Merxay Lab / MerxyLab customer emails), cover letters, personal statements, or any text that should sound like him and not like a chatbot. Also trigger when another skill (like gmail-summary) needs to draft replies on his behalf. Always use this skill before producing any written output in his name or his stores' names."
+description: "Write in Thomas's (Min Ko Naing's) voice and tone, and strip every AI-writing tell before delivering. Use this skill whenever Thomas says \"write in my tone\", \"use my style\", \"write this for me\", \"reply in my voice\", \"make it sound like me\", \"how would I say this\", \"humanize this\", or asks you to draft, reply to, or clean up ANY email (Gmail replies, university inquiries, freelance client emails, Merxay Lab / MerxyLab customer emails), cover letters, personal statements, or any text that should sound like him and not like a chatbot. Also trigger when another skill needs to draft replies on his behalf. Always use this skill before producing any written output in his name or his stores' names."
 license: MIT
 compatibility: any-agent
 allowed-tools:
@@ -19,13 +19,13 @@ This skill does two jobs at once, in order:
 1. **Write in Thomas's (Min Ko Naing's) voice** for the correct register.
 2. **Strip every AI-writing tell** so the result reads as something a real person wrote, not a chatbot.
 
-Both passes are mandatory. A draft that sounds like Thomas but still carries AI tells (em dashes, rule of three, "I hope this finds you well") is not done. A draft that is clean of AI tells but sounds generic is not done either. The voice comes from this file; the full tell catalog lives in `reference/ai-writing-tells.md`.
+A draft that sounds like Thomas but still carries AI tells (em dashes, rule of three, "I hope this finds you well") is not done. A draft that is clean of AI tells but sounds generic is not done either. The voice comes from this file; the full tell catalog lives in `reference/ai-writing-tells.md`.
 
 Read this before producing any written output on his behalf, including email replies drafted by other skills.
 
 ## Workflow
 
-1. **Pick the register** (table below). If unclear between formal and store voice, ask. Do not guess.
+1. **Pick the register** (table below).
 2. **Draft in Thomas's voice** using the register's rules.
 3. **Run the AI-tells pass.** Scan the draft against `reference/ai-writing-tells.md`. Ask yourself: "What makes this look AI-generated?" Fix every hit. The em dash / en dash check is a hard gate, scan for `—` and `–` before delivering.
 4. **Run the Final Checklist** at the bottom.
@@ -144,7 +144,7 @@ Switch from personal voice to store voice. If `context/brand-voice.md` exists in
 - Problem / approach / result pattern. Short to medium sentences.
 - Neutral and plain is correct here. Do not inject opinions or forced personality into reference-style text.
 
-**Cover letters:** use the job-application skill for structure, this skill for voice.
+**Cover letters:** one page; why this role, the most relevant experience with a concrete result, and a short close. Voice per the professional register.
 
 ## The AI-Tells Pass
 
@@ -157,7 +157,7 @@ After drafting in Thomas's voice, scan the draft against `reference/ai-writing-t
 - Superficial "-ing" tails: "highlighting the importance of...", "ensuring...", "reflecting..." (§3).
 - Copula avoidance: use "is/are/has", not "serves as / boasts / features" (§8).
 - Negative parallelisms and tailing negations: "not just X, it's Y", "no guessing" (§9).
-- Collaborative artifacts and sycophancy: "I hope this helps", "Great question!", "Let me know if..." (§20, §22).
+- Collaborative artifacts and sycophancy: "I hope this helps", "Great question!", "Let me know if..." (§20, §22). Exception: the store closing "Let us know if you need help" stays in store emails.
 - Curly quotes, replace with straight quotes (§19).
 - Filler and hedging: "in order to", "at this point in time", "it could potentially possibly" (§23, §24).
 

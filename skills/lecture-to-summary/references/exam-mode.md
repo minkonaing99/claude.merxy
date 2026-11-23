@@ -18,7 +18,7 @@ Rank every `lecture.html` section and every `summary.md` key concept as **high**
 4. The slide spends several pages on it, or shows a worked example.
 5. Mentioned once, in passing: low.
 
-In `lecture.html`, show it as a small badge on each section heading (`likely tested: high`). In `summary.md`, append `(likely tested: high)` to each key concept.
+This ranking runs on every lecture, not only in exam mode. Show it as stars: high = 3 stars, med = 2, low = 1. In `lecture.html`, use the template's `.stars` span (see SKILL.md, Importance stars). In `summary.md`, append the stars after each key concept, e.g. `**Hypothesis** - ... ★★★`.
 
 ## Timed study plan
 

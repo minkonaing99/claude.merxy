@@ -2,11 +2,11 @@
 
 ## Hard Rules
 
-- Never mutate. Return new copies.
-- 200-400 lines/file. <50 lines/fn.
+- Prefer immutable data. Mutate only where the language or perf needs it (Swift `var` state, hot loops).
+- <400 lines/file. <50 lines/fn.
 - Research (GitHub, registries, docs) before write anything new.
 - No hardcoded secrets. Validate all input.
-- 80%+ test coverage.
+- 80%+ test coverage for app/library code.
 
 ## Workflow Gates
 
@@ -27,17 +27,20 @@
 - Touch only what request requires.
 - Match existing style. No improve adjacent code.
 - Remove only orphans YOUR changes created.
-- Simpler solution exists? Say so before implement.
 
 ## TDD
 
-RED -> GREEN -> REFACTOR. Failing test first. Always.
-Exempt: trivial tier (gate 0) + pure docs/config/rename.
+RED -> GREEN -> REFACTOR. Failing test first for app/library code.
+Exempt: scripts, prototypes, one-off tools, trivial tier (gate 0), pure docs/config/rename.
 
 ## Language Rules (load only on demand)
 
-- TS/JS: `rules/typescript/{coding-style,patterns,testing,security}.md`
-- Python: `rules/python/{coding-style,patterns,testing,security}.md`
+- TypeScript / JavaScript (all TS/JS): `rules/typescript/rules.md`
+- React / Next.js: `rules/react/rules.md` (also apply TS rules)
+- React Native / Expo (Android): `rules/react-native/rules.md` (also apply TS + React rules)
+- Swift / SwiftUI: `rules/swift/rules.md`
+- SQL (Postgres, MySQL): `rules/sql/rules.md`
+- Python: `rules/python/rules.md`
 
 ## Project Init
 
@@ -70,7 +73,7 @@ Exempt: trivial tier (gate 0) + pure docs/config/rename.
 
 ## Code Rules
 
-- Simplest working solution. No over-engineering.
+- Simplest working solution. No over-engineering. Simpler option than asked? Say so before implement.
 - No abstractions for single-use ops.
 - No speculative features.
 - Read file before modify. Never edit blind.

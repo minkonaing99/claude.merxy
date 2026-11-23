@@ -45,6 +45,22 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/Users/aurora/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-11-11T16:11:37.295Z"
+    "lastUpdated": "2026-11-23T16:58:44.787Z"
+  },
+  "claude-code-filetree": {
+    "source": {
+      "source": "github",
+      "repo": "data-goblin/claude-code-filetree"
+    },
+    "installLocation": "/Users/aurora/.claude/plugins/marketplaces/claude-code-filetree",
+    "lastUpdated": "2026-11-11T18:29:31.438Z"
+  },
+  "trailofbits": {
+    "source": {
+      "source": "github",
+      "repo": "trailofbits/skills"
+    },
+    "installLocation": "/Users/aurora/.claude/plugins/marketplaces/trailofbits",
+    "lastUpdated": "2026-11-23T17:03:05.890Z"
   }
 }

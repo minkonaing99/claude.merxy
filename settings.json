@@ -79,7 +79,8 @@
     "ponytail@ponytail": true,
     "claude-animation@claude-animation-skill": true,
     "nateherk-design@nateherk": true,
-    "bama@bama": true
+    "bama@bama": true,
+    "modern-python@trailofbits": true
   },
   "extraKnownMarketplaces": {
     "caveman": {
@@ -111,6 +112,18 @@
         "source": "github",
         "repo": "daveebbelaar/bama"
       }
+    },
+    "claude-code-filetree": {
+      "source": {
+        "source": "github",
+        "repo": "data-goblin/claude-code-filetree"
+      }
+    },
+    "trailofbits": {
+      "source": {
+        "source": "github",
+        "repo": "trailofbits/skills"
+      }
     }
   },
   "spinnerTipsEnabled": false,
@@ -120,6 +133,7 @@
     }
   },
   "awaySummaryEnabled": false,
+  "pluginConfigs": {},
   "tui": "fullscreen",
   "autoMemoryEnabled": false,
   "theme": "dark",

@@ -68,43 +68,6 @@
           }
         ]
       }
-    ],
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "[ ! -f '/Users/aurora/.claude/skills/impeccable/scripts/impeccable' ] || '/Users/aurora/.claude/skills/impeccable/scripts/impeccable' hook",
-            "timeout": 5,
-            "statusMessage": "Preparing build session"
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "[ ! -f '/Users/aurora/.claude/skills/impeccable/scripts/impeccable' ] || '/Users/aurora/.claude/skills/impeccable/scripts/impeccable' hook",
-            "timeout": 5,
-            "statusMessage": "Checking UI changes"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "[ ! -f '/Users/aurora/.claude/skills/impeccable/scripts/impeccable' ] || '/Users/aurora/.claude/skills/impeccable/scripts/impeccable' hook",
-            "timeout": 30,
-            "statusMessage": "Design deep pass"
-          }
-        ]
-      }
     ]
   },
   "statusLine": {
@@ -180,13 +143,13 @@
       "### Org-wide",
       "**Organization**: None configured",
       "**Cloud provider(s)**: None configured",
-      "**Repository visibility**: Not queryable (no git remotes configured for this repo) — assume private; repo has 0 tracked files",
-      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Repository visibility**: Not queryable (no git remotes configured for this repo) \u2014 assume private; repo has 0 tracked files",
+      "**Internal sharing / snippet hosting**: None configured \u2014 treat public paste/gist services as outside the trust boundary",
       "**Secrets management**: None configured",
-      "**Default / protected branches**: Not queryable (no remotes; default branch unknown — origin/HEAD unset)",
+      "**Default / protected branches**: Not queryable (no remotes; default branch unknown \u2014 origin/HEAD unset)",
       "**CI/CD deploy targets**: None configured",
       "**Network posture**: None configured",
-      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine or CI runner with open internet",
+      "**Host containment**: None configured \u2014 assume Claude Code runs on an ordinary developer machine or CI runner with open internet",
       "**Source control**: The trusted repo only (no remotes configured, no additional orgs configured)",
       "**Trusted internal domains**: None configured",
       "**Trusted cloud buckets**: None configured",
@@ -195,13 +158,12 @@
       "**Sensitive data locations & audiences**: any file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material; preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar",
       "**Data retention / declassification**: None configured",
       "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment",
-      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected deployment namespaces / environments**: None configured \u2014 fall back to the Sensitive remote targets heuristic",
       "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
       "### User-specific",
       "**Primary use of Claude Code**: software development",
-      "**Trusted repo**: The git repository at /Users/aurora/Downloads/InfoSec Roadmap (its working directory) — no remotes configured",
+      "**Trusted repo**: The git repository at /Users/aurora/Downloads/InfoSec Roadmap (its working directory) \u2014 no remotes configured",
       "**Org-specific CLIs**: None configured"
     ]
-  },
-  "description": "Impeccable design detector: immediate-tier checks after Edit/Write on UI files, full-rule deep pass on Stop."
+  }
 }
